@@ -6,7 +6,7 @@ import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.componen
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent
   },
   {

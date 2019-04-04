@@ -20,7 +20,14 @@ header{
     height: 58px;
 }
 .navbar .nav-link{
-	color:#fff
+	color:#fff;
+	transition-duration: 0.3s;
+}
+.navbar .nav-link.active, .navbar .nav-link:hover{
+	color:#fff;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+
 }
 .navbar-nav{
 	margin-top: 27px
@@ -51,9 +58,15 @@ main{
 }
 .main-container .table{
 	margin:20px 0;
-	overflow:hidden
+	overflow:hidden;
+	color:#fff
 	
 }
+.main-container .table tr{
+	background: rgba(10, 61, 171, 0.38)
+	
+}
+
 .btn{
 	margin-right:10px;
 }
