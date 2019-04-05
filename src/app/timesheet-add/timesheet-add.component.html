@@ -4,35 +4,12 @@
     
     <h1>Enter Your Time sheet</h1>
     <div class="row">
-      <div class="form-group col-sm-6">
-        <label>Manufacture:</label>
-        <input type="text" ng-model="modvehicleMade" uib-typeahead="vehilcleMade for vehilcleMade in vehilclesMade | filter:$viewValue | limitTo:8" class="form-control">
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Type:</label>
-        <input type="text" ng-model="modvehicleType" uib-typeahead="vehicleType for vehicleType in vehicleTypes | filter:$viewValue | limitTo:8" class="form-control">
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Name:</label>
-        <input type="text" ng-model="modvehicleName" uib-typeahead="vehicleName for vehicleName in vehicleNames | filter:$viewValue | limitTo:8" class="form-control">
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Color:</label>
-        <input type="text" ng-model="modvehicleClr" uib-typeahead="vehilcleClr for vehilcleClr in vehilcleClrs | filter:$viewValue | limitTo:8" class="form-control">
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Registration Number:</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="form-group col-sm-6">
-        <label>Number of Seats:</label>
-        <input type="text" ng-model="modnoofSeat" uib-typeahead="noOfSeat for noOfSeat in noOfSeats | filter:$viewValue | limitTo:6" class="form-control">
-      </div>
       <div class="col-sm-12">
-        <button type="button" class="btn btn-primary">Add</button>
-        <button type="button" class="btn btn-info">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
-        <button type="button" class="btn btn-warning">Reset</button>
+          <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
