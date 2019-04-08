@@ -16,49 +16,101 @@
     <table class="table table-stripped">
       <tr>
         <th width="5%">S.no</th>
-        <th width="20%">Manufacture</th>
-        <th width="15%">Type</th>
-        <th width="15%">Name</th>
-        <th width="10%">Color</th>
-        <th width="15%">Registration Number</th>
-        <th width="5%">No of Seats</th>
+        <th width="20%">Module</th>
+        <th width="15%">TFS Id</th>
+        <th width="15%">Build No.</th>
+        <th width="10%">Activity</th>
+        <th width="15%">Comments</th>
+        <th width="5%">No of Hours</th>
       </tr>
       <tr>
         <td>1</td>
-        <td>Tata Motors</td>
-        <td>Sedan</td>
-        <td>Indigo</td>
-        <td>Black</td>
-        <td>TN 03 AK 2529</td>
+        <td>Smart Wallet</td>
+        <td>55778</td>
+        <td>1358.2</td>
+        <td>Development</td>
+        <td>Worked on Smart Wallet initial page</td>
         <td align="center">3</td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Tata Motors</td>
-        <td>Sedan</td>
-        <td>Indigo</td>
-        <td>Black</td>
-        <td>TN 03 AK 2529</td>
+        <td>Team Meeting</td>
+        <td>55778</td>
+        <td>1358.2</td>
+        <td>Development</td>
+        <td>Discussed on Initial page design</td>
         <td align="center">3</td>
       </tr>
       <tr>
         <td>3</td>
-        <td>Tata Motors</td>
-        <td>Sedan</td>
-        <td>Indigo</td>
-        <td>Black</td>
-        <td>TN 03 AK 2529</td>
+        <td>Smart Wallet</td>
+        <td>55778</td>
+        <td>1358.2</td>
+        <td>Deploymnet</td>
+        <td>Deployed to server Dev</td>
         <td align="center">3</td>
       </tr>
       <tr>
         <td>4</td>
-        <td>Tata Motors</td>
-        <td>Sedan</td>
-        <td>Indigo</td>
-        <td>Black</td>
-        <td>TN 03 AK 2529</td>
+        <td>Smart Wallet</td>
+        <td>55778</td>
+        <td>1358.2</td>
+        <td>Analysis</td>
+        <td>Analysed on Smart Wallet initial page</td>
         <td align="center">3</td>
       </tr>
     </table>
+    <!-- <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+      <data-table id="persons-grid"
+          headerTitle="Employees"
+          [items]="items"
+          [itemCount]="itemCount"
+          (reload)="reloadItems($event)"
+  
+          (rowClick)="rowClick($event)"
+          (rowDoubleClick)="rowDoubleClick($event)"
+          [rowTooltip]="rowTooltip"
+          >
+          <data-table-column
+              [property]="'name'"
+              [header]="'Name'"
+              [sortable]="true"
+              [resizable]="true">
+          </data-table-column>
+          <data-table-column
+              [property]="'date'"
+              [header]="'Date'"
+              [sortable]="true">
+              <template #dataTableCell let-item="item">
+                  <span>{{item.date | date:'yyyy-MM-dd'}}</span>
+              </template>
+          </data-table-column>
+          <data-table-column
+              property="phoneNumber"
+              header="Phone number"
+              width="150px">
+          </data-table-column>
+          <data-table-column
+              [property]="'jobTitle'"
+              [header]="'Job title'"
+              [visible]="false">
+          </data-table-column>
+          <data-table-column
+              [property]="'active'"
+              [header]="'Active'"
+              [width]="100"
+              [resizable]="true">
+              <template #dataTableHeader let-item="item">
+                  <span style="color: rgb(232, 0, 0)">Active</span>
+              </template>
+              <template #dataTableCell let-item="item">
+                  <span style="color: grey">
+                  <span class="glyphicon glyphicon-ok" *ngIf="item.active"></span>
+                  <span class="glyphicon glyphicon-remove" *ngIf="!item.active"></span>
+                  </span>
+              </template>
+          </data-table-column>
+      </data-table> -->
   </div>
+
 </form>
