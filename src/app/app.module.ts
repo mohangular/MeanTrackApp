@@ -8,9 +8,10 @@ import { TimesheetAddComponent } from './timesheet-add/timesheet-add.component';
 import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 // import {DataTableModule} from 'angular-4-data-table';
 
 @NgModule({
@@ -19,18 +20,22 @@ import { AdminComponent } from './admin/admin.component';
     DashboardComponent,
     TimesheetAddComponent,
     TimesheetEditComponent,
-    AdminComponent
+    AdminComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule,  
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatIconModule
+    
     // DataTableModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule ],

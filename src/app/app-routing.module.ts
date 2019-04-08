@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -6,9 +7,13 @@ import {TimesheetAddComponent } from './timesheet-add/timesheet-add.component';
 import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: DashboardComponent
+  // },
   {
-    path: '',
-    component: DashboardComponent
+    path:'',
+    component: LoginComponent
   },
   {
     path: 'timesheet/create',
