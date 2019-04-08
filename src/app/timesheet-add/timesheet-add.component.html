@@ -13,104 +13,42 @@
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
-    <table class="table table-stripped">
-      <tr>
-        <th width="5%">S.no</th>
-        <th width="20%">Module</th>
-        <th width="15%">TFS Id</th>
-        <th width="15%">Build No.</th>
-        <th width="10%">Activity</th>
-        <th width="15%">Comments</th>
-        <th width="5%">No of Hours</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Smart Wallet</td>
-        <td>55778</td>
-        <td>1358.2</td>
-        <td>Development</td>
-        <td>Worked on Smart Wallet initial page</td>
-        <td align="center">3</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Team Meeting</td>
-        <td>55778</td>
-        <td>1358.2</td>
-        <td>Development</td>
-        <td>Discussed on Initial page design</td>
-        <td align="center">3</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Smart Wallet</td>
-        <td>55778</td>
-        <td>1358.2</td>
-        <td>Deploymnet</td>
-        <td>Deployed to server Dev</td>
-        <td align="center">3</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Smart Wallet</td>
-        <td>55778</td>
-        <td>1358.2</td>
-        <td>Analysis</td>
-        <td>Analysed on Smart Wallet initial page</td>
-        <td align="center">3</td>
-      </tr>
+   
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="module">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Module </th>
+        <td mat-cell *matCellDef="let element"> {{element.module}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Tfs_Id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TFS_ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.Tfs_Id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="buildNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Build No </th>
+        <td mat-cell *matCellDef="let element"> {{element.buildNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="activity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Activity </th>
+        <td mat-cell *matCellDef="let element"> {{element.activity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+        <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onEdit(row)"></tr>
     </table>
-    <!-- <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
-      <data-table id="persons-grid"
-          headerTitle="Employees"
-          [items]="items"
-          [itemCount]="itemCount"
-          (reload)="reloadItems($event)"
-  
-          (rowClick)="rowClick($event)"
-          (rowDoubleClick)="rowDoubleClick($event)"
-          [rowTooltip]="rowTooltip"
-          >
-          <data-table-column
-              [property]="'name'"
-              [header]="'Name'"
-              [sortable]="true"
-              [resizable]="true">
-          </data-table-column>
-          <data-table-column
-              [property]="'date'"
-              [header]="'Date'"
-              [sortable]="true">
-              <template #dataTableCell let-item="item">
-                  <span>{{item.date | date:'yyyy-MM-dd'}}</span>
-              </template>
-          </data-table-column>
-          <data-table-column
-              property="phoneNumber"
-              header="Phone number"
-              width="150px">
-          </data-table-column>
-          <data-table-column
-              [property]="'jobTitle'"
-              [header]="'Job title'"
-              [visible]="false">
-          </data-table-column>
-          <data-table-column
-              [property]="'active'"
-              [header]="'Active'"
-              [width]="100"
-              [resizable]="true">
-              <template #dataTableHeader let-item="item">
-                  <span style="color: rgb(232, 0, 0)">Active</span>
-              </template>
-              <template #dataTableCell let-item="item">
-                  <span style="color: grey">
-                  <span class="glyphicon glyphicon-ok" *ngIf="item.active"></span>
-                  <span class="glyphicon glyphicon-remove" *ngIf="!item.active"></span>
-                  </span>
-              </template>
-          </data-table-column>
-      </data-table> -->
+    <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
   </div>
 
 </form>

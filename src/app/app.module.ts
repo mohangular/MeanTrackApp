@@ -12,7 +12,8 @@ import {MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule, 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-// import {DataTableModule} from 'angular-4-data-table';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -34,9 +35,10 @@ import { LoginComponent } from './login/login.component';
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
-    
-    // DataTableModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule ],
   bootstrap: [AppComponent]
