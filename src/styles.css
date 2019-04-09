@@ -3,7 +3,7 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body{
-	background: url("assets/images/track-app1.jpg") no-repeat 0 0;
+	background: #eee;
 	background-size: cover;
 	width:100%;
 	height:100%;
@@ -13,9 +13,9 @@ body{
 	
 }
 header{
-	background-color: #154265 20%;
-    background-image: radial-gradient(farthest-side ellipse at 10% 0, #154265 20%, #7392c2);
-    background-image: -webkit-radial-gradient(10% 0, farthest-side ellipse, #154265 20%, #7392c2);
+	background-color: #dc1d1df2 20%;
+    background-image: radial-gradient(farthest-side ellipse at 10% 0,  #dc1d1df2 20%, #4a0202);
+	background-image: -webkit-radial-gradient(10% 0, farthest-side ellipse, #dc1d1df2 20%, #4a0202);
 	margin: 0 ;
 	padding:0;
 	z-index:2
@@ -41,7 +41,6 @@ main{
 	margin-top:-2px;
 	margin-bottom:20px;
 	display:block;
-	color:#fff
 }
 .main-container{
 	float:left;
@@ -53,6 +52,7 @@ main{
 	margin-top:0;
 	font-size:24px;
 	margin-bottom:20px;
+	color: #c11104
 }
 
 .main-container h5{
@@ -414,7 +414,7 @@ label input[type="radio"]:checked + .big-radio:after {
 mat-form-field{
 	width:100%
 }
-.mat-datepicker-content{
+/* .mat-datepicker-content{
 	background: #154265;
 }
 .mat-form-field.mat-focused .mat-form-field-ripple, .mat-calendar-body-selected{
@@ -422,6 +422,17 @@ mat-form-field{
 }
 .mat-datepicker-toggle-active, .mat-form-field.mat-focused .mat-form-field-label{
 	color:  rgba(255, 255, 255, 0.3);
+} */
+
+tr.mat-header-row {
+	background-color: #bf2626;
+	color:#fff;
+}
+tr.mat-header-row:hover{
+	background-color: rgba(191, 38, 38, 0.8) !important
+}
+.mat-header-cell  .mat-sort-header-button, .mat-sort-header-arrow{
+	color:#fff
 }
 
 
