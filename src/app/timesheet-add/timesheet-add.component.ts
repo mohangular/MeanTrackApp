@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Activity } from './../Acttivity';
+import { Activity } from '../Acttivity';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
@@ -30,6 +30,7 @@ export class TimesheetAddComponent implements OnInit {
   startDate = new Date(1990, 0, 1);
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString())
+
   displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity','comments'];
   dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
 
@@ -43,5 +44,9 @@ export class TimesheetAddComponent implements OnInit {
 
   onEdit(rows){
 console.log(rows);
+  }
+
+  onUpdate(){
+    this.displayGrid = true;
   }
 }

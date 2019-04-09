@@ -50,8 +50,61 @@
     </table>
     <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
   </div>
+
   <div *ngIf="!displayGrid">
-Update Form in Construction !!!!!
+      <form>
+        <div class="form-group">
+          <label for="module">Module</label>
+          <select name="module" id="module" class="form-control">
+              <option value="1">Smart Wallet</option>
+              <option value="2">Organisational Activity</option>
+              <option value="3">Team Meeting</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="build">Build No.</label>
+          <select name="build" id="build" class="form-control">
+              <option value="1">1538.1</option>
+              <option value="1">1538.2</option>
+              <option value="1">1538.3</option>
+              <option value="1">1538.4</option>
+              <option value="1">1538.5</option>
+          </select>
+      </div>
+          <div class="form-group">
+              <label for="username">TFS ID</label>
+              <input 
+                  id="tfsId" 
+                  type="text" 
+                  class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="workType">Work Type</label>
+              <select name="workType" id="workType" class="form-control">
+                  <option value="1">Bug</option>
+                  <option value="1">UserStory</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="activity">Activity Done</label>
+              <select name="activity" id="activity" class="form-control">
+                  <option value="1">Analysis</option>
+                  <option value="1">Coding</option>
+                  <option value="1">Tech Spec Preparation</option>
+                  <option value="1">Environment/BranchSetup</option>
+                  <option value="1">Unit Testing</option>
+                  <option value="1">Code Review</option>
+                  <option value="1">Code Rework</option>
+                  <option value="1">Merging/Branching</option>
+                  <option value="1">Assisting Team Technical</option>
+                  <option value="1">Process/ Build Activity</option>
+                  <option value="1">Customer Call</option>
+                  <option value="1">Team Meeting/ Others</option>
+                  <option value="1">Team Meeting/ Activities</option>
+              </select>
+          </div>
+          <button class="btn btn-primary" type="submit" (click)="onUpdate()">Update</button>
+      </form>
   </div>
 </div>
 </form>
