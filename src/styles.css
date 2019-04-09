@@ -409,7 +409,17 @@ label input[type="radio"]:checked + .big-radio:after {
 	margin-right: 5px;
 }
 
-
+/* Buttons */
+.btn-primary{
+	background: #bf2626;
+	border: 1px solid #bf2626;
+	font-size: 14px;
+	color:#fff;
+}
+.btn-primary:hover{
+	background:rgba(191, 38, 38, 0.8) !important;
+	border: 1px solid #bf2626;
+}
 /* Date picker */
 mat-form-field{
 	width:100%
@@ -424,7 +434,7 @@ mat-form-field{
 	color:  rgba(255, 255, 255, 0.3);
 } */
 
-tr.mat-header-row {
+tr.mat-header-row, .mat-card-title {
 	background-color: #bf2626;
 	color:#fff;
 }
@@ -433,6 +443,27 @@ tr.mat-header-row:hover{
 }
 .mat-header-cell  .mat-sort-header-button, .mat-sort-header-arrow{
 	color:#fff
+}
+
+/* Card */
+.mat-card{
+	padding:0 !important;
+	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)!important
+	
+}
+
+.mat-card-content, .mat-card-subtitle, .mat-card-title{
+	padding: 10px 16px;
+}
+.mat-card-title{
+	font-size: 18px;
+	border-radius: 4px 4px 0 0;
+}
+.mat-card-actions{
+	width: 100%;
+    margin: 0 !important;
+    padding: 10px 16px 0 !important;
+    border-top: 1px solid #ccc;
 }
 
 

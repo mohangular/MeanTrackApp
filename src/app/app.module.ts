@@ -16,8 +16,7 @@ import {DatePipe} from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { MatPaginatorModule, MatSortModule } from '@angular/material';
-import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule , ServiceService, DatePipe ],
   bootstrap: [AppComponent]
