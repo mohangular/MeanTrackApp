@@ -1,5 +1,5 @@
 export interface Activity {
-    id:number,
+    id:number;
     module: string;
     Tfs_Id: string;
     type: string;
@@ -7,4 +7,5 @@ export interface Activity {
     date:string;
     activity:string;
     comments:string;
+    hours: number;    
   }
