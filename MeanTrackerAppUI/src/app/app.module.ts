@@ -21,6 +21,7 @@ import { AdminModuleComponent } from './admin/admin.module/admin.module.componen
 import { AdminBuildComponent } from './admin/admin.build/admin.build.component';
 import { AdminActivityComponent } from './admin/admin.activity/admin.activity.component';
 import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.workitemtype.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.wor
     MatSortModule,
     MatTableModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    NgbModule,
   ],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe],
   bootstrap: [AppComponent]

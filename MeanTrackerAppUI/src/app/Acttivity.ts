@@ -7,4 +7,5 @@ export interface Activity {
   date: string;
   activity: string;
   comments: string;
+  hours: number;
 }
