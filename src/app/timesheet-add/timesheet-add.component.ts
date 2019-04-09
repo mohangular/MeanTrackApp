@@ -70,17 +70,7 @@ get activity(){
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
   }
-
-  applyFilter(filterValue: string) {
-    //filterValue = filterValue.trimLeft();
-    //filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
+ 
   onEdit(rows){
 console.log(rows);
   }
