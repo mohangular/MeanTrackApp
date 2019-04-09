@@ -96,6 +96,5 @@ export class TimesheetAddComponent implements OnInit {
   }
   onUpdate(form) {
     this.displayGrid = true;
-    console.log(form);
   }
 }
