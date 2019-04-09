@@ -137,7 +137,7 @@ export class TimesheetAddComponent implements OnInit {
   displayGrid = true;
   startDate = new Date(1990, 0, 1);
   date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString())
+  serializedDate = new FormControl((new Date()).toISOString());
 
   displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity', 'comments'];
   dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
