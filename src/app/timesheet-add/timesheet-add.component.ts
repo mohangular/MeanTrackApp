@@ -1,5 +1,5 @@
-import { FormControl } from '@angular/forms';
-import { Activity } from '../Acttivity';
+import { Activity } from './../Acttivity';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
@@ -36,6 +36,34 @@ export class TimesheetAddComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+ form = new FormGroup({
+   module: new FormControl('',Validators.required),
+   build : new FormControl('',Validators.required),
+   tfsId :  new FormControl('',Validators.required),
+   workType : new FormControl('',Validators.required),
+   activity : new FormControl('',Validators.required)
+ })
+
+ get module(){
+   return this.form.get('module');
+ }
+
+ get build(){
+  return this.form.get('build');
+}
+
+get tfsId(){
+  return this.form.get('tfsId');
+}
+
+get workType(){
+  return this.form.get('workType');
+}
+
+get activity(){
+  return this.form.get('activity');
+}
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;

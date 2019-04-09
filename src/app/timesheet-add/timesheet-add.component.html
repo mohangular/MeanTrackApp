@@ -52,42 +52,50 @@
   </div>
 
   <div *ngIf="!displayGrid">
-      <form>
+      <form [formGroup]="form">
         <div class="form-group">
           <label for="module">Module</label>
-          <select name="module" id="module" class="form-control">
+          <select name="module" id="module" class="form-control" formControlName="module">
               <option value="1">Smart Wallet</option>
               <option value="2">Organisational Activity</option>
               <option value="3">Team Meeting</option>
           </select>
+          <div *ngIf="module.touched && module.invalid" class="alert alert-danger">Module is Required</div>
       </div>
       <div class="form-group">
           <label for="build">Build No.</label>
-          <select name="build" id="build" class="form-control">
+          <select name="build" id="build" class="form-control" formControlName="build">
               <option value="1">1538.1</option>
               <option value="1">1538.2</option>
               <option value="1">1538.3</option>
               <option value="1">1538.4</option>
               <option value="1">1538.5</option>
           </select>
+          <div *ngIf="build.touched && build.invalid" class="alert alert-danger">Build Number is Required</div>
+
       </div>
           <div class="form-group">
               <label for="username">TFS ID</label>
               <input 
                   id="tfsId" 
                   type="text" 
-                  class="form-control">
+                  class="form-control"
+                  formControlName="tfsId"
+                  >
+          <div *ngIf="tfsId.touched && tfsId.invalid" class="alert alert-danger">TFS Id is Required</div>
+
           </div>
           <div class="form-group">
               <label for="workType">Work Type</label>
-              <select name="workType" id="workType" class="form-control">
+              <select name="workType" id="workType" class="form-control" formControlName="workType">
                   <option value="1">Bug</option>
                   <option value="1">UserStory</option>
               </select>
+          <div *ngIf="workType.touched && workType.invalid" class="alert alert-danger">Work Type is Required</div>              
           </div>
           <div class="form-group">
               <label for="activity">Activity Done</label>
-              <select name="activity" id="activity" class="form-control">
+              <select name="activity" id="activity" class="form-control" formControlName="activity">
                   <option value="1">Analysis</option>
                   <option value="1">Coding</option>
                   <option value="1">Tech Spec Preparation</option>
@@ -102,6 +110,7 @@
                   <option value="1">Team Meeting/ Others</option>
                   <option value="1">Team Meeting/ Activities</option>
               </select>
+          <div *ngIf="activity.touched && activity.invalid" class="alert alert-danger">Activity is Required</div>
           </div>
           <button class="btn btn-primary" type="submit" (click)="onUpdate()">Update</button>
       </form>
