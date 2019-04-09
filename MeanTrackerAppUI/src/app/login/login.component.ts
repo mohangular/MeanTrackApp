@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',

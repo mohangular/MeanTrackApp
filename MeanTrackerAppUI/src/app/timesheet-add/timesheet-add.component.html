@@ -84,7 +84,7 @@
                     id="tfsId" 
                     type="text" 
                     class="form-control"
-                    formControlName="tfsId"                    
+                    formControlName="tfsId"
                     >
             <div *ngIf="tfsId.touched && tfsId.invalid" class="alert alert-danger">TFS Id is Required</div>
 
@@ -117,28 +117,6 @@
                     <option value="Team Meeting/ Activities">Team Meeting/ Activities</option>
                 </select>
               <div *ngIf="activity.touched && activity.invalid" class="alert alert-danger">Activity is Required</div>
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="hours">Hours</label>
-              <input
-                id="hours"
-                type="number"
-                class="form-control"
-                formControlName="hours"
-              >
-              <div *ngIf="hours.touched && hours.invalid" class="alert alert-danger">Hours is Required</div>
-            </div >
-
-            <div class="form-group col-sm-6">
-              <label for="comments">Comments</label>
-              <textarea 
-              id="comments"
-                rows="5" 
-                cols="10"
-                class="form-control"
-                formControlName="comments"  
-              ></textarea> 
-              <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">Comments length should not exceed 250 char.</div>           
             </div>
             <mat-card-actions class="text-right">
               <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Update</button> 

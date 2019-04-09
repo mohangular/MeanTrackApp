@@ -5,18 +5,126 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
 
 const ELEMENT_DATA: Activity[] = [
-  { id: 1, module: 'Smart Wallet', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 1.5 },
-  { id: 2, module: 'Organisational Meeting', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Team Meeting', comments: 'Discussed on initial page', hours: 1.5 },
-  { id: 3, module: 'Smart Wallet', Tfs_Id: '55778', type: 'UserStory', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 1.5 },
-  { id: 4, module: 'Smart Wallet', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 1.5 },
-  { id: 5, module: 'Organisational Meeting', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Team Meeting', comments: 'Discussed on initial page', hours: 4.5 },
-  { id: 6, module: 'Smart Wallet', Tfs_Id: '55778', type: 'UserStory', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 2.5 },
-  { id: 7, module: 'Smart Wallet', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 8.5 },
-  { id: 8, module: 'Organisational Meeting', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Team Meeting', comments: 'Discussed on initial page', hours: 1.5 },
-  { id: 9, module: 'Smart Wallet', Tfs_Id: '55778', type: 'UserStory', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 5.5 },
-  { id: 10, module: 'Smart Wallet', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 5.5 },
-  { id: 11, module: 'Organisational Meeting', Tfs_Id: '55777', type: 'Bug', buildNo: '1538.2', date: '01/01/2018', activity: 'Team Meeting', comments: 'Discussed on initial page', hours: 8.5 },
-  { id: 12, module: 'Smart Wallet', Tfs_Id: '55778', type: 'UserStory', buildNo: '1538.2', date: '01/01/2018', activity: 'Development', comments: 'Worked on initial page', hours: 7.75 }
+  {
+    id: 1,
+    module: 'Smart Wallet',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 2,
+    module: 'Organisational Meeting',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Team Meeting',
+    comments: 'Discussed on initial page'
+  },
+  {
+    id: 3,
+    module: 'Smart Wallet',
+    Tfs_Id: '55778',
+    type: 'UserStory',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 4,
+    module: 'Smart Wallet',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 5,
+    module: 'Organisational Meeting',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Team Meeting',
+    comments: 'Discussed on initial page'
+  },
+  {
+    id: 6,
+    module: 'Smart Wallet',
+    Tfs_Id: '55778',
+    type: 'UserStory',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 7,
+    module: 'Smart Wallet',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 8,
+    module: 'Organisational Meeting',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Team Meeting',
+    comments: 'Discussed on initial page'
+  },
+  {
+    id: 9,
+    module: 'Smart Wallet',
+    Tfs_Id: '55778',
+    type: 'UserStory',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 10,
+    module: 'Smart Wallet',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  },
+  {
+    id: 11,
+    module: 'Organisational Meeting',
+    Tfs_Id: '55777',
+    type: 'Bug',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Team Meeting',
+    comments: 'Discussed on initial page'
+  },
+  {
+    id: 12,
+    module: 'Smart Wallet',
+    Tfs_Id: '55778',
+    type: 'UserStory',
+    buildNo: '1538.2',
+    date: '01/01/2018',
+    activity: 'Development',
+    comments: 'Worked on initial page'
+  }
 ];
 
 @Component({
@@ -29,11 +137,10 @@ export class TimesheetAddComponent implements OnInit {
   displayGrid = true;
   startDate = new Date(1990, 0, 1);
   date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString())
+  serializedDate = new FormControl((new Date()).toISOString());
 
   displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity', 'comments'];
   dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
-  selectedRow: Activity;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -43,10 +150,8 @@ export class TimesheetAddComponent implements OnInit {
     build: new FormControl('', Validators.required),
     tfsId: new FormControl('', Validators.required),
     workType: new FormControl('', Validators.required),
-    activity: new FormControl('', Validators.required),
-    hours: new FormControl('', Validators.required),
-    comments: new FormControl('', Validators.maxLength(250)),
-  })
+    activity: new FormControl('', Validators.required)
+  });
 
   get module() {
     return this.form.get('module');
@@ -68,14 +173,6 @@ export class TimesheetAddComponent implements OnInit {
     return this.form.get('activity');
   }
 
-  get hours() {
-    return this.form.get('hours');
-  }
-
-  get comments() {
-    return this.form.get('comments');
-  }
-
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     setTimeout(() => this.dataSource.paginator = this.paginator);
@@ -83,18 +180,16 @@ export class TimesheetAddComponent implements OnInit {
   }
 
   onEdit(task: Activity) {
-    this.selectedRow = task;
     this.form.patchValue({
-      'module': this.selectedRow.module,
-      'build': this.selectedRow.buildNo,
-      'tfsId': this.selectedRow.Tfs_Id,
-      'workType': this.selectedRow.type,
-      'activity': this.selectedRow.activity,
-      'hours': this.selectedRow.hours,
-      'comments': this.selectedRow.comments
+      module: task.module,
+      build: task.buildNo,
+      tfsId: task.Tfs_Id,
+      workType: task.type,
+      activity: task.activity,
     });
   }
-  onUpdate(form) {
+
+  onUpdate() {
     this.displayGrid = true;
   }
 }

@@ -8,6 +8,7 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
+var adminRouter = require('./routes/admin.route');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/', adminRouter);
 app.use(bodyParser.json());
 app.use(cors());
 // catch 404 and forward to error handler
