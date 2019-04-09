@@ -66,8 +66,19 @@ get activity(){
 }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+   // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
+  }
+
+  applyFilter(filterValue: string) {
+    //filterValue = filterValue.trimLeft();
+    //filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   onEdit(rows){
