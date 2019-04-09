@@ -18,6 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
+import User from './user';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSortModule,
     MatTableModule
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule , ServiceService, DatePipe ],
+  providers: [MatDatepickerModule, MatNativeDateModule , ServiceService, DatePipe, User ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import User from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,9 @@ export class ServiceService {
   getnotification(): Observable<any> {
     console.log('service');
     return this.http.get(`${this.uri}/notification`);
-    // .subscribe(res => {
-     // this.data = res;
-     // console.log('amhere', this.data);
-    // });
-    return this.data;
+  }
+addUser(user) {
+  console.log(user);
+  return this.http.post(`${this.uri}/register`, user);
 }
-/*addUser(): Observable<any> {
-  return this.http.get(`${this.uri}/notification`);
-}*/
 }
