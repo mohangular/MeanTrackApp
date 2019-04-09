@@ -66,10 +66,11 @@ get activity(){
 }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+   // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
   }
-
+ 
   onEdit(rows){
 console.log(rows);
   }
