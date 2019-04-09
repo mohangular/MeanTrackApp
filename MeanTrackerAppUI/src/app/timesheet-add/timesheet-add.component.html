@@ -60,7 +60,11 @@
             <label for="module">Module</label>
             <select name="module" id="module" class="form-control" formControlName="module">
                 <option value="Smart Wallet">Smart Wallet</option>
+<<<<<<< HEAD
                 <option value="Organisational Meeting">Organisational Activity</option>
+=======
+                <option value="Organisational Activity">Organisational Activity</option>
+>>>>>>> 49aa8e28d22df8d90079e4edca2bbc0592de65e3
                 <option value="Team Meeting">Team Meeting</option>
             </select>
             <div *ngIf="module.touched && module.invalid" class="alert alert-danger">Module is Required</div>
@@ -99,7 +103,12 @@
             <div class="form-group col-sm-6">
                 <label for="activity">Activity Done</label>
                 <select name="activity" id="activity" class="form-control" formControlName="activity">
+<<<<<<< HEAD
                     <option value="Analysis">Analysis</option>
+=======
+                    <option value="UserStory">Analysis</option>
+                    <option value="Development">Development</option>
+>>>>>>> 49aa8e28d22df8d90079e4edca2bbc0592de65e3
                     <option value="Coding">Coding</option>
                     <option value="Tech Spec Preparation">Tech Spec Preparation</option>
                     <option value="Environment/BranchSetup">Environment/BranchSetup</option>
@@ -110,12 +119,19 @@
                     <option value="Assisting Team Technical">Assisting Team Technical</option>
                     <option value="Process/ Build Activity">Process/ Build Activity</option>
                     <option value="Customer Call">Customer Call</option>
+<<<<<<< HEAD
                     <option value="Team Meeting/ Others">Team Meeting/ Others</option>                    
                     <option value="Team Meeting/ Activities">Team Meeting/ Activities</option>
                     <option value="Team Meeting">Team Meeting</option>
                     <option value="Development">Development</option>
                     
                 </select>                
+=======
+                    <option value="Team Meeting">Team Meeting</option>
+                    <option value="Team Meeting/ Others">Team Meeting/ Others</option>
+                    <option value="Team Meeting/ Activities">Team Meeting/ Activities</option>
+                </select>
+>>>>>>> 49aa8e28d22df8d90079e4edca2bbc0592de65e3
               <div *ngIf="activity.touched && activity.invalid" class="alert alert-danger">Activity is Required</div>
             </div>
             <div class="form-group col-sm-6">

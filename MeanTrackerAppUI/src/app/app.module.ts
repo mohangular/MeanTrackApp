@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } fr
     LoginComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -45,7 +46,8 @@ import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } fr
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbModule,
   ],
   providers: [MatDatepickerModule, MatNativeDateModule , ServiceService, DatePipe ],
   bootstrap: [AppComponent]

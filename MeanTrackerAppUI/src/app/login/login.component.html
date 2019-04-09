@@ -1,15 +1,43 @@
-<div class="offset-sm-6">
-  <mat-card>
-    <form (submit)="onLogin(loginform)" [formGroup]="loginform">
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()" required email #email>
-        <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" #password>
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </mat-form-field>   
-      <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-  </mat-card>
-</div> 
+<div class="row">
+  <ngb-carousel class="col-sm-8">
+    <ng-template ngbSlide>
+      <img src="/assets/images/abstract.jpg" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/abstract.jpg" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/abstract.jpg" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+  <div class="col-sm-4">
+    <mat-card>
+      <form (submit)="onLogin(loginform)" [formGroup]="loginform">
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
+            required email #email>
+          <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" formControlName="password"
+            [type]="hide ? 'password' : 'text'" #password>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+    </mat-card>
+  </div>
+</div>
