@@ -1,0 +1,95 @@
+<div class ="container">
+  <div class="card">
+  <div class="card-body">
+    <form [formGroup]="registerForm" novalidate>
+        <h3>User Details Form</h3>
+      <div class="form-group"> 
+          <label class="col-md-4">First Name </label>
+        <input type="text" [(ngModel)]="user.firstName" class="form-control"  formControlName="firstName" #firstName />
+      </div>
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+        <div *ngIf="firstName.errors.required">
+          First Name is required.
+        </div>
+      </div>
+      <div class="form-group"> 
+        <label class="col-md-4">Last Name</label>
+      <input type="text" [(ngModel)]="user.lastName" class="form-control" formControlName="lastName" #lastName />
+    </div>
+    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+      <div *ngIf="lastName.errors.required">
+        Last Name is required.
+      </div>
+    </div>
+      <div class="form-group"> 
+        <label class="col-md-4">Email Id</label>
+      <input type="email" [(ngModel)]="user.email" class="form-control" formControlName="email" #email />
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Email Id is required.
+      </div>
+    </div>
+    <div class="form-group"> 
+      <label class="col-md-4">MId</label>
+    <input type="text" [(ngModel)]="user.mid" class="form-control" formControlName="mid" #mid />
+  </div>
+  <div *ngIf="mid.invalid && (mid.dirty || mid.touched)" class="alert alert-danger">
+    <div *ngIf="mid.errors.required">
+      MId is required.
+    </div>
+  </div>
+      <div class="form-group">
+        <label class="col-md-4"> Password </label>
+        <input type="password" [(ngModel)]="user.password" class="form-control" formControlName="password" #password />
+      </div>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors.required">
+          Password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Project Name</label>
+        <input type="text" [(ngModel)]="user.projectName" class="form-control" formControlName="projectName" #projectName />
+      </div>
+      <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)" class="alert alert-danger">
+        <div *ngIf="projectName.errors.required">
+          Project Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Project Role</label>
+        <input type="text" [(ngModel)]="user.projectRole" class="form-control" formControlName="projectRole" #projectRole />
+      </div>
+      <div *ngIf="projectRole.invalid && (projectRole.dirty || projectRole.touched)" class="alert alert-danger">
+        <div *ngIf="projectRole.errors.required">
+          Project Role is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Manager Name</label>
+        <input type="text" [(ngModel)]="user.managerName" class="form-control" formControlName="managerName" #managerName />
+      </div>
+      <div *ngIf="managerName.invalid && (managerName.dirty || managerName.touched)" class="alert alert-danger">
+        <div *ngIf="managerName.errors.required">
+          Manager Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Location</label>
+        <input type="text" [(ngModel)]="user.location" class="form-control" formControlName="location" #location />
+      </div>
+      <div *ngIf="location.invalid && (location.dirty || location.touched)" class="alert alert-danger">
+        <div *ngIf="location.errors.required">
+          Location is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addUser(user)" class="btn btn-primary"> Register
+</button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+
