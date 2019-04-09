@@ -420,6 +420,10 @@ label input[type="radio"]:checked + .big-radio:after {
 	background:rgba(191, 38, 38, 0.8) !important;
 	border: 1px solid #bf2626;
 }
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary{
+	background-color: #bf2626
+}
+
 /* Date picker */
 mat-form-field{
 	width:100%
