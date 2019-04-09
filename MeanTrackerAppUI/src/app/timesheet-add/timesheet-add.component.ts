@@ -13,7 +13,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Team Meeting',
-    comments: 'Discussed on initial page'
+    comments: 'Discussed on initial page',
+    hours: 2
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 4,
@@ -43,7 +46,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 5,
@@ -53,7 +57,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Team Meeting',
-    comments: 'Discussed on initial page'
+    comments: 'Discussed on initial page',
+    hours: 2
   },
   {
     id: 6,
@@ -63,7 +68,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 7,
@@ -73,7 +79,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 8,
@@ -83,7 +90,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Team Meeting',
-    comments: 'Discussed on initial page'
+    comments: 'Discussed on initial page',
+    hours: 2
   },
   {
     id: 9,
@@ -93,7 +101,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 10,
@@ -103,7 +112,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   },
   {
     id: 11,
@@ -113,7 +123,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Team Meeting',
-    comments: 'Discussed on initial page'
+    comments: 'Discussed on initial page',
+    hours: 2
   },
   {
     id: 12,
@@ -123,7 +134,8 @@ const ELEMENT_DATA: Activity[] = [
     buildNo: '1538.2',
     date: '01/01/2018',
     activity: 'Development',
-    comments: 'Worked on initial page'
+    comments: 'Worked on initial page',
+    hours: 2
   }
 ];
 
