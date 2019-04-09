@@ -26,17 +26,12 @@ const routes: Routes = [
     component: TimesheetEditComponent
   },
   {
-<<<<<<< HEAD
     path: 'notification',
     component: NotificationComponent
   },
   {
     path: 'register',
     component: RegisterComponent
-=======
-    path: 'timesheet/admin',
-    component: AdminComponent
->>>>>>> ca4d827b528a831a7e5db6fe52719bcbca0deeb2
   },
 ];
 

@@ -18,7 +18,7 @@ export class ServiceService {
     // });
     return this.data;
 }
-addUser(): Observable<any> {
-  this.http.get(`${this.uri}/notification`);
-}
+/*addUser(): Observable<any> {
+  return this.http.get(`${this.uri}/notification`);
+}*/
 }
