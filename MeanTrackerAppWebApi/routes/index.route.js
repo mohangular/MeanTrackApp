@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
+
 //require("dotenv").config();
 
 let timetracker = require('../models/timeTracker');
@@ -37,4 +43,5 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
+router.get('/profile', auth, ctrlProfile.profileRead);
 module.exports = router;

@@ -8,7 +8,7 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var passport = require('passport');
 
 require('./MeanTrackerAppWebApi/models/db');
@@ -53,8 +53,14 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  // error handlers
+  // Catch unauthorised errors
   res.status(err.status || 500);
   res.render('error');
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
 });
 
 module.exports = app;
