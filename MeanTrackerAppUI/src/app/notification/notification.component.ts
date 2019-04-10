@@ -19,7 +19,7 @@ export class NotificationComponent implements OnInit {
   public displayCondition = 'false';
   constructor(private notification: ServiceService) { }
   ngOnInit() {
-    // this.getnotification();
+    this.getnotification();
   }
   getnotification() {
     this.NotificationResponse = this.notification.getnotification()
