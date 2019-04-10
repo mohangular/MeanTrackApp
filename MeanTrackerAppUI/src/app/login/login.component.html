@@ -1,15 +1,44 @@
-<div class="offset-sm-6">
-  <mat-card>
-    <form (submit)="onLogin(loginform)" [formGroup]="loginform">
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()" required email #email>
-        <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" #password>
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </mat-form-field>   
-      <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-  </mat-card>
+<div class="row loginPage">
+  <ngb-carousel class="col-sm-9">
+      <ng-template ngbSlide>
+          <img src="/assets/images/realogy.png" alt="Random second slide">      
+        </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/Skitch2.png" alt="Random first slide">
+      <!-- <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div> -->
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/Call.png" alt="Random second slide">      
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/file2.jpeg" alt="Random third slide">      
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/ExplainAppraisal.png" alt="Random four slide">      
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/Profiles-1.jpg" alt="Random five slide">    
+    </ng-template>
+  </ngb-carousel>
+
+  <div class="col-sm-3 loginForm">
+    <mat-card>
+      <form (submit)="onLogin(loginform)" [formGroup]="loginform">
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
+            required email #email>
+          <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" formControlName="password"
+            [type]="hide ? 'password' : 'text'" #password>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+    </mat-card>
+  </div>
 </div> 
