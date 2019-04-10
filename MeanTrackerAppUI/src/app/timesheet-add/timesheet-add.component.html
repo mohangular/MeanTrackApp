@@ -1,0 +1,151 @@
+
+<form>
+  <div class="container">
+    
+    <h1>Enter Your Time sheet</h1>
+    <div class="row">
+      <div class="col-sm-12">
+          <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+      </div>
+      <div class="clearfix " style="margin: 20px 0;"></div>
+    </div>
+    <button (click)="displayGrid=false">Add Task</button>
+   <div *ngIf="displayGrid">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="module">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Module </th>
+        <td mat-cell *matCellDef="let element"> {{element.module}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Tfs_Id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TFS_ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.Tfs_Id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="buildNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Build No </th>
+        <td mat-cell *matCellDef="let element"> {{element.buildNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="activity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Activity </th>
+        <td mat-cell *matCellDef="let element"> {{element.activity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+        <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; onEdit(row)"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div *ngIf="!displayGrid">
+    <mat-card>
+      <mat-card-title>Enter Your Time </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="form" class="row" (submit)="onUpdate()">
+          <div class="form-group col-sm-6">
+            <label for="module">Module</label>
+            <select name="module" id="module" class="form-control" formControlName="module">
+                <option value="Smart Wallet">Smart Wallet</option>
+                <option value="Organisational Meeting">Organisational Activity</option>
+                <option value="Team Meeting">Team Meeting</option>
+            </select>
+            <div *ngIf="module.touched && module.invalid" class="alert alert-danger">Module is Required</div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="build">Build No.</label>
+            <select name="build" id="build" class="form-control" formControlName="build">
+                <option value="1538.1">1538.1</option>
+                <option value="1538.2">1538.2</option>
+                <option value="1538.3">1538.3</option>
+                <option value="1538.4">1538.4</option>
+                <option value="1538.5">1538.5</option>
+            </select>
+            <div *ngIf="build.touched && build.invalid" class="alert alert-danger">Build Number is Required</div>
+
+          </div>
+          <div class="form-group col-sm-6">
+                <label for="username">TFS ID</label>
+                <input 
+                    id="tfsId" 
+                    type="text" 
+                    class="form-control"
+                    formControlName="tfsId"
+                    >
+            <div *ngIf="tfsId.touched && tfsId.invalid" class="alert alert-danger">TFS Id is Required</div>
+
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="workType">Work Type</label>
+                <select name="workType" id="workType" class="form-control" formControlName="workType">
+                    <option value="Bug">Bug</option>
+                    <option value="UserStory">UserStory</option>
+                </select>
+            <div *ngIf="workType.touched && workType.invalid" class="alert alert-danger">Work Type is Required</div>              
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="activity">Activity Done</label>
+                <select name="activity" id="activity" class="form-control" formControlName="activity">
+                    <option value="UserStory">Analysis</option>
+                    <option value="Development">Development</option>
+                    <option value="Coding">Coding</option>
+                    <option value="Tech Spec Preparation">Tech Spec Preparation</option>
+                    <option value="Environment/BranchSetup">Environment/BranchSetup</option>
+                    <option value="Unit Testing">Unit Testing</option>
+                    <option value="Code Review">Code Review</option>
+                    <option value="Code Rework">Code Rework</option>
+                    <option value="Merging/Branching">Merging/Branching</option>
+                    <option value="Assisting Team Technical">Assisting Team Technical</option>
+                    <option value="Process/ Build Activity">Process/ Build Activity</option>
+                    <option value="Customer Call">Customer Call</option>
+                    <option value="Team Meeting">Team Meeting</option>
+                    <option value="Team Meeting/ Others">Team Meeting/ Others</option>
+                    <option value="Team Meeting/ Activities">Team Meeting/ Activities</option>                    
+                </select>
+              <div *ngIf="activity.touched && activity.invalid" class="alert alert-danger">Activity is Required</div>
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="hours">Hours</label>
+              <input
+                id="hours"
+                type="number"
+                class="form-control"
+                formControlName="hours"
+              >
+              <div *ngIf="hours.touched && hours.invalid" class="alert alert-danger">Hours is Required</div>
+            </div >
+
+            <div class="form-group col-sm-6">
+              <label for="comments">Comments</label>
+              <textarea 
+              id="comments"
+                rows="5" 
+                cols="10"
+                class="form-control"
+                formControlName="comments"  
+              ></textarea> 
+              <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">Comments length should not exceed 250 char.</div>           
+            </div>
+            <mat-card-actions class="text-right">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Update</button> 
+            </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+</form>

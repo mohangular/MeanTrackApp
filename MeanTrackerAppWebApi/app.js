@@ -3,8 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var config = require('./DB');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var indexRouter = require('./routes/index.route');
+var adminRouter = require('./routes/admin.route');
+mongoose.Promise = global.Promise;
+mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+  () => {console.log('Database is connected') },
+  err => { console.log('Can not connect to the database'+ err)}
+);
 
-var indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -19,7 +29,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
+app.use('/', adminRouter);
+app.use(bodyParser.json());
+app.use(cors());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
