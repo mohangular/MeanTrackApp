@@ -17,6 +17,16 @@ import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+import { ChartsModule } from 'node_modules/ng2-charts';
+import { TimesheetPieChartComponent } from './dashboard/timesheet-activity-pie-chart/timesheet-activity-pie-chart.component';
+
+
+const routes: Routes = [
+  
+  {path: 'pie-chart', component: TimesheetPieChartComponent},
+  {path: '**', component: TimesheetPieChartComponent }
+];
 
 @NgModule({
   declarations: [
@@ -27,7 +37,8 @@ import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } fr
     NotificationComponent,
     RegisterComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    TimesheetPieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +56,9 @@ import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule } fr
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forRoot(routes),
+    ChartsModule
   ],
   providers: [MatDatepickerModule, MatNativeDateModule , ServiceService, DatePipe ],
   bootstrap: [AppComponent]
