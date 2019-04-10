@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServiceService {
-  uri = 'http://localhost:4000';
+  uri = 'http://localhost:5550';
   public data;
   constructor(private http: HttpClient) { }
   getnotification(): Observable<any> {
@@ -18,7 +18,9 @@ export class ServiceService {
     // });
     return this.data;
 }
-/*addUser(): Observable<any> {
-  return this.http.get(`${this.uri}/notification`);
-}*/
+addUser(user): Observable<any> {
+  console.log(user);
+  return this.http.post(`${this.uri}/register`, user);
+
+}
 }

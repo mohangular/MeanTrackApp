@@ -13,6 +13,7 @@
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
+    <button (click)="displayGrid=false">Add Task</button>
    <div *ngIf="displayGrid">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="module">
@@ -55,24 +56,24 @@
     <mat-card>
       <mat-card-title>Enter Your Time </mat-card-title>
       <mat-card-content>
-        <form [formGroup]="form" class="row">
+        <form [formGroup]="form" class="row" (submit)="onUpdate()">
           <div class="form-group col-sm-6">
             <label for="module">Module</label>
             <select name="module" id="module" class="form-control" formControlName="module">
-                <option value="1">Smart Wallet</option>
-                <option value="2">Organisational Activity</option>
-                <option value="3">Team Meeting</option>
+                <option value="Smart Wallet">Smart Wallet</option>
+                <option value="Organisational Meeting">Organisational Activity</option>
+                <option value="Team Meeting">Team Meeting</option>
             </select>
             <div *ngIf="module.touched && module.invalid" class="alert alert-danger">Module is Required</div>
           </div>
           <div class="form-group col-sm-6">
             <label for="build">Build No.</label>
             <select name="build" id="build" class="form-control" formControlName="build">
-                <option value="1">1538.1</option>
-                <option value="1">1538.2</option>
-                <option value="1">1538.3</option>
-                <option value="1">1538.4</option>
-                <option value="1">1538.5</option>
+                <option value="1538.1">1538.1</option>
+                <option value="1538.2">1538.2</option>
+                <option value="1538.3">1538.3</option>
+                <option value="1538.4">1538.4</option>
+                <option value="1538.5">1538.5</option>
             </select>
             <div *ngIf="build.touched && build.invalid" class="alert alert-danger">Build Number is Required</div>
 
@@ -91,32 +92,56 @@
             <div class="form-group col-sm-6">
                 <label for="workType">Work Type</label>
                 <select name="workType" id="workType" class="form-control" formControlName="workType">
-                    <option value="1">Bug</option>
-                    <option value="1">UserStory</option>
+                    <option value="Bug">Bug</option>
+                    <option value="UserStory">UserStory</option>
                 </select>
             <div *ngIf="workType.touched && workType.invalid" class="alert alert-danger">Work Type is Required</div>              
             </div>
             <div class="form-group col-sm-6">
                 <label for="activity">Activity Done</label>
                 <select name="activity" id="activity" class="form-control" formControlName="activity">
-                    <option value="1">Analysis</option>
-                    <option value="1">Coding</option>
-                    <option value="1">Tech Spec Preparation</option>
-                    <option value="1">Environment/BranchSetup</option>
-                    <option value="1">Unit Testing</option>
-                    <option value="1">Code Review</option>
-                    <option value="1">Code Rework</option>
-                    <option value="1">Merging/Branching</option>
-                    <option value="1">Assisting Team Technical</option>
-                    <option value="1">Process/ Build Activity</option>
-                    <option value="1">Customer Call</option>
-                    <option value="1">Team Meeting/ Others</option>
-                    <option value="1">Team Meeting/ Activities</option>
+                    <option value="UserStory">Analysis</option>
+                    <option value="Development">Development</option>
+                    <option value="Coding">Coding</option>
+                    <option value="Tech Spec Preparation">Tech Spec Preparation</option>
+                    <option value="Environment/BranchSetup">Environment/BranchSetup</option>
+                    <option value="Unit Testing">Unit Testing</option>
+                    <option value="Code Review">Code Review</option>
+                    <option value="Code Rework">Code Rework</option>
+                    <option value="Merging/Branching">Merging/Branching</option>
+                    <option value="Assisting Team Technical">Assisting Team Technical</option>
+                    <option value="Process/ Build Activity">Process/ Build Activity</option>
+                    <option value="Customer Call">Customer Call</option>
+                    <option value="Team Meeting">Team Meeting</option>
+                    <option value="Team Meeting/ Others">Team Meeting/ Others</option>
+                    <option value="Team Meeting/ Activities">Team Meeting/ Activities</option>                    
                 </select>
               <div *ngIf="activity.touched && activity.invalid" class="alert alert-danger">Activity is Required</div>
             </div>
+            <div class="form-group col-sm-6">
+              <label for="hours">Hours</label>
+              <input
+                id="hours"
+                type="number"
+                class="form-control"
+                formControlName="hours"
+              >
+              <div *ngIf="hours.touched && hours.invalid" class="alert alert-danger">Hours is Required</div>
+            </div >
+
+            <div class="form-group col-sm-6">
+              <label for="comments">Comments</label>
+              <textarea 
+              id="comments"
+                rows="5" 
+                cols="10"
+                class="form-control"
+                formControlName="comments"  
+              ></textarea> 
+              <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">Comments length should not exceed 250 char.</div>           
+            </div>
             <mat-card-actions class="text-right">
-              <button mat-raised-button color="primary" type="submit" (click)="onUpdate()">Update</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Update</button> 
             </mat-card-actions>
         </form>
       </mat-card-content>

@@ -14,7 +14,7 @@ const routes: Routes = [
   //   component: DashboardComponent
   // },
   {
-    path:'',
+    path: '',
     component: LoginComponent
   },
   {
@@ -34,8 +34,8 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'timesheet/admin',
+    component: AdminComponent
   },
 ];
 

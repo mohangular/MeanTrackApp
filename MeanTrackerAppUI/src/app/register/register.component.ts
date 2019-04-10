@@ -1,6 +1,11 @@
-import { ServiceService } from './../service.service';
+
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ServiceService } from './../service.service';
+import User from '../models/user';
+
 
 @Component({
   selector: 'app-register',
@@ -8,44 +13,58 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  // registerForm: FormGroup;
-  constructor(private fb: FormBuilder, private service: ServiceService) { }
+  registerForm: FormGroup;
+  constructor(private http: HttpClientModule, private fb: FormBuilder, private service: ServiceService, private user: User) { }
 
   ngOnInit() {
-    // this.createForm();
+    this.createForm();
   }
-  /*createForm() {
+  createForm() {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required ],
+      lastName: ['', Validators.required ],
       email: ['', Validators.required ],
+      mid: ['', Validators.required ],
       password: ['', Validators.required ],
-      confirmPassword: ['', Validators.required ]
+      projectName: ['', Validators.required ],
+      projectRole: ['', Validators.required ],
+      managerName: ['', Validators.required ],
+      location: ['', Validators.required ]
     });
   }
 
   get firstName() {
     return this.registerForm.get('userName');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get lastName() {
+    return this.registerForm.get('lastName');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get email() {
+    return this.registerForm.get('email');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get mid() {
+    return this.registerForm.get('mid');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get password() {
+    return this.registerForm.get('password');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get projectName() {
+    return this.registerForm.get('projectName');
   }
-  get userName() {
-    return this.registerForm.get('userName');
+  get projectRole() {
+    return this.registerForm.get('projectRole');
   }
-  addUser(firstName, lastName, email, mid, password, projectName, projectRole, managerName, location) {
-    this.service.addUser(firstName, lastName, email, mid, password, projectName, projectRole, managerName, location);
-  }*/
+  get managerName() {
+    return this.registerForm.get('managerName');
+  }
+  get location() {
+    return this.registerForm.get('projectRole');
+  }
+  addUser(user) {
+    console.log('am user', user);
+    this.service.addUser(user).subscribe(res => {
+      console.log('res', res);
+    });
+  }
 
 }
