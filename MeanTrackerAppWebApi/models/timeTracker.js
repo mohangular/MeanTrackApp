@@ -6,7 +6,7 @@ let TimeTracker = new Schema({
   id: {
     type: String,
   },
-  dateEntered: {
+  date: {
     type: Date,
   },
   moduleSelected:{
