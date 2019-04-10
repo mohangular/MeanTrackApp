@@ -12,7 +12,6 @@ import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule,
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
 import { ServiceService } from './service.service';
-import { DatePipe } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +21,7 @@ import { AdminBuildComponent } from './admin/admin.build/admin.build.component';
 import { AdminActivityComponent } from './admin/admin.activity/admin.activity.component';
 import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.workitemtype.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import User from './models/user';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTabsModule,
     NgbModule,
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe],
+  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

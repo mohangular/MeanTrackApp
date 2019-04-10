@@ -8,6 +8,12 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
+var favicon = require('serve-favicon');
+var passport = require('passport');
+
+require('./MeanTrackerAppWebApi/models/db');
+require('./MeanTrackerAppWebApi/config/passport');
+
 var adminRouter = require('./routes/admin.route');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -15,8 +21,11 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   err => { console.log('Can not connect to the database'+ err)}
 );
 
+app.use(passport.initialize());
+app.use('/MeanTrackerAppWebApi', routesApi);
 
 var app = express();
+require("dotenv").config();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', adminRouter);
+//app.use('/', adminRouter);
 app.use(bodyParser.json());
 app.use(cors());
 // catch 404 and forward to error handler
