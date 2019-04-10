@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 router.route('/notification').get(function (req, res) {
   console.log("am server");
-  timetracker.aggregate([{"$match":{"id" :"6"}},{"$group":{"_id" :"$dateEntered",sumOfHours:{$sum:"$noOfHours"}}},{"$sort":{"dateEntered": -1}},{"$limit":1}])
+  timetracker.aggregate([{"$match":{"id" :"6"}},{"$group":{"_id" :"$date",sumOfHours:{$sum:"$noOfHours"}}},{"$sort":{"date": -1}},{"$limit":1}])
   .then(timetracker => {
     console.log('am server', timetracker);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,6 +30,7 @@ router.route('/register').post(function (req, res) {
   user.save()
     .then(user => {
       res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'POST');
       res.status(200).json({'person': 'person in added successfully'});
       
     })
