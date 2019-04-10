@@ -16,12 +16,13 @@ import { DatePipe } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule, MatTabsModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule, MatTabsModule, MatCheckboxModule } from '@angular/material';
 import { AdminModuleComponent } from './admin/admin.module/admin.module.component';
-import { AdminBuildComponent } from './admin/admin.build/admin.build.component';
+import { AdminBuildComponent, AdminBuildAddComponent } from './admin/admin.build/admin.build.component';
 import { AdminActivityComponent } from './admin/admin.activity/admin.activity.component';
 import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.workitemtype.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AdminModuleComponent,
     AdminBuildComponent,
+    AdminBuildAddComponent,
     AdminActivityComponent,
     AdminWorkitemtypeComponent
   ],
@@ -56,8 +58,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatButtonModule,
     MatTabsModule,
+    MatCheckboxModule,
     NgbModule,
+    MatProgressSpinnerModule,
   ],
+  entryComponents: [AdminBuildAddComponent],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe],
   bootstrap: [AppComponent]
 })
