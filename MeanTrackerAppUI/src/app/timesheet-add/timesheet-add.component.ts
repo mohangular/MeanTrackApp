@@ -162,7 +162,9 @@ export class TimesheetAddComponent implements OnInit {
     build: new FormControl('', Validators.required),
     tfsId: new FormControl('', Validators.required),
     workType: new FormControl('', Validators.required),
-    activity: new FormControl('', Validators.required)
+    activity: new FormControl('', Validators.required),
+    hours: new FormControl('',Validators.required),
+    comments: new FormControl('',Validators.maxLength(250)),
   });
 
   get module() {
@@ -185,6 +187,13 @@ export class TimesheetAddComponent implements OnInit {
     return this.form.get('activity');
   }
 
+  get hours() {
+    return this.form.get('hours');
+  }
+
+  get comments() {
+    return this.form.get('comments');
+  }
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     setTimeout(() => this.dataSource.paginator = this.paginator);
@@ -198,10 +207,13 @@ export class TimesheetAddComponent implements OnInit {
       tfsId: task.Tfs_Id,
       workType: task.type,
       activity: task.activity,
+      hours: task.hours,
+      comments :task.comments
     });
   }
 
   onUpdate() {
     this.displayGrid = true;
+    console.log(this.form.value);
   }
 }
