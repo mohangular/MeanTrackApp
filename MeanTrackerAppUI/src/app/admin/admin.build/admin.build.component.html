@@ -2,9 +2,10 @@
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter here for build items">
   </mat-form-field>
-  <button id="btnAdd" mat-raised-button (click)="onNew()">Add new Build Information</button>
-  <button id="btnDelete" mat-raised-button (click)="onDelete()">Delete Selected</button>
-
+  <div class="btn-block">
+    <button id="btnAdd" mat-raised-button color="primary" (click)="onNew()">Add new Build Information</button>
+    <button id="btnDelete" mat-raised-button  class="mat-btn-cancel" (click)="onDelete()">Delete Selected</button>
+  </div>
   <table mat-table #buildDataTable [dataSource]="buildData" *ngIf="buildData" class="mat-elevation-z8">
 
     <ng-container matColumnDef="select">
