@@ -19,6 +19,12 @@ export class TimetrackerService {
   addTimeSheetEntry(timeSheetEntry: timeSheetEntry): Observable<any>{
     return this.http.post(`${this.uri}/timesheet/addtimesheet`, timeSheetEntry);
   }
+
+  updateTimeSheetEntry(timeSheetEntry:timeSheetEntry):Observable<any>{
+    console.log('serve');
+    console.log(timeSheetEntry);
+    return this.http.put(`${this.uri}/timesheet/update`, timeSheetEntry);
+  }
   
   
 }

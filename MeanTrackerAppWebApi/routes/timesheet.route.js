@@ -27,4 +27,21 @@ router.route('/addtimesheet').post((req,res,next) => {
     });
 });
 
+
+router.route('/update').put((req, res, next) => {
+    console.log(req.body._id);
+    timeTrackers.updateOne({ _id: req.body._id }, req.body)
+      .then((timeTracker) => {
+        console.log('Build Information Added :', timeTracker);
+        timeTrackers.find({})
+          .then((timetracks) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(timetracks);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+
 module.exports = router;

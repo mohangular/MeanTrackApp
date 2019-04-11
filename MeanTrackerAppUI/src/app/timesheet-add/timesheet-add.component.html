@@ -21,19 +21,19 @@
         <td mat-cell *matCellDef="let element"> {{element.module}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="Tfs_Id">
+      <ng-container matColumnDef="tfsId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> TFS_ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.Tfs_Id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.tfsId}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="type">
+      <ng-container matColumnDef="workType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.workType}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="buildNo">
+      <ng-container matColumnDef="build">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Build No </th>
-        <td mat-cell *matCellDef="let element"> {{element.buildNo}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.build}} </td>
       </ng-container>
 
       <ng-container matColumnDef="activity">
@@ -142,7 +142,7 @@
             </div>
             <mat-card-actions class="text-right">
               <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">{{buttonValue}}</button> 
-              <button mat-raised-button color="primary" type="cancel" (click)="displayGrid=true;showAddButton=true" >Cancel</button> 
+              <button mat-raised-button color="primary" type="cancel" (click)="displayGrid=true;showAddButton=true;form.reset();" >Cancel</button> 
             </mat-card-actions>
         </form>
       </mat-card-content>

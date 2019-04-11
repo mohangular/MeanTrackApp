@@ -1,5 +1,5 @@
 export class timeSheetEntry {
-    id: string;
+    _id: string;
     date: Date;
     module: string;
     tfsId: string;
@@ -9,7 +9,7 @@ export class timeSheetEntry {
     hours: number;
     comments: string;
     branch: string;
-    buildNo: number;
+    build: number;
     MID: string;
 
     deserialize(input:any):this {

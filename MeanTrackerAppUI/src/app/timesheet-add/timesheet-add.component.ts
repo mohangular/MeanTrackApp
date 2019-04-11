@@ -1,146 +1,11 @@
+import { timeSheetEntry } from './../models/timeSheetEntry';
 import { TimetrackerService } from './../timetracker.service';
 import { Activity } from './../Acttivity';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import * as XLSX from 'xlsx';
-import { timeSheetEntry } from '../models/timeSheetEntry';
 
-
-const ELEMENT_DATA: Activity[] = [
-  {
-    id: 1,
-    module: 'Smart Wallet',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 2,
-    module: 'Organisational Meeting',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Team Meeting',
-    comments: 'Discussed on initial page',
-    hours: 2
-  },
-  {
-    id: 3,
-    module: 'Smart Wallet',
-    Tfs_Id: '55778',
-    type: 'UserStory',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 4,
-    module: 'Smart Wallet',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 5,
-    module: 'Organisational Meeting',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Team Meeting',
-    comments: 'Discussed on initial page',
-    hours: 2
-  },
-  {
-    id: 6,
-    module: 'Smart Wallet',
-    Tfs_Id: '55778',
-    type: 'UserStory',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 7,
-    module: 'Smart Wallet',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 8,
-    module: 'Organisational Meeting',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Team Meeting',
-    comments: 'Discussed on initial page',
-    hours: 2
-  },
-  {
-    id: 9,
-    module: 'Smart Wallet',
-    Tfs_Id: '55778',
-    type: 'UserStory',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 10,
-    module: 'Smart Wallet',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  },
-  {
-    id: 11,
-    module: 'Organisational Meeting',
-    Tfs_Id: '55777',
-    type: 'Bug',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Team Meeting',
-    comments: 'Discussed on initial page',
-    hours: 2
-  },
-  {
-    id: 12,
-    module: 'Smart Wallet',
-    Tfs_Id: '55778',
-    type: 'UserStory',
-    buildNo: '1538.2',
-    date: '01/01/2018',
-    activity: 'Development',
-    comments: 'Worked on initial page',
-    hours: 2
-  }
-];
 
 @Component({
   selector: 'app-timesheet-add',
@@ -158,17 +23,17 @@ export class TimesheetAddComponent implements OnInit {
   buildList: any[];
   workTypeList: any[];
   activityList: any[];
-  timeTrackerValues: any[];
+  timeTrackerModel:any;
   showAddButton = true;
   buttonValue = 'Save';
+  currentTaskId:string;
 
-  ExportTOExcel() 
+  ExportToExcel() 
   {
-    
     this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
-      this.timeTrackerValues = res;
+      this.timeTrackerModel = res;
     });
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerValues);
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerModel);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     
@@ -179,8 +44,8 @@ export class TimesheetAddComponent implements OnInit {
 
   
   // Mat Table declarations
-  displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity', 'comments'];
-  dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
+  displayedColumns: string[];
+  dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -191,7 +56,7 @@ export class TimesheetAddComponent implements OnInit {
     workType: new FormControl('', Validators.required),
     activity: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
-    comments: new FormControl('', Validators.maxLength(250)),
+    comments: new FormControl('', [Validators.maxLength(250), Validators.required]),
   });
  
 
@@ -226,10 +91,6 @@ export class TimesheetAddComponent implements OnInit {
     
   }
   ngOnInit() {
-    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() => this.dataSource.sort = this.sort);
-
     this.moduleList = [
       { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
       { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
@@ -251,6 +112,7 @@ export class TimesheetAddComponent implements OnInit {
     ];
 
     this.activityList = [
+
       { value: 'Dev-Coding', viewValue: 'Coding' },
       { value: 'Dev-Analysis', viewValue: 'Analysis' },
       { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
@@ -258,14 +120,27 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Others', viewValue: 'Others' }
     ];
 
+  this.getTimeTrackerModel();
+
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
+  }
+
+  getTimeTrackerModel(){
+    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+      this.dataSource = res;
+      console.log(this.dataSource);
+    });
   }
 
   onEdit(task: Activity) {
+    this.currentTaskId = task._id;
     this.form.patchValue({
       module: task.module,
-      build: task.buildNo,
-      tfsId: task.Tfs_Id,
-      workType: task.type,
+      build: task.build,
+      tfsId: task.tfsId,
+      workType: task.workType,
       activity: task.activity,
       hours: task.hours,
       comments: task.comments
@@ -276,15 +151,27 @@ export class TimesheetAddComponent implements OnInit {
     this.showAddButton=true;
     this.displayGrid = true;
     this.buttonValue == 'Create'? this.onCreate():this.onUpdate();
+    this.form.reset();
   }
 
   onUpdate() {
-    alert('Under Construction');
+    let entry = new timeSheetEntry();  
+    entry = this.form.value;
+    entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
+               '/' + new Date(this.date.value).getDate() + 
+               '/' + new Date(this.date.value).getFullYear()); 
+    entry.resourceName = 'pavitha';
+    entry.MID = 'M1033925';
+    entry.branch = 'DEV';
+    entry._id = this.currentTaskId;
+    this.timetrackerService.updateTimeSheetEntry(entry).subscribe((res)=>{
+      console.log('Updated Successfully');
+    this.getTimeTrackerModel();
+    })
   }
 
   onCreate(){
     let entry = new timeSheetEntry();
-    //var test = new TimeSheetEntry.deserialize(this.form.value);    
     entry = this.form.value;
     entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
                '/' + new Date(this.date.value).getDate() + 
@@ -293,7 +180,8 @@ export class TimesheetAddComponent implements OnInit {
     entry.MID = 'M1033925';
     entry.branch = 'DEV';
     this.timetrackerService.addTimeSheetEntry(entry).subscribe(res => {
-      console.log('res', res);
+      console.log('Saved Sucessfully');
+    this.getTimeTrackerModel();
     });
   }
   

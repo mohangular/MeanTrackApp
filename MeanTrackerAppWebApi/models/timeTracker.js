@@ -34,7 +34,7 @@ let TimeTracker = new Schema({
   branch: {
     type: String,
   },
-  buildNo: {
+  build: {
     type: Number,    
   },
   MID: {
