@@ -164,7 +164,9 @@ export class TimesheetAddComponent implements OnInit {
   ExportTOExcel() 
   {
     
-
+    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+      this.timeTrackerValues = res;
+    });
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.buildList);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
@@ -219,7 +221,7 @@ export class TimesheetAddComponent implements OnInit {
   get comments() {
     return this.form.get('comments');
   }
-  constructor(public timetrackerService: TimetrackerService){
+  constructor(private timetrackerService: TimetrackerService){
     
   }
   ngOnInit() {
@@ -273,4 +275,5 @@ export class TimesheetAddComponent implements OnInit {
     this.displayGrid = true;
     console.log(this.form.value);
   }
+
 }

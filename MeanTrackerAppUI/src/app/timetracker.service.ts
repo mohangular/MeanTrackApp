@@ -12,7 +12,7 @@ export class TimetrackerService {
 
   getTimeTrackerValues(): Observable<any> {
     console.log('service');
-    return this.http.get(`${this.uri}/timeTrackerValues`);
+    return this.http.get(`${this.uri}/timesheet`);
   }
   
   getTimeTracker
