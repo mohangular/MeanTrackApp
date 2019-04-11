@@ -13,7 +13,13 @@ let UserDetails = new Schema({
   lastName: {
     type: String,
   },
+  name: {
+    type: String,  
+  },
   emailId: {
+    type: String,
+  },
+  email: {
     type: String,
   },
   mid: {

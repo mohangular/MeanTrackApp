@@ -457,8 +457,9 @@ mat-form-field{
 } */
 
 tr.mat-header-row, .mat-card-title {
-	background-color: #bf2626;
+	background-color: rgba(165, 16, 16, 0.88);
 	color:#fff;
+	text-transform: uppercase
 }
 tr.mat-header-row:hover{
 	background-color: rgba(191, 38, 38, 0.8) !important
@@ -470,7 +471,8 @@ tr.mat-header-row:hover{
 /* Card */
 .mat-card{
 	padding:0 !important;
-	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)!important
+	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)!important;
+	margin-bottom:20px;
 	
 }
 
@@ -479,10 +481,10 @@ tr.mat-header-row:hover{
 }
 
 .mat-card-content, .mat-card-subtitle, .mat-card-title{
-	padding: 10px 16px;
+	padding: 8px 16px;
 }
 .mat-card-title{
-	font-size: 18px;
+	font-size: 16px;
 	border-radius: 4px 4px 0 0;
 }
 .mat-card-actions{
