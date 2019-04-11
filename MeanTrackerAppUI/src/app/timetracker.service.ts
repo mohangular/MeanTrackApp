@@ -20,5 +20,5 @@ export class TimetrackerService {
     return this.http.post(`${this.uri}/timesheet/addtimesheet`, timeSheetEntry);
   }
   
-  getTimeTracker
+  
 }

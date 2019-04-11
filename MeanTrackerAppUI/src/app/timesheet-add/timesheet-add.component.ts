@@ -272,9 +272,17 @@ export class TimesheetAddComponent implements OnInit {
     });
   }
 
-  onUpdate() {
+  onSave() {
+    this.showAddButton=true;
     this.displayGrid = true;
-    console.log(this.form.value); 
+    this.buttonValue == 'Create'? this.onCreate():this.onUpdate();
+  }
+
+  onUpdate() {
+    alert('Under Construction');
+  }
+
+  onCreate(){
     let entry = new timeSheetEntry();
     //var test = new TimeSheetEntry.deserialize(this.form.value);    
     entry = this.form.value;
