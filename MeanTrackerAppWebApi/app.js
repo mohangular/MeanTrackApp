@@ -12,8 +12,8 @@ var timesheetRouter = require('./routes/timesheet.route');
 var favicon = require('serve-favicon');
 var passport = require('passport');
 
-require('./MeanTrackerAppWebApi/models/db');
-require('./MeanTrackerAppWebApi/config/passport');
+require('./models/db');
+require('./config/passport');
 
 var adminRouter = require('./routes/admin.route');
 mongoose.Promise = global.Promise;

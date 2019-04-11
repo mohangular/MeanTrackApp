@@ -15,6 +15,16 @@ import { ServiceService } from './service.service';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ChartsModule } from 'node_modules/ng2-charts';
+import { TimesheetPieChartComponent } from './dashboard/timesheet-activity-pie-chart/timesheet-activity-pie-chart.component';
+
+
+const routes: Routes = [
+  
+  {path: 'pie-chart', component: TimesheetPieChartComponent},
+  {path: '**', component: TimesheetPieChartComponent }
+];
 import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule, MatTabsModule } from '@angular/material';
 import { AdminModuleComponent } from './admin/admin.module/admin.module.component';
 import { AdminBuildComponent } from './admin/admin.build/admin.build.component';
@@ -33,6 +43,7 @@ import User from './models/user';
     RegisterComponent,
     AdminComponent,
     LoginComponent,
+    TimesheetPieChartComponent,
     AdminModuleComponent,
     AdminBuildComponent,
     AdminActivityComponent,
@@ -55,6 +66,8 @@ import User from './models/user';
     MatSortModule,
     MatTableModule,
     MatButtonModule,
+    RouterModule.forRoot(routes),
+    ChartsModule,
     MatTabsModule,
     NgbModule,
   ],
