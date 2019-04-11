@@ -8,6 +8,7 @@ let TimeTracker = new Schema({
   },
   date: {
     type: Date,
+    default: Date.now
   },
   module:{
     type: String,

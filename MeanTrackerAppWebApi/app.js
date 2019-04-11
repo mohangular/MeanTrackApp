@@ -8,6 +8,7 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
+var timesheetRouter = require('./routes/timesheet.route');
 var favicon = require('serve-favicon');
 var passport = require('passport');
 
@@ -47,6 +48,7 @@ app.options('*', cors({origin:true}));
 
 app.use('/', indexRouter);
 //app.use('/', adminRouter);
+app.use('/timesheet', timesheetRouter);
 app.use(bodyParser.json());
 
 
