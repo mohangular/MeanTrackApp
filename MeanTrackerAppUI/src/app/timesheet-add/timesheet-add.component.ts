@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import * as XLSX from 'xlsx';
+import { timeSheetEntry } from '../models/timeSheetEntry';
 
 
 const ELEMENT_DATA: Activity[] = [
@@ -167,7 +168,7 @@ export class TimesheetAddComponent implements OnInit {
     this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
       this.timeTrackerValues = res;
     });
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.buildList);
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerValues);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     
@@ -273,7 +274,16 @@ export class TimesheetAddComponent implements OnInit {
 
   onUpdate() {
     this.displayGrid = true;
-    console.log(this.form.value);
+    console.log(this.form.value); 
+    let entry = new timeSheetEntry();
+    //var test = new TimeSheetEntry.deserialize(this.form.value);    
+    entry = this.form.value;
+    entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
+               '/' + new Date(this.date.value).getDate() + 
+               '/' + new Date(this.date.value).getFullYear()); 
+    this.timetrackerService.addTimeSheetEntry(entry).subscribe(res => {
+      console.log('res', res);
+    });
   }
-
+  
 }
