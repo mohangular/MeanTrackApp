@@ -153,6 +153,10 @@ export class TimesheetAddComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
   moduleList: any;
   buildList: any[];
+  workTypeList: any[];
+  activityList: any[];
+  showAddButton = true;
+  buttonValue = 'Save';
 
 
   // Mat Table declarations
@@ -170,8 +174,7 @@ export class TimesheetAddComponent implements OnInit {
     hours: new FormControl('', Validators.required),
     comments: new FormControl('', Validators.maxLength(250)),
   });
-  workTypeList: any[];
-  activityList: any[];
+ 
 
   get module() {
     return this.form.get('module');
