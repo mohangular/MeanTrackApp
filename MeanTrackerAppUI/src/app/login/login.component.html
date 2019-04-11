@@ -1,29 +1,30 @@
-<div class="row">
-  <ngb-carousel class="col-sm-8">
+<div class="row loginPage">
+  <ngb-carousel class="col-sm-9">
+      <ng-template ngbSlide>
+          <img src="/assets/images/realogy.png" alt="Random second slide">      
+        </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/abstract.jpg" alt="Random first slide">
-      <div class="carousel-caption">
+      <img src="/assets/images/Skitch2.png" alt="Random first slide">
+      <!-- <div class="carousel-caption">
         <h3>First slide label</h3>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
+      </div> -->
     </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/abstract.jpg" alt="Random second slide">
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
+      <img src="/assets/images/Call.png" alt="Random second slide">      
     </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/abstract.jpg" alt="Random third slide">
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
+      <img src="/assets/images/file2.jpeg" alt="Random third slide">      
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/ExplainAppraisal.png" alt="Random four slide">      
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="/assets/images/Profiles-1.jpg" alt="Random five slide">    
     </ng-template>
   </ngb-carousel>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3 loginForm">
     <mat-card>
       <form (submit)="onLogin(loginform)" [formGroup]="loginform">
         <mat-form-field>

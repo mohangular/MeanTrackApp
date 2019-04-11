@@ -13,17 +13,7 @@ export class ServiceService {
   getnotification(): Observable<any> {
     console.log('service');
     return this.http.get(`${this.uri}/notification`);
-    // .subscribe(res => {
-    // this.data = res;
-    // console.log('amhere', this.data);
-    // });
-    return this.data;
   }
-  /*addUser(): Observable<any> {
-    return this.http.get(`${this.uri}/notification`);
-  }*/
-
-
 
   getAdminBuildInfo(): Observable<any> {
     console.log('getAdminBuildInfo');
@@ -43,5 +33,10 @@ export class ServiceService {
   updateAdminBuildInfo(buildDetail: BuildModel): Observable<any> {
     console.log('updateAdminBuildInfo');
     return this.http.put(`${this.uri}/admin/buildDetails`, buildDetail);
+  }
+
+  addUser(user): Observable<any> {
+    console.log(user);
+    return this.http.post(`${this.uri}/register`, user);
   }
 }

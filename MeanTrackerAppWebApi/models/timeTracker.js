@@ -6,22 +6,22 @@ let TimeTracker = new Schema({
   id: {
     type: String,
   },
-  dateEntered: {
+  date: {
     type: Date,
   },
-  moduleSelected:{
+  module:{
     type: String,
   },
   tfsId: {
     type: String,
   },
-  typeSelected: {
+  workType: {
     type: String,
   },
   resourceName: {
     type: String,
   },
-  activitySelected: {
+  activity: {
     type: String,
   },
   noOfHours: {
@@ -30,8 +30,17 @@ let TimeTracker = new Schema({
   comments: {
     type: String,
   },
-  branchId: {
+  branch: {
     type: String,
+  },
+  buildNo: {
+    type: Number,    
+  },
+  branch: {
+    type: String,    
+  },
+  MID: {
+    type: String,    
   }
 },{
     collection: 'timetracker'
