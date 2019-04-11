@@ -281,6 +281,9 @@ export class TimesheetAddComponent implements OnInit {
     entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
                '/' + new Date(this.date.value).getDate() + 
                '/' + new Date(this.date.value).getFullYear()); 
+    entry.resourceName = 'pavitha';
+    entry.MID = 'M1033925';
+    entry.branch = 'DEV';
     this.timetrackerService.addTimeSheetEntry(entry).subscribe(res => {
       console.log('res', res);
     });

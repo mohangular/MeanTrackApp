@@ -6,7 +6,7 @@ export class timeSheetEntry {
     workType: string;
     resourceName: string;
     activity: string;
-    noOfHours: number;
+    hours: number;
     comments: string;
     branch: string;
     buildNo: number;
