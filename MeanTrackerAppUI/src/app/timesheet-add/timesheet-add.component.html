@@ -13,7 +13,7 @@
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
-    <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Save'">Add Task</button>
+    <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Create'">Add Task</button>
    <div *ngIf="displayGrid" #TABLE>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #table>
       <ng-container matColumnDef="module">
@@ -59,7 +59,7 @@
     <mat-card>
       <mat-card-title>Enter Your Time </mat-card-title>
       <mat-card-content>
-        <form [formGroup]="form" class="row" (submit)="onUpdate()">
+        <form [formGroup]="form" class="row" (submit)="onSave()">
           <div class="form-group col-sm-6">
               <mat-form-field>
                   <mat-label>Module</mat-label>
