@@ -1,7 +1,9 @@
+import { TimetrackerService } from './../timetracker.service';
 import { Activity } from './../Acttivity';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import * as XLSX from 'xlsx';
 
 
 const ELEMENT_DATA: Activity[] = [
@@ -155,10 +157,24 @@ export class TimesheetAddComponent implements OnInit {
   buildList: any[];
   workTypeList: any[];
   activityList: any[];
+  timeTrackerValues: any[];
   showAddButton = true;
   buttonValue = 'Save';
 
+  ExportTOExcel() 
+  {
+    
 
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.buildList);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    
+    /* save to file */
+    XLSX.writeFile(wb, 'SheetJS.xlsx');
+    
+  }
+
+  
   // Mat Table declarations
   displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity', 'comments'];
   dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
@@ -202,6 +218,9 @@ export class TimesheetAddComponent implements OnInit {
 
   get comments() {
     return this.form.get('comments');
+  }
+  constructor(public timetrackerService: TimetrackerService){
+    
   }
   ngOnInit() {
     // this.dataSource = new MatTableDataSource(ELEMENT_DATA);

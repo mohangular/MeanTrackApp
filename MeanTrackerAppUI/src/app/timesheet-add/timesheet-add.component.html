@@ -14,8 +14,8 @@
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
     <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Save'">Add Task</button>
-   <div *ngIf="displayGrid">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+   <div *ngIf="displayGrid" #TABLE>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #table>
       <ng-container matColumnDef="module">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Module </th>
         <td mat-cell *matCellDef="let element"> {{element.module}} </td>
@@ -50,6 +50,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; buttonValue='Update';showAddButton=false; onEdit(row)"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+    <div class="btn-block">
+        <a mat-raised-button color="primary" (click)="ExportTOExcel()">Export to Excel</a>
+    </div>
   </div>
 
   <div *ngIf="!displayGrid">
