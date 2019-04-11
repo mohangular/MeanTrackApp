@@ -1,5 +1,6 @@
 export class BuildModel {
-    id: number;
+    // tslint:disable-next-line:variable-name
+    _id: string;
     buildName: string;
     startDate: Date;
     endDate: Date;

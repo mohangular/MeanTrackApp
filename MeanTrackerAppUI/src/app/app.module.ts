@@ -12,16 +12,26 @@ import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule,
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
 import { ServiceService } from './service.service';
-import { DatePipe } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule, MatTabsModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatButtonModule, MatTableModule, MatTabsModule, MatCheckboxModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+import { ChartsModule } from 'node_modules/ng2-charts';
+import { TimesheetPieChartComponent } from './dashboard/timesheet-activity-pie-chart/timesheet-activity-pie-chart.component';
 import { AdminModuleComponent } from './admin/admin.module/admin.module.component';
-import { AdminBuildComponent } from './admin/admin.build/admin.build.component';
+import { AdminBuildComponent, AdminBuildAddComponent } from './admin/admin.build/admin.build.component';
 import { AdminActivityComponent } from './admin/admin.activity/admin.activity.component';
 import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.workitemtype.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { DatePipe } from '@angular/common';
+import User from './models/user';
+
+const routes: Routes = [
+  {path: 'pie-chart', component: TimesheetPieChartComponent},
+  {path: '**', component: TimesheetPieChartComponent }
+];
 
 @NgModule({
   declarations: [
@@ -33,8 +43,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RegisterComponent,
     AdminComponent,
     LoginComponent,
+    TimesheetPieChartComponent,
     AdminModuleComponent,
     AdminBuildComponent,
+    AdminBuildAddComponent,
     AdminActivityComponent,
     AdminWorkitemtypeComponent
   ],
@@ -55,10 +67,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSortModule,
     MatTableModule,
     MatButtonModule,
+    RouterModule.forRoot(routes),
+    ChartsModule,
     MatTabsModule,
+    MatCheckboxModule,
     NgbModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe],
+  entryComponents: [AdminBuildAddComponent],
+  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
