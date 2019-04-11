@@ -9,16 +9,16 @@ import { RegisterComponent } from './register/register.component';
 import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: DashboardComponent
-  // },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
   {
     path: '',
     component: LoginComponent
   },
   {
-    path: 'timesheet/create',
+    path: 'timesheet',
     component: TimesheetAddComponent
   },
   {
