@@ -14,21 +14,7 @@ router.get('/',(req,res,next)=> {
 
 //add entries for TimeTracker
 router.route('/addtimesheet').post((req,res,next) => {
-    console.log('router',req.body);
-    // let newTimeSheetEntry = new timeTracker({
-    //     //date: req.body.date,
-    //     module: req.body.module,
-    //     buildNo: req.body.build,
-    //     tfsId: req.body.tfsId,
-    //     workType: req.body.workType,
-    //     //resourceName: req.body.resourceName,
-    //     activity: req.body.activity,
-    //     hours: req.body.hours,
-    //     comments: req.body.comments,
-    //     //branch: req.body.branch,
-    //     //MID: req.body.MID
-    // });
-
+    console.log('router',req.body);   
     timeTrackers.create(req.body)   
     .then( newTimeSheetEntry => {
     // res.setHeader('Access-Control-Allow-Origin','*');
