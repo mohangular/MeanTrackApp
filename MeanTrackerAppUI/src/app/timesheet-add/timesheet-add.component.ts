@@ -146,14 +146,18 @@ const ELEMENT_DATA: Activity[] = [
 })
 
 export class TimesheetAddComponent implements OnInit {
+  // declarations
   displayGrid = true;
   startDate = new Date(1990, 0, 1);
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
+  moduleList: any;
+  buildList: any[];
 
+
+  // Mat Table declarations
   displayedColumns: string[] = ['module', 'Tfs_Id', 'type', 'activity', 'comments'];
   dataSource = new MatTableDataSource<Activity>(ELEMENT_DATA);
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -163,9 +167,11 @@ export class TimesheetAddComponent implements OnInit {
     tfsId: new FormControl('', Validators.required),
     workType: new FormControl('', Validators.required),
     activity: new FormControl('', Validators.required),
-    hours: new FormControl('',Validators.required),
-    comments: new FormControl('',Validators.maxLength(250)),
+    hours: new FormControl('', Validators.required),
+    comments: new FormControl('', Validators.maxLength(250)),
   });
+  workTypeList: any[];
+  activityList: any[];
 
   get module() {
     return this.form.get('module');
@@ -198,6 +204,35 @@ export class TimesheetAddComponent implements OnInit {
     // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
+
+    this.moduleList = [
+      { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
+      { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
+      { value: 'Team Meeting', viewValue: 'Team Meeting' }
+    ];
+
+    this.buildList = [
+      { value: '1538.1', viewValue: '1538.1' },
+      { value: '1538.2', viewValue: '1538.2' },
+      { value: '1538.3', viewValue: '1538.3' },
+      { value: '1538.4', viewValue: '1538.4' },
+      { value: '1538.5', viewValue: '1538.5' }
+    ];
+
+    this.workTypeList = [
+      { value: 'Bug', viewValue: 'Bug' },
+      { value: 'UserStory', viewValue: 'UserStory' },
+      { value: 'Others', viewValue: 'Others' }
+    ];
+
+    this.activityList = [
+      { value: 'Dev-Coding', viewValue: 'Coding' },
+      { value: 'Dev-Analysis', viewValue: 'Analysis' },
+      { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
+      { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
+      { value: 'Others', viewValue: 'Others' }
+    ];
+
   }
 
   onEdit(task: Activity) {
@@ -208,7 +243,7 @@ export class TimesheetAddComponent implements OnInit {
       workType: task.type,
       activity: task.activity,
       hours: task.hours,
-      comments :task.comments
+      comments: task.comments
     });
   }
 

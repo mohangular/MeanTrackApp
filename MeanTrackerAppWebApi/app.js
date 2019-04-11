@@ -8,7 +8,7 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var passport = require('passport');
 
 require('./models/db');
@@ -22,7 +22,6 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 );
 var app = express();
 app.use(passport.initialize());
-app.use('/MeanTrackerAppWebApi', indexRouter);
 
 require("dotenv").config();
 
@@ -30,14 +29,15 @@ require("dotenv").config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors());
-app.options('*', cors({origin:true}));
+app.use(express.urlencoded({ extended: false }));
+
+app.use(cookieParser());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(function(req,res,next){
 //   res.header("Access-Control-Allow-Origin", '*');
@@ -45,9 +45,8 @@ app.options('*', cors({origin:true}));
 // })
 
 app.use('/', indexRouter);
-//app.use('/', adminRouter);
+app.use('/admin', adminRouter);
 app.use(bodyParser.json());
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -61,8 +60,14 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  // error handlers
+  // Catch unauthorised errors
   res.status(err.status || 500);
   res.render('error');
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
 });
 
 module.exports = app;

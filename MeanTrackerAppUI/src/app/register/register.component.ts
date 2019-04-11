@@ -5,6 +5,8 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceService } from './../service.service';
 import User from '../models/user';
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({

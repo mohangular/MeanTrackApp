@@ -46,7 +46,6 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
-
 module.exports = router;
 function newFunction() {
   return require('../controllers/authentication');
