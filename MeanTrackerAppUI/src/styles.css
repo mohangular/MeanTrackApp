@@ -445,7 +445,7 @@ tr.mat-header-row, .mat-card-title {
 tr.mat-header-row:hover{
 	background-color: rgba(191, 38, 38, 0.8) !important
 }
-.mat-header-cell  .mat-sort-header-button, .mat-sort-header-arrow{
+.mat-header-cell  .mat-sort-header-button, .mat-sort-header-arrow, .mat-header-cell{
 	color:#fff
 }
 
@@ -454,6 +454,10 @@ tr.mat-header-row:hover{
 	padding:0 !important;
 	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)!important
 	
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+	background-color: #bf2626;
 }
 
 .mat-card-content, .mat-card-subtitle, .mat-card-title{
@@ -470,6 +474,17 @@ tr.mat-header-row:hover{
     border-top: 1px solid #ccc;
 }
 
+/* Mat Tab */
+.mat-form-field-flex{
+	padding: 10px 16px 0
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple{
+	background-color: #bf2626;
+}
+.mat-form-field.mat-focused .mat-form-field-label{
+	color: #333333;
+}
 
 
 @media (max-width: 600px) {
