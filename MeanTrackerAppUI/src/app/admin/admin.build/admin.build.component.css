@@ -5,11 +5,8 @@ table {
     width: 100%;
 }
 
-#btnAdd {
-    width: 99%;
-    text-align: center;
-    margin:0 auto;
-    align-items: center;
+button {
+    width: 20%;
 }
 
 .mat-form-field--no-underline .mat-input-underline {

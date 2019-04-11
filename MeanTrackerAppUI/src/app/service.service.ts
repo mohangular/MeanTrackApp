@@ -25,10 +25,23 @@ export class ServiceService {
 
 
 
-  getAdminBuildInfo(): Observable<BuildModel[]> {
+  getAdminBuildInfo(): Observable<any> {
     console.log('getAdminBuildInfo');
-    return this.http.get(`${this.uri}/notification`);
-    // .subscribe(res => {
-    return new BuildModel[1]();
+    return this.http.get(`${this.uri}/admin/buildDetails`);
+  }
+
+  saveAdminBuildInfo(buildDetail: BuildModel): Observable<any> {
+    console.log('saveAdminBuildInfo');
+    return this.http.post(`${this.uri}/admin/buildDetails`, buildDetail);
+  }
+
+  deleteAdminBuildInfo(buildIds: string[]): Observable<any> {
+    console.log('deleteAdminBuildInfo');
+    return this.http.delete(`${this.uri}/admin/buildDetails/${buildIds.join()}`);
+  }
+
+  updateAdminBuildInfo(buildDetail: BuildModel): Observable<any> {
+    console.log('updateAdminBuildInfo');
+    return this.http.put(`${this.uri}/admin/buildDetails`, buildDetail);
   }
 }
