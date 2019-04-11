@@ -13,7 +13,7 @@
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
-    <button (click)="displayGrid=false">Add Task</button>
+    <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Save'">Add Task</button>
    <div *ngIf="displayGrid">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="module">
@@ -47,7 +47,7 @@
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; onEdit(row)"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; buttonValue='Update';showAddButton=false; onEdit(row)"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
   </div>
@@ -138,7 +138,8 @@
               <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">Comments length should not exceed 250 char.</div>           
             </div>
             <mat-card-actions class="text-right">
-              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Update</button> 
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">{{buttonValue}}</button> 
+              <button mat-raised-button color="primary" type="cancel" (click)="displayGrid=true;showAddButton=true" >Cancel</button> 
             </mat-card-actions>
         </form>
       </mat-card-content>
