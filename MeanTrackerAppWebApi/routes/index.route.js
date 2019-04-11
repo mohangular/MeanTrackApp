@@ -44,5 +44,5 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
-router.get('/profile', auth, ctrlProfile.profileRead);
+//router.get('/profile', auth, ctrlProfile.profileRead);
 module.exports = router;

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Enter Build Information </h1>
+<div mat-dialog-content class="mat-typography">
+  <form [formGroup]="buildAddForm">
+    <mat-form-field>
+      <input matInput placeholder="Build Name" formControlName="buildName" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate" required>
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate" required>
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-checkbox color="primary" formControlName="enabled">Enabled ?</mat-checkbox>
+
+  </form>
+</div>
+<div mat-dialog-actions class="btn-block">
+  
+  <button mat-raised-button color="primary" (click)="onSave()" cdkFocusInitial>Save</button>
+  <button mat-raised-button class="mat-btn-cancel" (click)="onCancel()">Cancel</button>
+</div>
