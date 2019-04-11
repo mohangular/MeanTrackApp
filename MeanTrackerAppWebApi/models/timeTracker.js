@@ -25,7 +25,7 @@ let TimeTracker = new Schema({
   activity: {
     type: String,
   },
-  noOfHours: {
+  hours: {
     type: Number,
   },
   comments: {
@@ -36,9 +36,6 @@ let TimeTracker = new Schema({
   },
   buildNo: {
     type: Number,    
-  },
-  branch: {
-    type: String,    
   },
   MID: {
     type: String,    

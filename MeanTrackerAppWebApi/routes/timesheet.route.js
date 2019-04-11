@@ -1,38 +1,42 @@
 const express = require('express');
 const router = express.Router();
-var timeTrackerDetails = require('../models/timeTrackerDetails');
-var timeTracker = require('../models/timeTracker');
+const bodyParser = require('body-parser');
+var timeTrackers = require('../models/timeTracker');
+
+router.use(bodyParser.json());
 
 //get List of TimeTracker details
 router.get('/',(req,res,next)=> {
-    TimeTrackerDetails.find((err,TimeTrackerDetails) => {
-        return res.json(TimeTrackerDetails);
-    });
+    timeTrackers.find((err,timeTrackers) => {
+        return res.json(timeTrackers);
+    });    
 });
 
 //add entries for TimeTracker
-router.post('/addtimesheet',(req,res,next) => {
-    let newTimeSheetEntry = new timeTracker({
-        date: req.body.date,
-        module: req.body.module,
-        tfsId: req.body.tfsId,
-        workType: req.body.workType,
-        resourceName: req.body.resourceName,
-        activity: req.body.activity,
-        noOfHours: req.body.noOfHours,
-        comments: req.body.comments,
-        branch: req.body.branch,
-        buildNo: req.body.buildNo,
-        branch: req.body.branch,
-        MID: req.body.MID
-    });
-    newTimeSheetEntry.save()
+router.route('/addtimesheet').post((req,res,next) => {
+    console.log('router',req.body);
+    // let newTimeSheetEntry = new timeTracker({
+    //     //date: req.body.date,
+    //     module: req.body.module,
+    //     buildNo: req.body.build,
+    //     tfsId: req.body.tfsId,
+    //     workType: req.body.workType,
+    //     //resourceName: req.body.resourceName,
+    //     activity: req.body.activity,
+    //     hours: req.body.hours,
+    //     comments: req.body.comments,
+    //     //branch: req.body.branch,
+    //     //MID: req.body.MID
+    // });
+
+    timeTrackers.create(req.body)   
     .then( newTimeSheetEntry => {
-    res.setHeader('Access-Control-Allow-Origin','*');
-    res.setHeader('Access-Control-Allow-Methods','POST');
+    // res.setHeader('Access-Control-Allow-Origin','*');
+    // res.setHeader('Access-Control-Allow-Methods','POST');
     res.status(200).json({'timesheet': 'TimeSheet entry added successfully'});
     })
     .catch(err => {
+        console.log(err);
         res.status(500).send('Error while adding timesheet entry');
     });
 });
