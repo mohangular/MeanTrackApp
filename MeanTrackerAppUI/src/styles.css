@@ -46,10 +46,8 @@ main{
 	display:block;
 }
 .main-container{
-	float:left;
-	width:100%;
 	z-index:1;
-	padding:20px 15px;
+	padding:0 15px;
 }
 h1, .main-container h1{
 	margin-top:0;

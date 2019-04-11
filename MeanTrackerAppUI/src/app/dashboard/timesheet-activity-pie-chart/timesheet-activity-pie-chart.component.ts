@@ -9,7 +9,7 @@ import {Chart} from 'chart.js';
 export class TimesheetPieChartComponent implements OnInit {
   public pieChartLabels = ['Coding', 'Analysis', 'Unit Testing', 'Review'];
   public pieChartData = [80, 40, 25, 8];
-  public pieChartType = 'pie';
+  public pieChartType = 'bar';
   
 
   public pieChartColor:any = [
