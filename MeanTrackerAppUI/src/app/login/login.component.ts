@@ -41,13 +41,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.credentials.email = this.loginform.value.email;
     this.credentials.password = this.loginform.value.password;
-    debugger;
-
-    // this.auth.register(this.credentials).subscribe(() => {
-    //   this.router.navigateByUrl('/profile');
-    // }, (err) => {
-    //   console.error(err);
-    // });
+    debugger;    
 
     this.auth.login(this.credentials).subscribe((result) => {
       this.router.navigateByUrl('/profile');

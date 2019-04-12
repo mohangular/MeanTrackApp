@@ -1,37 +1,27 @@
-<div class="row  loginPage">
+<div class="row">
   <ngb-carousel class="col-9">
-      <ng-template ngbSlide>
-          <img src="/assets/images/realogy.png" alt="Random second slide">      
-        </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/Skitch2.png" alt="Random first slide">
-      <!-- <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div> -->
+      <img src="/assets/images/realogy.png" alt="Random second slide" class="mh-100">
     </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/Call.png" alt="Random second slide">      
+      <img src="/assets/images/skull.jpg" alt="Random first slide" class="mh-100">
     </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/file2.jpeg" alt="Random third slide">      
+      <img src="/assets/images/skull2.jpg" alt="Random second slide" class="mh-100">
     </ng-template>
     <ng-template ngbSlide>
-      <img src="/assets/images/ExplainAppraisal.png" alt="Random four slide">      
-    </ng-template>
-    <ng-template ngbSlide>
-      <img src="/assets/images/Profiles-1.jpg" alt="Random five slide">    
+      <img src="/assets/images/skull3.jpg" alt="Random third slide" class="mh-100">
     </ng-template>
   </ngb-carousel>
 
   <div class="col-3 loginForm">
-    <mat-card>
-      <mat-card-title>Login</mat-card-title>
-        <mat-card-content>
+    <mat-card>    
+      <mat-card-title><img src="../assets/images/trackAppl.png"></mat-card-title>
+      <mat-card-content>
         <form (submit)="onLogin()" [formGroup]="loginform">
           <mat-form-field>
-            <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
-              required email #email>
+            <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()" required
+              email #email>
             <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
           </mat-form-field>
           <mat-form-field>
@@ -40,10 +30,10 @@
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
           <div class="btn-block">
-              <button class="" mat-raised-button color="primary" type="submit">Login</button>
+            <button class="" mat-raised-button color="primary" type="submit">Login</button>
           </div>
         </form>
       </mat-card-content>
     </mat-card>
   </div>
-</div> 
+</div>
