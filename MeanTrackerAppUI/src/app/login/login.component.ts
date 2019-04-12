@@ -1,7 +1,10 @@
+import { TimetrackerService } from './../timetracker.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService, TokenPayload } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +12,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginform: FormGroup;
+  loginform: FormGroup;  
+  credentials: TokenPayload = {
+    email: '',
+    password: ''
+  };
 
-  constructor(private logingrp: FormBuilder) {
+  constructor(private logingrp: FormBuilder, private auth: AuthenticationService, private router: Router) {
     this.createForm();
-  }
-  onLogin(form: NgForm) {
-    console.log(form.value.email);
   }
 
   createForm() {
@@ -34,7 +38,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  onLogin() {
+    this.credentials.email = this.loginform.value.email;
+    this.credentials.password = this.loginform.value.password;
+    debugger;    
+
+    this.auth.login(this.credentials).subscribe((result) => {
+      this.router.navigateByUrl('/profile');
+    });
+  }
+
+  ngOnInit() { 
   }
 
 }

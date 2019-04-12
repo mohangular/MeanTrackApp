@@ -8,7 +8,8 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
-//var favicon = require('serve-favicon');
+var timesheetRouter = require('./routes/timesheet.route');
+var favicon = require('serve-favicon');
 var passport = require('passport');
 
 require('./models/db');
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+app.use('/timesheet', timesheetRouter);
 app.use(bodyParser.json());
 
 // catch 404 and forward to error handler

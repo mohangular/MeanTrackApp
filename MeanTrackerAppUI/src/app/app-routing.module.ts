@@ -14,8 +14,13 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
+  },
+  {
+    path:'',
+    redirectTo:'/login',
+    pathMatch:'full'
   },
   {
     path: 'timesheet',

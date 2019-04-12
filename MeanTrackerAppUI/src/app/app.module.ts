@@ -8,7 +8,7 @@ import { TimesheetAddComponent } from './timesheet-add/timesheet-add.component';
 import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
+import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/notification.component';
 import { ServiceService } from './service.service';
@@ -73,7 +73,8 @@ const routes: Routes = [
     MatCheckboxModule,
     NgbModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
   ],
   entryComponents: [AdminBuildAddComponent],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],
