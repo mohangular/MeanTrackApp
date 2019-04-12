@@ -25,6 +25,10 @@ export class TimetrackerService {
     console.log(timeSheetEntry);
     return this.http.put(`${this.uri}/timesheet/update`, timeSheetEntry);
   }
+
+  deleteTimeSheetEntry(id:string):Observable<any>{
+    return this.http.delete(`${this.uri}/timesheet/delete/${id}`);
+  }
   
   
 }

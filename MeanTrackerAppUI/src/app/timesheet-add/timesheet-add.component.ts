@@ -56,7 +56,7 @@ export class TimesheetAddComponent implements OnInit {
     workType: new FormControl('', Validators.required),
     activity: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
-    comments: new FormControl('', [Validators.maxLength(250), Validators.required]),
+    comments: new FormControl('', [ Validators.required, Validators.maxLength(250)]),
   });
  
 
@@ -184,5 +184,14 @@ export class TimesheetAddComponent implements OnInit {
     this.getTimeTrackerModel();
     });
   }
-  
+
+  deleteEntry(){
+    this.timetrackerService.deleteTimeSheetEntry(this.currentTaskId).subscribe((res)=>{
+      console.log('Deleted Successfully');
+      this.getTimeTrackerModel();
+      this.displayGrid = true;
+      this.showAddButton = true;
+      this.form.reset();
+    })
+  }
 }

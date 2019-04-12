@@ -42,6 +42,23 @@ router.route('/update').put((req, res, next) => {
           .catch((err) => next(err));
       }, (err) => next(err))
       .catch((err) => next(err));
-  })
+  });
+
+  router.route('/delete/:id').delete((req,res,next)=>{
+    let id = req.params.id;
+    timeTrackers.deleteOne({ _id: id } )
+      .then((timetracker) => {
+        console.log('TimeTracker deleted id:', id);
+        timeTrackers.find({})
+          .then((timeTracks) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(timeTracks);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => console.log(err));
+  });
+
 
 module.exports = router;
