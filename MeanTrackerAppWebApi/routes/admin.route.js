@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 const bodyParser = require('body-parser');
 
-let timetracker = require('../models/timeTracker');
+let timetracker = require('../models/ActivityDetail');
 let userDetails = require('../models/userDetails');
 
 /* GET home page. */

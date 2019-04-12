@@ -1,21 +1,32 @@
 const express = require('express');
-const app = express();
+
 const dashboardRoutes = express.Router();
 
+
+
 // Require Dashboard model in our routes module
-let Dashboard = require('../models/timeTracker');
-
+let TimeTracker = require('../models/TimeTracker');
+let ChartData = require('../models/Chart');
 // Defined get data(index or listing) route
-dashboardRoutes.route('/').get(function (req, res) {
-    Dashboard.find(function (err, activities){
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(activities);
-    }
-  });
-});
+dashboardRoutes.route('/').get(function (req, res)  {
+    
+    TimeTracker.aggregate(
+        [{
+            $group: 
+            {
+                "_id":{'activity':['$activity']},
+                 'totalHours': {$sum: '$hours'}
+            }
+        }], function (err, result) {
+            if(err)
+            {console.log(err)}
+            else{
+                var ChartData = JSON.stringify(result);
+                console.log(ChartData);
+                return res.json(result)
+            }
+     })
 
+    });
 
 module.exports = dashboardRoutes;

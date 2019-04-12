@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
-let TimeTracker = new Schema({
+let ActivityDetail = new Schema({
   id: {
     type: String,
   },
@@ -43,7 +43,7 @@ let TimeTracker = new Schema({
     type: String,    
   }
 },{
-    collection: 'TimeTracker'
+    collection: 'ActivityDetail'
 });
 
-module.exports = mongoose.model('TimeTracker', TimeTracker);
+module.exports = mongoose.model('ActivityDetail', ActivityDetail);

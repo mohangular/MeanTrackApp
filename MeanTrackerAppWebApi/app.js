@@ -15,6 +15,7 @@ require('./models/db');
 require('./config/passport');
 
 var adminRouter = require('./routes/admin.route');
+var dashboardRouter = require('./routes/dashboard.route')
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+app.use('/dashboard', dashboardRouter);
 app.use(bodyParser.json());
 
 // catch 404 and forward to error handler

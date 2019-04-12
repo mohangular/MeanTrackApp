@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Model = mongoose.Schema;
 
 // Define collection and schema for Business
-let ChartData = new Schema({
-  
-)};
+let ChartData = new Model({
+ activities:[{type: String}],
+    hours: {type: Number}
+})
 
 module.exports = mongoose.model('ChartData', ChartData);

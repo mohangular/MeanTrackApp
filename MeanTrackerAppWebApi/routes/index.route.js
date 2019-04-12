@@ -9,7 +9,7 @@ var auth = jwt({
 
 //require("dotenv").config();
 
-let timetracker = require('../models/timeTracker');
+let timetracker = require('../models/TimeTracker');
 let userDetails = require('../models/userDetails');
 
 /* GET home page. */
