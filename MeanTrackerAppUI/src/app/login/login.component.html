@@ -26,7 +26,7 @@
 
   <div class="col-sm-3 loginForm">
     <mat-card>
-      <form (submit)="onLogin(loginform)" [formGroup]="loginform">
+      <form (submit)="onLogin()" [formGroup]="loginform">
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
             required email #email>

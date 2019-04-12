@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginform: FormGroup;
+  loginform: FormGroup;  
   credentials: TokenPayload = {
     email: '',
     password: ''
@@ -20,9 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(private logingrp: FormBuilder, private auth: AuthenticationService, private router: Router) {
     this.createForm();
   }
-  // onLogin(form: NgForm) {
-  //   console.log(form.value.email);
-  // }
 
   createForm() {
     this.loginform = this.logingrp.group({
@@ -41,7 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.auth.login(this.credentials).subscribe(() => {
+    this.credentials.email = this.loginform.value.email;
+    this.credentials.password = this.loginform.value.password;
+    debugger;
+    this.auth.login(this.credentials).subscribe(result => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);

@@ -32,6 +32,7 @@ router.route('/notification').get(function (req, res) {
 });
 
 router.route('/register').post(function (req, res) {
+  debugger;
   console.log("server",req.body);
   let user = new userDetails(req.body);
   console.log("server",req.body);
