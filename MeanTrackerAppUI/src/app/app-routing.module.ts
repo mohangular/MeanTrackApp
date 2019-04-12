@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {TimesheetAddComponent } from './timesheet-add/timesheet-add.component';
-import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.component';
 import { RegisterComponent } from './register/register.component';
 import { NotificationComponent } from './notification/notification.component';
 
@@ -14,16 +13,17 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
+  },
+  {
+    path:'',
+    redirectTo:'/login',
+    pathMatch:'full'
   },
   {
     path: 'timesheet',
     component: TimesheetAddComponent
-  },
-  {
-    path: 'timesheet/edit/:id',
-    component: TimesheetEditComponent
   },
   {
     path: 'notification',

@@ -1,8 +1,6 @@
-    .loginPage{
-        margin-top:-18px;
-    }
-     .mat-card{
-        height: 650px;
+    
+    .mat-card{
+        height:100%;
     }
    /* mat-card{
         max-width: 50%;
@@ -20,7 +18,9 @@ mat-form-field {
 ngb-carousel, .loginForm{
     padding:0;
 }
-.carousel-indicators, .carousel-item.active, img{
+/* .carousel-indicators, .carousel-item.active, img{
     height:650px !important;
-}
+} */
+
+
 

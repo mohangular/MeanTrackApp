@@ -1,3 +1,3 @@
 module.exports = {
-    DB: 'mongodb://localhost:27017/timetracker'
+    DB: 'mongodb+srv://RentalApp:RentalApp@rentalapp-wcwjr.mongodb.net/test?retryWrites=true'
  };

@@ -8,7 +8,8 @@ var config = require('./DB');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var indexRouter = require('./routes/index.route');
-//var favicon = require('serve-favicon');
+var timesheetRouter = require('./routes/timesheet.route');
+var favicon = require('serve-favicon');
 var passport = require('passport');
 
 require('./models/db');
@@ -40,14 +41,13 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function(req,res,next){
-//   res.header("Access-Control-Allow-Origin", '*');
-//   res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
-// })
-
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+<<<<<<< HEAD
 app.use('/dashboard', dashboardRouter);
+=======
+app.use('/timesheet', timesheetRouter);
+>>>>>>> cf2d9152a297a4599a4cb3979acd0416920fabbf
 app.use(bodyParser.json());
 
 // catch 404 and forward to error handler

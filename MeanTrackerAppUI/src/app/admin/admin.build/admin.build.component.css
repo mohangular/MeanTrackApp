@@ -5,9 +5,7 @@ table {
     width: 100%;
 }
 
-button {
-    width: 20%;
-}
+
 
 .mat-form-field--no-underline .mat-input-underline {
     background-color: transparent;

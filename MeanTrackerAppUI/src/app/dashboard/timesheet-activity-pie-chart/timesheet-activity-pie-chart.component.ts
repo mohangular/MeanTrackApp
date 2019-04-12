@@ -11,11 +11,17 @@ import {DashboardService} from '.././../dashboard.service'
 })
 
 export class TimesheetPieChartComponent implements OnInit {
+<<<<<<< HEAD
  // public pieChartLabels = ['Coding', 'Analysis', 'Unit Testing', 'Review'];
   public pieChartLabels :string[]= [];
   //public pieChartData = [80, 40, 25, 8];
   public pieChartData :Number[]= [];
   public pieChartType = 'pie';
+=======
+  public pieChartLabels = ['Coding', 'Analysis', 'Unit Testing', 'Review'];
+  public pieChartData = [80, 40, 25, 8];
+  public pieChartType = 'bar';
+>>>>>>> cf2d9152a297a4599a4cb3979acd0416920fabbf
   
   constructor(private Service: DashboardService){
    // var dashboard = Service.getDashboard().subscribe((data:TimeTracker))    

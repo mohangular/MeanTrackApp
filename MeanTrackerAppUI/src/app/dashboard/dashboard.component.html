@@ -1,54 +1,59 @@
 <div class="row">
+<div class="col-12" #TABLE>
+    <mat-card>
+    <mat-card-title>Time sheet Entry </mat-card-title>
+    <mat-card-content>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #table>
+    <ng-container matColumnDef="module">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Module </th>
+      <td mat-cell *matCellDef="let element"> {{element.module}} </td>
+    </ng-container>
   
-  <div class="col-md-12">
-    <div class="panel panel-inverse animate fadeInLeft a2">
-      <div class="panel-heading">
-        <h4 class="panel-title"><i class="fa fa-book"></i> Notofications</h4>
-      </div>
-      <div class="panel-body">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Name</th>
-              <th>Module</th>
-              <th>Internal Tracker Id</th>
-              <th>Priority (Stage)</th>
-              <th>Priority Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1.</td>
-              <td>George</td>
-              <td>Smart Wallet</td>
-              <td>1234</td>
-              <td>Normal</td>
-              <td>In Progress</td>
-            </tr>
-            <tr>
-              <td>2.</td>
-              <td>John</td>
-              <td>Smart Wallet</td>
-              <td>1234</td>
-              <td>Normal</td>
-              <td>In Progress</td>
-            </tr>
-            <tr>
-              <td>3.</td>
-              <td>Smith</td>
-              <td>Smart Wallet</td>
-              <td>1234</td>
-              <td>Normal</td>
-              <td>In Progress</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <ng-container matColumnDef="tfsId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TFS_ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.tfsId}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="workType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.workType}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="build">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Build No </th>
+      <td mat-cell *matCellDef="let element"> {{element.build}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Activity </th>
+      <td mat-cell *matCellDef="let element"> {{element.activity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comments">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+      <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; buttonValue='Update';showAddButton=false; onEdit(row)"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+  <div class="btn-block">
+      <a mat-raised-button color="primary" (click)="ExportToExcel()">Export to Excel</a>
+  </div>
+</mat-card-content>
+  </mat-card>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+      <app-notification></app-notification>
+  </div>
+  <div class="col-6">
+      <app-timesheet-activity-pie-chart></app-timesheet-activity-pie-chart>
   </div>
 </div>
-<app-notification></app-notification>
-<app-timesheet-activity-pie-chart></app-timesheet-activity-pie-chart>
+
 
 
