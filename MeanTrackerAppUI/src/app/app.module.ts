@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TimesheetAddComponent } from './timesheet-add/timesheet-add.component';
-import { TimesheetEditComponent } from './timesheet-edit/timesheet-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule, MatSelectModule } from '@angular/material';
@@ -27,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import User from './models/user';
+import { AdminReportGenerateComponent } from './admin/admin-report-generate/admin-report-generate.component';
 
 const routes: Routes = [
   {path: 'pie-chart', component: TimesheetPieChartComponent},
@@ -38,7 +38,6 @@ const routes: Routes = [
     AppComponent,
     DashboardComponent,
     TimesheetAddComponent,
-    TimesheetEditComponent,
     NotificationComponent,
     RegisterComponent,
     AdminComponent,
@@ -48,7 +47,8 @@ const routes: Routes = [
     AdminBuildComponent,
     AdminBuildAddComponent,
     AdminActivityComponent,
-    AdminWorkitemtypeComponent
+    AdminWorkitemtypeComponent,
+    AdminReportGenerateComponent
   ],
   imports: [
     BrowserModule,

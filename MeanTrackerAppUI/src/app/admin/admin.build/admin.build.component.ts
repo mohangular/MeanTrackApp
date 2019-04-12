@@ -26,7 +26,7 @@ export class AdminBuildComponent implements OnInit {
   @ViewChild(MatTable) buildDatatable: MatTable<BuildModel>;
 
   ngOnInit() {
-    this.getBuild();
+   this.getBuild();
   }
 
   applyFilter(filterValue: string) {

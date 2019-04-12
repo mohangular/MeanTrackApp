@@ -47,6 +47,11 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
+router.get('/getUserList',(req,res,next)=> {
+  userDetails.find((err,userdetail) => {
+  return res.json(userdetail);
+  }); 
+}); 
 module.exports = router;
 function newFunction() {
   return require('../controllers/authentication');

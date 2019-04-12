@@ -39,4 +39,8 @@ export class ServiceService {
     console.log(user);
     return this.http.post(`${this.uri}/register`, user);
   }
+  getUserList(): Observable<any> {
+    console.log('getUserList');
+    return this.http.get(`${this.uri}/getUserList`);
+  }
 }
