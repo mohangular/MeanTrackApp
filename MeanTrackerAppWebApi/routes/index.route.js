@@ -47,6 +47,25 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
+
+router.route('/login').post(function (req, res) {
+  debugger;
+  console.log('testttttttt');
+  console.log("server",req.body);
+  let user = new userDetails(req.body);
+  console.log("server",req.body);
+  user.save()
+    .then(user => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'POST');
+      res.status(200).json({'person': 'Login done'});
+      
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });     
+});
+
 module.exports = router;
 function newFunction() {
   return require('../controllers/authentication');
