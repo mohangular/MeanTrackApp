@@ -28,19 +28,19 @@ export class TimesheetAddComponent implements OnInit {
   buttonValue = 'Save';
   currentTaskId:string;
 
-  ExportToExcel() 
-  {
-    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
-      this.timeTrackerModel = res;
-    });
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerModel);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  // ExportToExcel() 
+  // {
+  //   this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+  //     this.timeTrackerModel = res;
+  //   });
+  //   const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerModel);
+  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     
-    /* save to file */
-    XLSX.writeFile(wb, 'SheetJS.xlsx');
+  //   /* save to file */
+  //   XLSX.writeFile(wb, 'SheetJS.xlsx');
     
-  }
+  // }
 
   
   // Mat Table declarations

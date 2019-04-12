@@ -60,5 +60,22 @@ router.route('/update').put((req, res, next) => {
       .catch((err) => console.log(err));
   });
 
+  router.route('/login').post(function (req, res) {
+    console.log('testttttttt');
+    console.log("server",req.body);
+    let user = new userDetails(req.body);
+    console.log("server",req.body);
+    user.save()
+      .then(user => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'POST');
+        res.status(200).json({'person': 'Login done'});
+        
+      })
+      .catch(err => {
+      res.status(400).send("unable to save to database");
+      });     
+  });
+
 
 module.exports = router;

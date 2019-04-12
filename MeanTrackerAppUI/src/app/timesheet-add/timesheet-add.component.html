@@ -50,9 +50,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; buttonValue='Update';showAddButton=false; onEdit(row)"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
-    <div class="btn-block">
+    <!-- <div class="btn-block">
         <a mat-raised-button color="primary" (click)="ExportTOExcel()">Export to Excel</a>
-    </div>
+    </div> -->
   </div>
 
   <div *ngIf="!displayGrid">
@@ -73,7 +73,7 @@
                   </mat-error>
                 </mat-form-field>
           </div>
-          <div class="form-group col-sm-6">
+          <div  class="form-group col-sm-6">
               <mat-form-field>
                   <mat-label>Build Number</mat-label>
                   <mat-select formControlName="build">
@@ -86,7 +86,7 @@
                   </mat-error>
                 </mat-form-field>
           </div>
-          <div class="form-group col-sm-6">
+          <div  class="form-group col-sm-6">
               <mat-form-field class="example-full-width">
                   <input matInput placeholder="TFS ID" formControlName="tfsId">
                   <mat-error>
@@ -94,7 +94,7 @@
                   </mat-error>
                 </mat-form-field>
             </div>
-            <div class="form-group col-sm-6">
+            <div  class="form-group col-sm-6">
                 <mat-form-field>
                     <mat-label>Work Type</mat-label>
                     <mat-select formControlName="workType">

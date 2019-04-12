@@ -1,3 +1,4 @@
+import { TimetrackerService } from './../timetracker.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, FormControl } from '@angular/forms';
 import { isNullOrUndefined } from 'util';
@@ -40,15 +41,14 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.credentials.email = this.loginform.value.email;
     this.credentials.password = this.loginform.value.password;
-    debugger;
-    this.auth.login(this.credentials).subscribe(result => {
+    debugger;    
+
+    this.auth.login(this.credentials).subscribe((result) => {
       this.router.navigateByUrl('/profile');
-    }, (err) => {
-      console.error(err);
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
