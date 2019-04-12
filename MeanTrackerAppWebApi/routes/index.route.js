@@ -10,7 +10,7 @@ var  ctrlProfile = newFunction();
 router.get('/profile', auth, ctrlProfile.profileRead); 
 //require("dotenv").config();
 
-let timetracker = require('../models/TimeTracker');
+let timetracker = require('../models/timeTracker');
 let userDetails = require('../models/userDetails');
 
 /* GET home page. */

@@ -5,8 +5,8 @@ const dashboardRoutes = express.Router();
 
 
 // Require Dashboard model in our routes module
-let TimeTracker = require('../models/TimeTracker');
-let ChartData = require('../models/Chart');
+let TimeTracker = require('../models/timeTracker');
+let ChartData = require('../models/chart');
 // Defined get data(index or listing) route
 dashboardRoutes.route('/').get(function (req, res)  {
     
@@ -21,7 +21,7 @@ dashboardRoutes.route('/').get(function (req, res)  {
             if(err)
             {console.log(err)}
             else{
-                var ChartData = JSON.stringify(result);
+                ChartData = JSON.stringify(result);
                 console.log(ChartData);
                 return res.json(result)
             }
