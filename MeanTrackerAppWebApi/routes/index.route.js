@@ -47,13 +47,11 @@ router.route('/register').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
-<<<<<<< HEAD
 router.get('/getUserList',(req,res,next)=> {
   userDetails.find((err,userdetail) => {
   return res.json(userdetail);
   }); 
 }); 
-=======
 
 router.route('/login').post(function (req, res) {
   debugger;
@@ -73,7 +71,6 @@ router.route('/login').post(function (req, res) {
     });     
 });
 
->>>>>>> 17b498d4c0875973dc411a7ac7e07d438380c777
 module.exports = router;
 function newFunction() {
   return require('../controllers/authentication');
