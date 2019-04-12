@@ -78,9 +78,11 @@ export class AuthenticationService {
     return this.request('post', 'register', user);
   }
   
-  public login(user: TokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
-  }
+  login(user: TokenPayload): Observable<any> {
+    console.log('serviceCalllll');
+   //return this.request('post', 'login', user);
+   return this.http.post('http://localhost:5550/login',user);
+ }
   
   public profile(): Observable<any> {
     return this.request('get', 'profile');
