@@ -43,11 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
-<<<<<<< HEAD
 app.use('/dashboard', dashboardRouter);
-=======
 app.use('/timesheet', timesheetRouter);
->>>>>>> cf2d9152a297a4599a4cb3979acd0416920fabbf
 app.use(bodyParser.json());
 
 // catch 404 and forward to error handler

@@ -20,9 +20,6 @@ export class DashboardComponent implements OnInit {
   constructor(private timetrackerService:TimetrackerService) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-
-=======
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
@@ -43,7 +40,6 @@ export class DashboardComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, 'SheetJS.xlsx');
     
->>>>>>> cf2d9152a297a4599a4cb3979acd0416920fabbf
   }
 
 }
