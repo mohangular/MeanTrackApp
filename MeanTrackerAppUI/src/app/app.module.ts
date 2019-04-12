@@ -24,7 +24,7 @@ import { AdminBuildComponent, AdminBuildAddComponent } from './admin/admin.build
 import { AdminActivityComponent } from './admin/admin.activity/admin.activity.component';
 import { AdminWorkitemtypeComponent } from './admin/admin.workitemtype/admin.workitemtype.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatSnackBarModule } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import User from './models/user';
 
@@ -73,6 +73,7 @@ const routes: Routes = [
     MatCheckboxModule,
     NgbModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   entryComponents: [AdminBuildAddComponent],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],

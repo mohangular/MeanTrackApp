@@ -30,9 +30,9 @@ export class ServiceService {
     return this.http.delete(`${this.uri}/admin/buildDetails/${buildIds.join()}`);
   }
 
-  updateAdminBuildInfo(buildDetail: BuildModel): Observable<any> {
+  updateAdminBuildInfo(currentEditId: string, buildDetail: BuildModel): Observable<any> {
     console.log('updateAdminBuildInfo');
-    return this.http.put(`${this.uri}/admin/buildDetails`, buildDetail);
+    return this.http.put(`${this.uri}/admin/buildDetails/${currentEditId}`, buildDetail);
   }
 
   addUser(user): Observable<any> {

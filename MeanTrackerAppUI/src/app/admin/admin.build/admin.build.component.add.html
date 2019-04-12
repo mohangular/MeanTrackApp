@@ -1,27 +1,32 @@
-<div>
-  <h1 mat-dialog-title>Enter Build Information </h1>
-  <div mat-dialog-content>
-    <form [formGroup]="buildAddForm" class="row">
+<form [formGroup]="buildAddForm" class="row" (ngSubmit)="onSave()">
+  <div>
+    <h1 mat-dialog-title>Enter Build Information </h1>
+    
+    <div mat-dialog-content>
+
       <mat-form-field>
-        <input matInput placeholder="Build Name" formControlName="buildName" required>
+        <input matInput placeholder="Please Enter Build Name" formControlName="buildName" required>
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" formControlName="startDate" required>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Please Choose Start Date"
+          formControlName="startDate" required>
         <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatePicker></mat-datepicker>
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" formControlName="endDate" required>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Please Choose End Date" formControlName="endDate"
+          required>
         <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatePicker></mat-datepicker>
       </mat-form-field>
 
       <mat-checkbox color="primary" formControlName="enabled">Enabled ?</mat-checkbox>
+    </div>
 
-    </form>
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" [disabled]="!buildAddForm.valid">Save</button>
+    </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-button (click)="onSave()" cdkFocusInitial>Save</button>
-  </div>
-</div>
+</form>
