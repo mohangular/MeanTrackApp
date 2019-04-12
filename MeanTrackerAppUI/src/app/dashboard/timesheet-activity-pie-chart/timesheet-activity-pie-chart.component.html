@@ -1,5 +1,12 @@
-<div class="chartCanvas">
-        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                [colors]="pieChartColor" [legend]="true">
-        </canvas>
-</div>
+<mat-card>
+        <mat-card-title>Chart</mat-card-title>
+        <mat-card-content>
+                <div class="chartCanvas">
+                        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                                [colors]="pieChartColor" [legend]="true">
+                        </canvas>
+                </div>
+        </mat-card-content>
+</mat-card>
+
+

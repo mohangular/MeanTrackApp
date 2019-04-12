@@ -1,5 +1,5 @@
-<div class="row loginPage">
-  <ngb-carousel class="col-sm-9">
+<div class="row  loginPage">
+  <ngb-carousel class="col-9">
       <ng-template ngbSlide>
           <img src="/assets/images/realogy.png" alt="Random second slide">      
         </ng-template>
@@ -24,21 +24,26 @@
     </ng-template>
   </ngb-carousel>
 
-  <div class="col-sm-3 loginForm">
+  <div class="col-3 loginForm">
     <mat-card>
-      <form (submit)="onLogin()" [formGroup]="loginform">
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
-            required email #email>
-          <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Enter your password" formControlName="password"
-            [type]="hide ? 'password' : 'text'" #password>
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </mat-form-field>
-        <button class="btn btn-primary" type="submit">Login</button>
-      </form>
+      <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+        <form (submit)="onLogin()" [formGroup]="loginform">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" (blur)="setUserCategoryValidators()"
+              required email #email>
+            <mat-error *ngIf="email.invalid">Please give a valid email addr</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Enter your password" formControlName="password"
+              [type]="hide ? 'password' : 'text'" #password>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <div class="btn-block">
+              <button class="" mat-raised-button color="primary" type="submit">Login</button>
+          </div>
+        </form>
+      </mat-card-content>
     </mat-card>
   </div>
 </div> 

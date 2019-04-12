@@ -1,9 +1,9 @@
 export interface Activity {
-  id: number;
+  _id: string;
   module: string;
-  Tfs_Id: string;
-  type: string;
-  buildNo: string;
+  tfsId: string;
+  workType: string;
+  build: string;
   date: string;
   activity: string;
   comments: string;

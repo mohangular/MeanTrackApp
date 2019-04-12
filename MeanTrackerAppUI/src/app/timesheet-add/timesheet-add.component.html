@@ -13,27 +13,27 @@
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
-    <button (click)="displayGrid=false">Add Task</button>
-   <div *ngIf="displayGrid">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Create'">Add Task</button>
+   <div *ngIf="displayGrid" #TABLE>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #table>
       <ng-container matColumnDef="module">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Module </th>
         <td mat-cell *matCellDef="let element"> {{element.module}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="Tfs_Id">
+      <ng-container matColumnDef="tfsId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> TFS_ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.Tfs_Id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.tfsId}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="type">
+      <ng-container matColumnDef="workType">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.workType}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="buildNo">
+      <ng-container matColumnDef="build">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Build No </th>
-        <td mat-cell *matCellDef="let element"> {{element.buildNo}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.build}} </td>
       </ng-container>
 
       <ng-container matColumnDef="activity">
@@ -45,18 +45,21 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
         <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
       </ng-container>
-    
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; onEdit(row)"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="displayGrid=false; buttonValue='Update';showAddButton=false; onEdit(row)"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+    <div class="btn-block">
+        <a mat-raised-button color="primary" (click)="ExportTOExcel()">Export to Excel</a>
+    </div>
   </div>
 
   <div *ngIf="!displayGrid">
     <mat-card>
       <mat-card-title>Enter Your Time </mat-card-title>
       <mat-card-content>
-        <form [formGroup]="form" class="row" (submit)="onUpdate()">
+        <form [formGroup]="form" class="row" (submit)="onSave()">
           <div class="form-group col-sm-6">
               <mat-form-field>
                   <mat-label>Module</mat-label>
@@ -135,10 +138,15 @@
                 class="form-control"
                 formControlName="comments"  
               ></textarea> 
-              <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">Comments length should not exceed 250 char.</div>           
+              <div *ngIf="comments.touched && comments.invalid" class="alert alert-danger">
+                <div *ngIf="comments.errors.required">Comments required</div>
+                <div *ngIf="comments.errors.maxLength">Comments length should not exceed 250 char.</div>
+              </div>           
             </div>
             <mat-card-actions class="text-right">
-              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Update</button> 
+              <button *ngIf="buttonValue=='Update'" mat-raised-button color="primary" type="button" (click)="deleteEntry()">Delete</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">{{buttonValue}}</button> 
+              <button mat-raised-button color="primary" type="cancel" (click)="displayGrid=true;showAddButton=true;form.reset();" >Cancel</button> 
             </mat-card-actions>
         </form>
       </mat-card-content>
