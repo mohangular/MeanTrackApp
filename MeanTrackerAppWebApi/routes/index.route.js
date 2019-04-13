@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
+const mongoose = require('mongoose');
+const User = require('../models/userDetails');
+const bcrypt = require('bcrypt');
 var jwt = require('express-jwt');
+const jwttoken = require('jsonwebtoken');
 var auth = jwt({
 secret: 'MY_SECRET',
 userProperty: 'payload'
@@ -31,21 +34,72 @@ router.route('/notification').get(function (req, res) {
   });
 });
 
-router.route('/register').post(function (req, res) {
-  debugger;
-  console.log("server",req.body);
-  let user = new userDetails(req.body);
-  console.log("server",req.body);
-  user.save()
-    .then(user => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'POST');
-      res.status(200).json({'person': 'person in added successfully'});
+// router.route('/register').post(function (req, res) {  
+//   console.log("server",req.body);
+//   let user = new userDetails(req.body);
+//   console.log("server",req.body);
+//   user.save()
+//     .then(user => {
+//       res.setHeader('Access-Control-Allow-Origin', '*');
+//       res.setHeader('Access-Control-Allow-Methods', 'POST');
+//       res.status(200).json({'person': 'person in added successfully'});
       
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+//     })
+//     .catch(err => {
+//     res.status(400).send("unable to save to database");
+//     });
+// });
+router.post('/register', function(req, res) {  
+  bcrypt.hash(req.body.password, 10, function(err, hash){
+     if(err) {
+        return res.status(500).json({
+           error: err
+        });
+     }
+     else {
+        const user = new userDetails({
+           _id: new  mongoose.Types.ObjectId(),
+           firstName: req.body.firstName,
+           lastName: req.body.lastName,
+           email: req.body.email,
+           mid: req.body.email,
+           password: hash ,
+           projectName: req.body.projectName,
+           projectRole: req.body.projectRole,
+           managerName: req.body.managerName,
+           location: req.body.location
+        });         
+        user.save().then(function(result) {
+           console.log(result);
+           res.setHeader('Access-Control-Allow-Origin', '*');
+           res.setHeader('Access-Control-Allow-Methods', 'POST');
+           if(result) {
+               const JWTToken = jwttoken.sign({
+                    email: user.email,
+                    _id: user._id
+                  },
+                  'secret',
+                   {
+                     expiresIn: '2h'
+                   });
+                   return res.status(200).json({
+                     success: 'Welcome to the JWT Auth',
+                     token: JWTToken
+                   });
+              }
+          //  res.status(200).json({
+          //     success: 'New user has been created'
+          //  }
+          res.status(200).json({'person': 'person in added successfully'});            
+        }).catch(error => {
+            console.log(error);
+          //  res.status(500).json({
+          //     error: err
+          //  });
+          res.status(400).send("unable to save to database");           
+        });
+     }
+  });
 });
 router.get('/getUserList',(req,res,next)=> {
   userDetails.find((err,userdetail) => {
@@ -53,22 +107,51 @@ router.get('/getUserList',(req,res,next)=> {
   }); 
 }); 
 
-router.route('/login').post(function (req, res) {
-  debugger;
-  console.log('testttttttt');
-  console.log("server",req.body);
-  let user = new userDetails(req.body);
-  console.log("server",req.body);
-  user.save()
-    .then(user => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'POST');
-      res.status(200).json({'person': 'Login done'});
+// router.route('/login').post(function (req, res) {
+//   debugger;
+//   console.log('testttttttt');
+//   console.log("server",req.body);
+//   let user = new userDetails(req.body);
+//   console.log("server",req.body);
+//   user.save()
+//     .then(user => {
+//       res.setHeader('Access-Control-Allow-Origin', '*');
+//       res.setHeader('Access-Control-Allow-Methods', 'POST');
+//       res.status(200).json({'person': 'Login done'});
       
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });     
+//     })
+//     .catch(err => {
+//     res.status(400).send("unable to save to database");
+//     });     
+// });
+
+router.post('/login', function(req, res){
+  User.findOne({email: req.body.email})
+  .exec()
+  .then(function(user) {
+     bcrypt.compare(req.body.password, user.password, function(err, result){
+       console.log(result);
+       //console.log(err);
+        if(err) {
+           return res.status(401).json({
+              failed: 'Unauthorized Access'
+           });
+        }
+        if(result) {
+           return res.status(200).json({
+              success: 'Welcome to the JWT Auth'
+           });
+        }
+        return res.status(401).json({
+           failed: 'Unauthorized Access'
+        });
+     });
+  })
+  .catch(error => {
+     res.status(500).json({
+        error: error
+     });
+  });;
 });
 
 module.exports = router;

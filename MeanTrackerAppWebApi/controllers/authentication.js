@@ -41,7 +41,6 @@ module.exports.register = function (req, res) {
 
     passport.authenticate('local', function (err, user, info) {
       var token;
-debugger;
       // If Passport throws/catches an error
       if (err) {
         res.status(404).json(err);

@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.credentials.email = this.loginform.value.email;
-    this.credentials.password = this.loginform.value.password;
-    debugger;    
+    this.credentials.password = this.loginform.value.password;    
 
     this.auth.login(this.credentials).subscribe((result) => {
       this.router.navigateByUrl('/profile');

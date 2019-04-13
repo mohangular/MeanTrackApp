@@ -55,8 +55,7 @@ export class AuthenticationService {
   }
 
   private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
-    let base;
-  debugger;
+    let base;  
     if (method === 'post') {      
       base = this.http.post(`${this.uri}/${type}`, user);
     } else {
