@@ -2,13 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
-let TimeTracker = new Schema({
+let ActivityDetail = new Schema({
   id: {
     type: String,
   },
   date: {
     type: Date,
-    default: Date.now
   },
   module:{
     type: String,
@@ -25,7 +24,7 @@ let TimeTracker = new Schema({
   activity: {
     type: String,
   },
-  hours: {
+  noOfHours: {
     type: Number,
   },
   comments: {
@@ -34,14 +33,17 @@ let TimeTracker = new Schema({
   branch: {
     type: String,
   },
-  build: {
+  buildNo: {
     type: Number,    
+  },
+  branch: {
+    type: String,    
   },
   MID: {
     type: String,    
   }
 },{
-    collection: 'TimeTracker'
+    collection: 'ActivityDetail'
 });
 
-module.exports = mongoose.model('TimeTracker', TimeTracker);
+module.exports = mongoose.model('ActivityDetail', ActivityDetail);

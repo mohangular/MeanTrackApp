@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var router = express.Router();
 const bodyParser = require('body-parser');
 
-let timetracker = require('../models/timeTracker');
+let timetracker = require('../models/ActivityDetail');
 let userDetails = require('../models/userDetails');
 
 /* GET home page. */
@@ -37,9 +37,6 @@ router.route('/notification').get(function (req, res) {
 
 const BuildDetails = require('../models/buildDetails');
 
-//const buildDetailsRouter = express.Router();
-
-//buildDetailsRouter.use(bodyParser.json());
 router.use(bodyParser.json());
 
 router.route('/buildDetails')
@@ -66,10 +63,11 @@ router.route('/buildDetails')
       }, (err) => next(err))
       .catch((err) => next(err));
   })
+router.route('/buildDetails/:id')
   .put((req, res, next) => {
-    BuildDetails.update({ _id: req.body._id }, req.body)
+    BuildDetails.updateOne({ _id: req.params.id }, req.body)
       .then((buildDetail) => {
-        console.log('Build Information Added :', buildDetail);
+        console.log('Build Information Updated :', buildDetail);
         BuildDetails.find({})
           .then((buildDetails) => {
             res.statusCode = 200;

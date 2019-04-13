@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 // Define collection and schema for Business
 let BuildDetail = new Schema({
     buildName: {
-        type: String,
+        type: String
     },
     startDate: {
-        type: Date,
+        type: Date
     },
     endDate: {
-        type: Date,
+        type: Date
     },
     enabled: {
-        type: Boolean,
+        type: Boolean
     }
 }, {
         collection: 'buildDetails'

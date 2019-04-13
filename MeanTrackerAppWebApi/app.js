@@ -16,6 +16,7 @@ require('./models/db');
 require('./config/passport');
 
 var adminRouter = require('./routes/admin.route');
+var dashboardRouter = require('./routes/dashboard.route')
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -40,13 +41,9 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function(req,res,next){
-//   res.header("Access-Control-Allow-Origin", '*');
-//   res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
-// })
-
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/timesheet', timesheetRouter);
 app.use(bodyParser.json());
 
