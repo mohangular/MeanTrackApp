@@ -11,6 +11,7 @@ export class AuthenticationService {
 
   //constructor() { }
   private token: string;
+  uri = 'http://localhost:5550';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -55,16 +56,17 @@ export class AuthenticationService {
 
   private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
-  
-    if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
+  debugger;
+    if (method === 'post') {      
+      base = this.http.post(`${this.uri}/${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
   
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data.token) {
+          console.log('token');
           this.saveToken(data.token);
         }
         return data;
@@ -79,8 +81,9 @@ export class AuthenticationService {
   }
   
   login(user: TokenPayload): Observable<any> {
-    console.log('serviceCalllll');   
-   return this.http.post('http://localhost:5550/login',user);
+    console.log('serviceCalllll');
+   return this.request('post', 'login', user);
+   //return this.http.post('http://localhost:5550/login',user);
  }
   
   public profile(): Observable<any> {
