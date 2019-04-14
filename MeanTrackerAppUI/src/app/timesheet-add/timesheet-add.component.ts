@@ -118,19 +118,27 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
       { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
       { value: 'Others', viewValue: 'Others' }
-    ];
+    ];    
 
   this.getTimeTrackerModel();
 
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
+
+   this.getOnLoadTimeTrackerValues();
   }
 
   getTimeTrackerModel(){
     this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
       this.dataSource = res;
       console.log(this.dataSource);
+    });
+  }
+
+  getOnLoadTimeTrackerValues(){
+    this.timetrackerService.getOnLoad().subscribe((res) => {
+      this.timeTrackerModel = res
     });
   }
 
