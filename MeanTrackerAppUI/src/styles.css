@@ -503,6 +503,9 @@ tr.mat-header-row:hover{
 	color: #333333;
 }
 
+table.mat-table{
+	width:100%
+}
 
 @media (max-width: 600px) {
 	.container-fluid > .navbar-header{
