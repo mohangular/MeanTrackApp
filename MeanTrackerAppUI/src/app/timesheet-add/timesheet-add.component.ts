@@ -126,7 +126,7 @@ export class TimesheetAddComponent implements OnInit {
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
 
-   this.getOnLoadTimeTrackerValues();
+   //this.getOnLoadTimeTrackerValues();
   }
 
   getTimeTrackerModel(){
@@ -136,11 +136,11 @@ export class TimesheetAddComponent implements OnInit {
     });
   }
 
-  getOnLoadTimeTrackerValues(){
-    this.timetrackerService.getOnLoad().subscribe((res) => {
-      this.timeTrackerModel = res
-    });
-  }
+  // getOnLoadTimeTrackerValues(){
+  //   this.timetrackerService.getOnLoad().subscribe((res) => {
+  //     this.timeTrackerModel = res
+  //   });
+  // }
 
   onEdit(task: Activity) {
     this.currentTaskId = task._id;

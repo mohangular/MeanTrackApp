@@ -101,34 +101,34 @@ var buildList = function(){
   })
   return promise;
 }
-router.route('/onLoad').get((req, res, next) => {
-  try {
-    var time;
-    var build;
+// router.route('/onLoad').get((req, res, next) => {
+//   try {
+//     var time;
+//     var build;
 
-    var ttPromise = timeTrackerList();
-    ttPromise.then(function(value){
-    // deal with value
-    //console.log('get timetracker',value);
+//     var ttPromise = timeTrackerList();
+//     ttPromise.then(function(value){
+//     // deal with value
+//     //console.log('get timetracker',value);
     
-}, function(error){
-  // deal with error
-});
-  var ttbuild = buildList().then(function(value){
-    // deal with value
-    //console.log('get build',value);
+// }, function(error){
+//   // deal with error
+// });
+//   var ttbuild = buildList().then(function(value){
+//     // deal with value
+//     //console.log('get build',value);
     
-}, function(error){
-  // deal with error
-});
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    //res.json({"a" ttPromise.then(function(ttvalue){ ttvalue }), "b": ttbuild.then(function(buildvalue){ buildvalue})});
-    res.json({"a": buildList().then(function(value){value}), "b": 'y'})
+// }, function(error){
+//   // deal with error
+// });
+//     res.statusCode = 200;
+//     res.setHeader('Content-Type', 'application/json');
+//     //res.json({"a" ttPromise.then(function(ttvalue){ ttvalue }), "b": ttbuild.then(function(buildvalue){ buildvalue})});
+//     res.json({"a": 'f', "b": 'y'})
 
-  } catch (error) {
-    next(error);
-  }
-});
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;

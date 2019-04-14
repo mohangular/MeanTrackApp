@@ -30,7 +30,7 @@ export class TimetrackerService {
     return this.http.delete(`${this.uri}/timesheet/delete/${id}`);
   }
   
-  getOnLoad(): Observable<any> {
-    return this.http.get(`${this.uri}/timesheet/onLoad`);
-  }
+  // getOnLoad(): Observable<any> {
+  //   return this.http.get(`${this.uri}/timesheet/onLoad`);
+  // }
 }
