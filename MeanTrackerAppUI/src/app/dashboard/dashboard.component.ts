@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { TimetrackerService } from '../timetracker.service';
+import { TimesheetAddComponent } from '../timesheet-add/timesheet-add.component';
 import * as XLSX from 'xlsx';
 
 
@@ -17,20 +18,22 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   timeTrackerModel: any;
   
-  constructor(private timetrackerService:TimetrackerService) { }
+  constructor(private timetrackerService:TimetrackerService, private timeSheetComp: TimesheetAddComponent) { }
 
   ngOnInit() {
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
-    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+    let selectedDate = new Date(new Date(this.timeSheetComp.date.value).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.dataSource = res;
     });
   }
 
   ExportToExcel() 
   {
-    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+    let selectedDate = new Date(new Date(this.timeSheetComp.date.value).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.timeTrackerModel = res;
     });
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.timeTrackerModel);
