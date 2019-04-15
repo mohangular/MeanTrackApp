@@ -138,8 +138,11 @@ export class TimesheetAddComponent implements OnInit {
   }
 
   nextDate(){
-    this.date.setDate(this.date.getDate() + 1); 
-    this.date = new Date(this.date);
+    if((this.date) < (this.maxDate)){
+      this.date.setDate(this.date.getDate() + 1); 
+      this.date = new Date(this.date);
+    }
+        
   }
 
   prevDate(){

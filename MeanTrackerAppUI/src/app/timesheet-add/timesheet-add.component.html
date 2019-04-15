@@ -9,7 +9,7 @@
               <input matInput [matDatepicker]="picker" (focus)="picker.open()"  name="trackerDate" [(ngModel)]="date"  [max]="maxDate">
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <a (click)="nextDate()" class="icon_next"></a>
+            <a (click)="nextDate()" class="icon_next" *ngIf="date < maxDate"></a>
             <a (click)="prevDate()" class="icon_prev"></a>
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
