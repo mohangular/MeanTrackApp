@@ -3,7 +3,7 @@ import { TimetrackerService } from './../timetracker.service';
 import { Activity } from './../Acttivity';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort,  } from '@angular/material';
 import * as XLSX from 'xlsx';
 
 
@@ -16,8 +16,9 @@ import * as XLSX from 'xlsx';
 export class TimesheetAddComponent implements OnInit {
   // declarations
   displayGrid = true;
-  startDate = new Date(1990, 0, 1);
-  date = new FormControl(new Date());
+  startDate = new Date();
+  date = new Date();
+  maxDate = new Date();
   serializedDate = new FormControl((new Date()).toISOString());
   moduleList: any;
   buildList: any[];
@@ -59,7 +60,7 @@ export class TimesheetAddComponent implements OnInit {
     comments: new FormControl('', [ Validators.required, Validators.maxLength(250)]),
   });
  
-
+  
   get module() {
     return this.form.get('module');
   }
@@ -136,6 +137,17 @@ export class TimesheetAddComponent implements OnInit {
     });
   }
 
+  nextDate(){
+    this.date.setDate(this.date.getDate() + 1); 
+    this.date = new Date(this.date);
+  }
+
+  prevDate(){
+   
+    this.date.setDate(this.date.getDate() -1); 
+    this.date = new Date(this.date);
+
+  }
   // getOnLoadTimeTrackerValues(){
   //   this.timetrackerService.getOnLoad().subscribe((res) => {
   //     this.timeTrackerModel = res
@@ -165,9 +177,9 @@ export class TimesheetAddComponent implements OnInit {
   onUpdate() {
     let entry = new timeSheetEntry();  
     entry = this.form.value;
-    entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
-               '/' + new Date(this.date.value).getDate() + 
-               '/' + new Date(this.date.value).getFullYear()); 
+    entry.date = new Date ((new Date(this.date).getMonth() + 1) +
+               '/' + new Date(this.date).getDate() + 
+               '/' + new Date(this.date).getFullYear()); 
     entry.resourceName = 'pavitha';
     entry.MID = 'M1033925';
     entry.branch = 'DEV';
@@ -181,9 +193,9 @@ export class TimesheetAddComponent implements OnInit {
   onCreate(){
     let entry = new timeSheetEntry();
     entry = this.form.value;
-    entry.date = new Date ((new Date(this.date.value).getMonth() + 1) +
-               '/' + new Date(this.date.value).getDate() + 
-               '/' + new Date(this.date.value).getFullYear()); 
+    entry.date = new Date ((new Date(this.date).getMonth() + 1) +
+               '/' + new Date(this.date).getDate() + 
+               '/' + new Date(this.date).getFullYear()); 
     entry.resourceName = 'pavitha';
     entry.MID = 'M1033925';
     entry.branch = 'DEV';

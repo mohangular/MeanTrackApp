@@ -4,16 +4,16 @@
     
     <h1>Enter Your Time sheet</h1>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-6 offset-sm-3 tracker_date">
           <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+              <input matInput [matDatepicker]="picker" (focus)="picker.open()"  name="trackerDate" [(ngModel)]="date"  [max]="maxDate">
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+            <a (click)="nextDate()" class="icon_next"></a>
+            <a (click)="prevDate()" class="icon_prev"></a>
       </div>
       <div class="clearfix " style="margin: 20px 0;"></div>
     </div>
-    <button mat-raised-button class="btn-block" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Create'">Add Task</button>
    <div *ngIf="displayGrid" #TABLE>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" #table>
       <ng-container matColumnDef="module">
@@ -54,7 +54,10 @@
         <a mat-raised-button color="primary" (click)="ExportTOExcel()">Export to Excel</a>
     </div> -->
   </div>
-
+  
+  <div class="btn-block">
+    <button mat-raised-button color="primary" *ngIf="showAddButton" (click)="displayGrid=false; showAddButton=false; buttonValue='Create'">Add Task</button>
+  </div>
   <div *ngIf="!displayGrid">
     <mat-card>
       <mat-card-title>Enter Your Time </mat-card-title>

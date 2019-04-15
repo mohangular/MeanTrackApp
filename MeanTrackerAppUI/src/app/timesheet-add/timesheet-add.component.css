@@ -10,3 +10,31 @@ table {
   th.mat-sort-header-sorted {
     color: black;
   }
+  .tracker_date .mat-input-element{
+    text-align:center;
+  }
+  .mat-datepicker-content{
+    width:100%;
+  }
+  .mat-datepicker-content .mat-calendar{
+    width:100%;
+  }
+  .icon_next{
+    width: 24px;
+    height: 24px;
+    background: url(/assets/images/next.svg) 0 0 no-repeat;
+    display: inline-block;
+    right:0;
+    top:27px;
+    position: absolute;
+    
+  }
+  .icon_prev{
+    width: 24px;
+    height: 24px;
+    background: url(/assets/images/prev.svg) 0 0 no-repeat;
+    display: inline-block;
+    left:0;
+    top:27px;
+    position: absolute;
+  }
