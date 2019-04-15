@@ -130,7 +130,8 @@ export class TimesheetAddComponent implements OnInit {
   }
 
   getTimeTrackerModel(){
-    this.timetrackerService.getTimeTrackerValues().subscribe((res)=>{
+    let selectedDate = new Date(new Date(this.date.value).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
       this.dataSource = res;
       console.log(this.dataSource);
     });
