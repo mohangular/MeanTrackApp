@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BuildModel } from './models/buildModel';
+import { ModuleModel } from './models/moduleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,21 @@ export class ServiceService {
   getUserList(): Observable<any> {
     console.log('getUserList');
     return this.http.get(`${this.uri}/getUserList`);
+  }
+  getAdminModuleInfo(): Observable<any> {
+    console.log('getAdminModuleInfo');
+    return this.http.get(`${this.uri}/admin/moduleDetails`);
+  }
+  saveAdminModuleInfo(module: ModuleModel): Observable<any> {
+    console.log('saveAdminModuleInfo');
+    return this.http.post(`${this.uri}/admin/moduleDetails/`, module);
+  }
+  updateAdminModuleInfo(moduleDetail: ModuleModel, updateId: string): Observable<any> {
+    console.log('updateAdminModuleInfo');
+    return this.http.put(`${this.uri}/admin/moduleDetails/` + updateId, moduleDetail);
+  }
+  deleteAdminModuleInfo(buildIds: string[]): Observable<any> {
+    console.log('deleteAdminModuleInfo');
+    return this.http.delete(`${this.uri}/admin/moduleDetails/${buildIds.join()}`);
   }
 }
