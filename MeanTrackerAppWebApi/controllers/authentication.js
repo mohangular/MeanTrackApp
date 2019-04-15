@@ -1,64 +1,78 @@
-// import UserDetails from '../models/userDetails';
 var passport = require('passport');
 var mongoose = require('mongoose');
-var user = require('../models/userDetails');
+var User = mongoose.model('UserDetails');
 
-module.exports.profileRead = function (req, res) {
-
-  // If no user ID exists in the JWT return a 401
-  if (!req.payload._id) {
-    res.status(401).json({
-      "message": "UnauthorizedError: private profile"
-    });
-  } else {
-    // Otherwise continue
-    User
-      .findById(req.payload._id)
-      .exec(function (err, user) {
-        res.status(200).json(user);
-      });
-  }
-
+var sendJSONresponse = function(res, status, content) {
+  res.status(status);
+  res.json(content);
 };
 
-module.exports.register = function (req, res) {
-  var user = new User();
+module.exports.register = function(req, res) {
 
-  user.name = req.body.name;
-  user.email = req.body.email;
+  // if(!req.body.name || !req.body.email || !req.body.password) {
+  //   sendJSONresponse(res, 400, {
+  //     "message": "All fields required"
+  //   });
+  //   return;
+  // }
+
+  var user = new User();
+  user._id =  new  mongoose.Types.ObjectId(),
+  user.firstName = req.body.firstName,
+  user.lastName = req.body.lastName,
+  user.email = req.body.email,
+  user.mid = req.body.email,
+  //user.password = hash ,
+  user.projectName =  req.body.projectName,
+  user.projectRole = req.body.projectRole,
+  user.managerName = req.body.managerName,
+  user.location = req.body.location
+  // user.name = req.body.name;
+  // user.email = req.body.email;
 
   user.setPassword(req.body.password);
 
-  user.save(function (err) {
+  user.save(function(err) {
     var token;
     token = user.generateJwt();
     res.status(200);
     res.json({
-      "token": token
+      "token" : token
     });
   });
-  module.exports.login = function (req, res) {
 
-    passport.authenticate('local', function (err, user, info) {
-      var token;
-      // If Passport throws/catches an error
-      if (err) {
-        res.status(404).json(err);
-        return;
-      }
+};
 
-      // If a user is found
-      if (user) {
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-          "token": token
-        });
-      } else {
-        // If user is not found
-        res.status(401).json(info);
-      }
-    })(req, res);
+module.exports.login = function(req, res) {
+debugger;
+  // if(!req.body.email || !req.body.password) {
+  //   sendJSONresponse(res, 400, {
+  //     "message": "All fields required"
+  //   });
+  //   return;
+  // }
 
-  };
+  passport.authenticate('local', function(err, user, info){
+    debugger;
+    var token;
+
+    // If Passport throws/catches an error
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+
+    // If a user is found
+    if(user){
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token" : token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+  })(req, res);
+
 };
