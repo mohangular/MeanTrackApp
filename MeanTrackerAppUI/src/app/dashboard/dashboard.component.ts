@@ -24,7 +24,8 @@ export class DashboardComponent implements OnInit {
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
-    let selectedDate = new Date(new Date(this.timeSheetComp.date.value).toLocaleDateString());
+    console.log('res',this.timeSheetComp.date);
+    let selectedDate = new Date(new Date(this.timeSheetComp.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.dataSource = res;
     });
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
   ExportToExcel() 
   {
-    let selectedDate = new Date(new Date(this.timeSheetComp.date.value).toLocaleDateString());
+    let selectedDate = new Date(new Date(this.timeSheetComp.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.timeTrackerModel = res;
     });
