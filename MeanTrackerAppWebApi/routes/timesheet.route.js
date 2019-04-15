@@ -7,8 +7,6 @@ var Promise = require("bluebird");
 
 router.use(bodyParser.json());
 
-//.find({ 'enabled': true })
-
 //get List of TimeTracker details
 router.get('/:selectedDate',(req,res,next)=> {
   timeTrackers.find((err,timeTrackers) => {
