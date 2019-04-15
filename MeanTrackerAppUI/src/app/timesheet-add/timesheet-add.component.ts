@@ -99,11 +99,11 @@ export class TimesheetAddComponent implements OnInit {
     ];
 
     this.buildList = [
-      { value: '1538.1', viewValue: '1538.1' },
-      { value: '1538.2', viewValue: '1538.2' },
-      { value: '1538.3', viewValue: '1538.3' },
-      { value: '1538.4', viewValue: '1538.4' },
-      { value: '1538.5', viewValue: '1538.5' }
+      { value: 1538.1, viewValue: 1538.1 },
+      { value: 1538.2, viewValue: 1538.2 },
+      { value: 1538.3, viewValue: 1538.3 },
+      { value: 1538.4, viewValue: 1538.4 },
+      { value: 1538.5, viewValue: 1538.5 }
     ];
 
     this.workTypeList = [
