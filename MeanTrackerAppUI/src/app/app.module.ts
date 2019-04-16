@@ -27,6 +27,7 @@ import { MatProgressSpinnerModule, MatSnackBarModule } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import User from './models/user';
 import { AdminReportGenerateComponent } from './admin/admin-report-generate/admin-report-generate.component';
+import { AdminModuleAddComponent } from './admin/admin.module/admin.module.add.component';
 
 const routes: Routes = [
   {path: 'pie-chart', component: TimesheetPieChartComponent},
@@ -48,7 +49,8 @@ const routes: Routes = [
     AdminBuildAddComponent,
     AdminActivityComponent,
     AdminWorkitemtypeComponent,
-    AdminReportGenerateComponent
+    AdminReportGenerateComponent,
+    AdminModuleAddComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatSelectModule
   ],
-  entryComponents: [AdminBuildAddComponent],
+  entryComponents: [AdminBuildAddComponent, AdminModuleAddComponent],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],
   bootstrap: [AppComponent]
 })

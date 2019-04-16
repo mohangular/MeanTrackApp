@@ -11,9 +11,9 @@ export class TimetrackerService {
   public data;
   constructor(private http: HttpClient) { }
 
-  getTimeTrackerValues(): Observable<any> {
+  getTimeTrackerValues(selectedDate: Date): Observable<any> {
     console.log('service');
-    return this.http.get(`${this.uri}/timesheet`);
+    return this.http.get(`${this.uri}/timesheet/${selectedDate}`);
   }
 
   addTimeSheetEntry(timeSheetEntry: timeSheetEntry): Observable<any>{
