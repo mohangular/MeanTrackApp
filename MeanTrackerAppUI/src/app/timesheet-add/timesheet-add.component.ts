@@ -139,6 +139,7 @@ export class TimesheetAddComponent implements OnInit {
     if((this.date) < (this.maxDate)){
       this.date.setDate(this.date.getDate() + 1); 
       this.date = new Date(this.date);
+      this.getTimeTrackerDetails();
     }
         
   }
@@ -147,7 +148,7 @@ export class TimesheetAddComponent implements OnInit {
    
     this.date.setDate(this.date.getDate() -1); 
     this.date = new Date(this.date);
-
+    this.getTimeTrackerDetails();
   }
 
   onDateChange(){
@@ -232,7 +233,6 @@ export class TimesheetAddComponent implements OnInit {
     let selectedDate = new Date(new Date(this.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
       this.dataSource = res;
-      console.log(this.dataSource);
     });
   }
 }
