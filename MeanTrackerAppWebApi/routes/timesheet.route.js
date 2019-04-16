@@ -7,17 +7,16 @@ var Promise = require("bluebird");
 
 router.use(bodyParser.json());
 
-//.find({ 'enabled': true })
-
 //get List of TimeTracker details
-router.get('/',(req,res,next)=> {
+router.get('/:selectedDate',(req,res,next)=> {
   timeTrackers.find((err,timeTrackers) => {
-    var todaysDate = new Date().toLocaleDateString();
-    var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
-    return res.json(timeTrackerDetails);
+    let selectDate = new Date(req.params.selectedDate).toLocaleDateString();
+    console.log('test',selectDate);
+      var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
+     return res.json(timeTrackerDetails);
   });
 });
-   
+
 //add entries for TimeTracker
 router.route('/addtimesheet').post((req, res, next) => {
   console.log('router', req.body);
@@ -73,16 +72,16 @@ router.route('/login').post(function (req, res) {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'POST');
       res.status(200).json({'person': 'Login done'});
-      
+
     })
     .catch(err => {
     res.status(400).send("unable to save to database");
-    });     
+    });
 });
 
 var timeTrackerList = function(){
   var promise = new Promise(function(resolve, reject){
-   timeTrackers.find((err,timeTrackers) => {    
+   timeTrackers.find((err,timeTrackers) => {
           var todaysDate = new Date().toLocaleDateString();
           timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
       resolve(timeTrackers)
@@ -110,14 +109,14 @@ var buildList = function(){
 //     ttPromise.then(function(value){
 //     // deal with value
 //     //console.log('get timetracker',value);
-    
+
 // }, function(error){
 //   // deal with error
 // });
 //   var ttbuild = buildList().then(function(value){
 //     // deal with value
 //     //console.log('get build',value);
-    
+
 // }, function(error){
 //   // deal with error
 // });

@@ -1,95 +1,86 @@
-<div class ="container">
-  <div class="card">
-  <div class="card-body">
-    <form [formGroup]="registerForm" novalidate>
-        <h3>User Details Form</h3>
-      <div class="form-group"> 
-          <label class="col-md-4">First Name </label>
-        <input type="text" [(ngModel)]="user.firstName" class="form-control"  formControlName="firstName" #firstName />
+
+ <mat-card>
+    <mat-card-title>User Details</mat-card-title>
+    <mat-card-content>
+    <form [formGroup]="registerForm" class="row" (submit)="onSave(registerForm)">
+      <div class="form-group col-sm-6"> 
+        <mat-form-field>
+              <input matInput  placeholder="First Name" formControlName="firstName">
+              <mat-error>
+                <span *ngIf="firstName.touched && firstName.invalid"> First Name is Required</span>
+              </mat-error>
+        </mat-form-field>
       </div>
-      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-        <div *ngIf="firstName.errors.required">
-          First Name is required.
-        </div>
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Last Name" formControlName="lastName">
+                <mat-error>
+                  <span *ngIf="lastName.touched && lastName.invalid"> Last Name is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div class="form-group"> 
-        <label class="col-md-4">Last Name</label>
-      <input type="text" [(ngModel)]="user.lastName" class="form-control" formControlName="lastName" #lastName />
-    </div>
-    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-      <div *ngIf="lastName.errors.required">
-        Last Name is required.
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput  placeholder="Email Id" formControlName="email">
+                <mat-error>
+                  <span *ngIf="email.touched && email.invalid">Email Id is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-    </div>
-      <div class="form-group"> 
-        <label class="col-md-4">Email Id</label>
-      <input type="email" [(ngModel)]="user.email" class="form-control" formControlName="email" #email />
-    </div>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors.required">
-        Email Id is required.
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input  matInput placeholder="MId" formControlName="mid">
+                <mat-error>
+                  <span *ngIf="mid.touched && mid.invalid">MId is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-    </div>
-    <div class="form-group"> 
-      <label class="col-md-4">MId</label>
-    <input type="text" [(ngModel)]="user.mid" class="form-control" formControlName="mid" #mid />
-  </div>
-  <div *ngIf="mid.invalid && (mid.dirty || mid.touched)" class="alert alert-danger">
-    <div *ngIf="mid.errors.required">
-      MId is required.
-    </div>
-  </div>
-      <div class="form-group">
-        <label class="col-md-4"> Password </label>
-        <input type="password" [(ngModel)]="user.password" class="form-control" formControlName="password" #password />
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password">
+                <mat-error>
+                  <span *ngIf="password.touched && password.invalid">MId is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-        <div *ngIf="password.errors.required">
-          Password is required.
-        </div>
+      
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Project Name" formControlName="projectName">
+                <mat-error>
+                  <span *ngIf="projectName.touched && projectName.invalid">Project Name is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div class="form-group">
-        <label class="col-md-4">Project Name</label>
-        <input type="text" [(ngModel)]="user.projectName" class="form-control" formControlName="projectName" #projectName />
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Project Role" formControlName="projectRole">
+                <mat-error>
+                  <span *ngIf="projectRole.touched && projectRole.invalid">Project Role is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)" class="alert alert-danger">
-        <div *ngIf="projectName.errors.required">
-          Project Name is required.
-        </div>
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Manager Name" formControlName="managerName">
+                <mat-error>
+                  <span *ngIf="managerName.touched && managerName.invalid">Manager Name is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div class="form-group">
-        <label class="col-md-4">Project Role</label>
-        <input type="text" [(ngModel)]="user.projectRole" class="form-control" formControlName="projectRole" #projectRole />
+      <div class="form-group col-sm-6"> 
+          <mat-form-field>
+                <input matInput placeholder="Location" formControlName="location">
+                <mat-error>
+                  <span *ngIf="location.touched && location.invalid">Location is Required</span>
+                </mat-error>
+          </mat-form-field>
       </div>
-      <div *ngIf="projectRole.invalid && (projectRole.dirty || projectRole.touched)" class="alert alert-danger">
-        <div *ngIf="projectRole.errors.required">
-          Project Role is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Manager Name</label>
-        <input type="text" [(ngModel)]="user.managerName" class="form-control" formControlName="managerName" #managerName />
-      </div>
-      <div *ngIf="managerName.invalid && (managerName.dirty || managerName.touched)" class="alert alert-danger">
-        <div *ngIf="managerName.errors.required">
-          Manager Name is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Location</label>
-        <input type="text" [(ngModel)]="user.location" class="form-control" formControlName="location" #location />
-      </div>
-      <div *ngIf="location.invalid && (location.dirty || location.touched)" class="alert alert-danger">
-        <div *ngIf="location.errors.required">
-          Location is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <button (click)="addUser(user)" class="btn btn-primary"> Register
-</button>
-    </div>
-    </form>
-  </div>
-</div>
-</div>
+      <mat-card-actions class="text-right">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">submit</button> 
+        <button mat-raised-button color="primary" type="cancel" (click)="registerForm.reset();" >Cancel</button> 
+      </mat-card-actions>
+  </form>
+</mat-card-content>
+</mat-card>
 

@@ -41,23 +41,36 @@ let UserDetails = new Schema({
     type: String,
   }
 }, {
-    collection: 'userDetails'
-  }, setPassword = function (password) {
-    this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-  }, validPassword = function (password) {
-    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-    return this.hash === hash;
-  }, generateJwt = function () {
-    var expiry = new Date();
-    expiry.setDate(expiry.getDate() + 7);
-
-    return jwt.sign({
-      _id: this._id,
-      email: this.email,
-      name: this.name,
-      exp: parseInt(expiry.getTime() / 1000),
-    }, "SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+    collection: 'userDetails'  
   });
+
+UserDetails.methods.setPassword = function(password){
+  debugger;
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+};
+
+UserDetails.methods.validPassword = function(password) {
+  debugger;
+  this.salt = crypto.randomBytes(16).toString('hex');
+  console.log(password);
+  console.log(this.salt);
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+  
+  return this.hash === hash;
+};
+
+UserDetails.methods.generateJwt = function() {
+  debugger;
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
+
+  return jwt.sign({
+    _id: this._id,
+    email: this.email,
+    name: this.name,
+    exp: parseInt(expiry.getTime() / 1000),
+  }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+};
 
 module.exports = mongoose.model('UserDetails', UserDetails);

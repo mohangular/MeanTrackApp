@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 
 let timetracker = require('../models/ActivityDetail');
 let userDetails = require('../models/userDetails');
+let mod = require('../models/moduleDetails');
+let workItemDetails = require('../models/workItemDetails');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -95,6 +97,76 @@ router.route('/buildDetails/:ids')
       .catch((err) => console.log(err));
   })
 
+  router.route('/moduleDetails')
+  .get((req, res, next) => {
+    mod.find({})
+      .then(item => {
+        console.log('get '+ item);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');    
+        res.json(item);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  .post((req, res, next) => {
+    console.log("postModu"+req.body);
+    let md = new mod(req.body);
+    md.save(req.body)
+      .then(item => {
+         console.log('Module Information Added :', item);
+         mod.find({})
+           .then(x => {
+            console.log("item"+x);
+             res.statusCode = 200;
+            //res.setHeader('Content-Type', 'application/json');
+            res.json(x);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  
+  router.route('/moduleDetails/:id')
+  .put((req, res, next) => {
+    mod.updateOne({ _id: req.params.id }, req.body)
+      .then((xxx) => {
+        console.log('Module Information Updated :', xxx);
+        mod.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
 
+  router.route('/moduleDetails/:ids')
+  .delete((req, res, next) => {
+    let ids = String(req.params.ids).split(',');
+    mod.deleteMany({ _id: { $in: ids } })
+      .then((moduleDet) => {
+        console.log('Module Information Deleted :', ids);
+        mod.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => console.log(err));
+  })
+  router.route('/workItemDetails')
+  .get((req, res, next) => {
+    workItemDetails.find({})
+      .then((response) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(response);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
 
 module.exports = router;

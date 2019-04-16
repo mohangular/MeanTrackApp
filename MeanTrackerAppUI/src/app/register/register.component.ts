@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { FormControl, FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceService } from './../service.service';
 import User from '../models/user';
@@ -15,28 +15,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  form;
+  registerForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    mid: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    projectName: new FormControl('', Validators.required),
+    projectRole: new FormControl('', Validators.required),
+    managerName: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required)
+});
   constructor(private http: HttpClientModule, private fb: FormBuilder, private service: ServiceService, private user: User) { }
-
   ngOnInit() {
-    this.createForm();
   }
-  createForm() {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required ],
-      lastName: ['', Validators.required ],
-      email: ['', Validators.required ],
-      mid: ['', Validators.required ],
-      password: ['', Validators.required ],
-      projectName: ['', Validators.required ],
-      projectRole: ['', Validators.required ],
-      managerName: ['', Validators.required ],
-      location: ['', Validators.required ]
-    });
-  }
-
   get firstName() {
-    return this.registerForm.get('userName');
+    return this.registerForm.get('firstName');
   }
   get lastName() {
     return this.registerForm.get('lastName');
@@ -62,11 +57,17 @@ export class RegisterComponent implements OnInit {
   get location() {
     return this.registerForm.get('projectRole');
   }
-  addUser(user) {
+  onSave(registerForm) {
+    this.form = registerForm.value;
+    console.log('ts', this.form);
+    this.service.addUser(registerForm).subscribe(res => {
+      console.log('res', res);
+  });
+}
+  /*addUser(user) {
     console.log('am user', user);
     this.service.addUser(user).subscribe(res => {
       console.log('res', res);
     });
-  }
-
+  }*/
 }
