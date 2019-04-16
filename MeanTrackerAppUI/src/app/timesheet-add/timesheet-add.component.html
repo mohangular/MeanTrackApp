@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-sm-6 offset-sm-3 tracker_date">
           <mat-form-field>
-              <input matInput [matDatepicker]="picker" (focus)="picker.open()"  name="trackerDate" [(ngModel)]="date"  [max]="maxDate">
+              <input matInput [matDatepicker]="picker" (focus)="picker.open()"  name="trackerDate" [(ngModel)]="date"  [max]="maxDate" (dateChange)="onDateChange()">
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <a (click)="nextDate()" class="icon_next" *ngIf="date < maxDate"></a>

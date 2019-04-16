@@ -131,11 +131,7 @@ export class TimesheetAddComponent implements OnInit {
   }
 
   getTimeTrackerModel(){
-    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
-    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
-      this.dataSource = res;
-      console.log(this.dataSource);
-    });
+    this.getTimeTrackerDetails();
   }
 
   nextDate(){
@@ -152,6 +148,10 @@ export class TimesheetAddComponent implements OnInit {
     this.date = new Date(this.date);
 
   }
+
+  onDateChange(){
+    this.getTimeTrackerDetails();
+   }
   // getOnLoadTimeTrackerValues(){
   //   this.timetrackerService.getOnLoad().subscribe((res) => {
   //     this.timeTrackerModel = res
@@ -217,5 +217,13 @@ export class TimesheetAddComponent implements OnInit {
       this.showAddButton = true;
       this.form.reset();
     })
+  }
+
+  getTimeTrackerDetails(){
+    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
+      this.dataSource = res;
+      console.log(this.dataSource);
+    });
   }
 }
