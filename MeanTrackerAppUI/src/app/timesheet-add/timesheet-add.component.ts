@@ -28,6 +28,7 @@ export class TimesheetAddComponent implements OnInit {
   showAddButton = true;
   buttonValue = 'Save';
   currentTaskId:string;
+  isEdit= true;
 
   // ExportToExcel() 
   // {
@@ -123,7 +124,7 @@ export class TimesheetAddComponent implements OnInit {
 
   this.getTimeTrackerModel();
 
-    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
 
@@ -158,17 +159,25 @@ export class TimesheetAddComponent implements OnInit {
   //   });
   // }
 
-  onEdit(task: Activity) {
-    this.currentTaskId = task._id;
-    this.form.patchValue({
-      module: task.module,
-      build: task.build,
-      tfsId: task.tfsId,
-      workType: task.workType,
-      activity: task.activity,
-      hours: task.hours,
-      comments: task.comments
-    });
+  onEdit(task: Activity, isEdit) {
+    console.log(isEdit);
+      alert(isEdit);
+      this.currentTaskId = task._id;
+      this.form.patchValue({
+        module: task.module,
+        build: task.build,
+        tfsId: task.tfsId,
+        workType: task.workType,
+        activity: task.activity,
+        hours: task.hours,
+        comments: task.comments
+      });
+    
+      if(!isEdit){   
+        this.deleteEntry(); 
+      }
+    
+
   }
 
   onSave() {

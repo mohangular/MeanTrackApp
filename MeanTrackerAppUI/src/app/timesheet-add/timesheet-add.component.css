@@ -38,3 +38,15 @@ table {
     top:27px;
     position: absolute;
   }
+
+  /* .tracker-data tr .mat-icon-button{
+    visibility: hidden;
+    z-index: 1000;
+    position: relative;
+  }
+
+  .tracker-data tr:hover .mat-icon-button{
+    visibility: visible;
+
+
+  } */
