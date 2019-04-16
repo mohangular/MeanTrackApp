@@ -7,6 +7,7 @@ let timetracker = require('../models/ActivityDetail');
 let userDetails = require('../models/userDetails');
 let mod = require('../models/moduleDetails');
 let workItemDetails = require('../models/workItemDetails');
+let activityDetails = require('../models/activityDetails');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -169,7 +170,6 @@ router.route('/buildDetails/:ids')
       .catch((err) => next(err));
   })
   .post((req, res, next) => {
-    console.log("post work Item"+req.body);
     let workItem = new workItemDetails(req.body);
     workItem.save(req.body)
       .then(item => {
@@ -189,7 +189,7 @@ router.route('/buildDetails/:ids')
   .put((req, res, next) => {
     workItemDetails.updateOne({ _id: req.params.id }, req.body)
       .then((xxx) => {
-        console.log('Module Information Updated :', xxx);
+        console.log('Work Item Information Updated :', xxx);
         workItemDetails.find({})
           .then((response) => {
             res.statusCode = 200;
@@ -205,8 +205,66 @@ router.route('/buildDetails/:ids')
     let ids = String(req.params.ids).split(',');
     workItemDetails.deleteMany({ _id: { $in: ids } })
       .then((moduleDet) => {
-        console.log('Module Information Deleted :', ids);
+        console.log('Work Item Information Deleted :', ids);
         workItemDetails.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => console.log(err));
+  })
+  
+  router.route('/activityDetails')
+  .get((req, res, next) => {
+    activityDetails.find({})
+      .then((response) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(response);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  .post((req, res, next) => {
+    let activity = new activityDetails(req.body);
+    activity.save(req.body)
+      .then(item => {
+         console.log('Activity Item Added :', item);
+         activityDetails.find({})
+           .then(response => {
+            console.log("item"+response);
+             res.statusCode = 200;
+            //res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  router.route('/activityDetails/:id')
+  .put((req, res, next) => {
+    activityDetails.updateOne({ _id: req.params.id }, req.body)
+      .then((xxx) => {
+        console.log('Activity Information Updated :', xxx);
+        activityDetails.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  router.route('/activityDetails/:ids')
+  .delete((req, res, next) => {
+    let ids = String(req.params.ids).split(',');
+    activityDetails.deleteMany({ _id: { $in: ids } })
+      .then((moduleDet) => {
+        console.log('Activity Information Deleted :', ids);
+        activityDetails.find({})
           .then((response) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');

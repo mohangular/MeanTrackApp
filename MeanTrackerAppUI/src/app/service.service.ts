@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { BuildModel } from './models/buildModel';
 import { ModuleModel } from './models/moduleModel';
 import { WorkItemModel } from './models/workItemModel';
+import { ActivityModel } from './models/activityModel';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,21 @@ export class ServiceService {
   deleteAdminWorkItemInfo(buildIds: string[]): Observable<any> {
     console.log('deleteAdminModuleInfo');
     return this.http.delete(`${this.uri}/admin/workItemDetails/${buildIds.join()}`);
+  }
+  getAdminActivityInfo(): Observable<any> {
+    console.log('getAdminActivityInfo');
+    return this.http.get(`${this.uri}/admin/activityDetails`);
+  }
+  saveAdminActivityInfo(activity: ActivityModel): Observable<any> {
+    console.log('saveAdminActivityInfo' + activity);
+    return this.http.post(`${this.uri}/admin/activityDetails/`, activity);
+  }
+  updateAdminActivityInfo(activity: ActivityModel, updateId: string): Observable<any> {
+    console.log('updateAdminActivityInfo');
+    return this.http.put(`${this.uri}/admin/activityDetails/` + updateId, activity);
+  }
+  deleteAdminActivityInfo(buildIds: string[]): Observable<any> {
+    console.log('deleteAdminActivityInfo');
+    return this.http.delete(`${this.uri}/admin/activityDetails/${buildIds.join()}`);
   }
 }

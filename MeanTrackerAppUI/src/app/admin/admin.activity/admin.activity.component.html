@@ -1,3 +1,33 @@
-<p>
-  admin.activity works!
-</p>
+<div [hidden]="isSaving">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter here for activity">
+  </mat-form-field>
+  <div class="btn-block">
+    <button id="btnAdd" mat-raised-button (click)="onNew()">Add new Build Activity Information</button>
+    <button id="btnDelete" mat-raised-button class="mat-btn-cancel" (click)="onDelete()">Delete Selected</button>
+  </div>
+  <table mat-table #moduleDataTable [dataSource]="activity" *ngIf="activity">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activityName">
+      <th mat-header-cell *matHeaderCellDef> Activity Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.activityName}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onEdit(row)"></tr>
+  </table>
+</div>
+<div [hidden]="!isSaving">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

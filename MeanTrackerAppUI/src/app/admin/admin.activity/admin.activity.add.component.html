@@ -1,0 +1,17 @@
+<div>
+    <div>
+            <span class="close" style="text-align: right; font-size: 30px;" (click)="closeDialog()">&times;</span>
+    </div>
+<h1 mat-dialog-title>Enter Activity Name
+</h1>
+<div mat-dialog-content class="mat-typography">
+    <form [formGroup]="activityAddForm">
+        <mat-form-field>
+            <input matInput placeholder="Activity Name" formControlName="activityName" required>
+        </mat-form-field>
+        <div class="btn-block">
+            <button mat-raised-button color="primary" type="submit" (click)="onSave()" cdkFocusInitial>Save</button>
+        </div>
+    </form>
+</div>
+</div>
