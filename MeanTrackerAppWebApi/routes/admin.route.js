@@ -168,5 +168,53 @@ router.route('/buildDetails/:ids')
       }, (err) => next(err))
       .catch((err) => next(err));
   })
+  .post((req, res, next) => {
+    console.log("post work Item"+req.body);
+    let workItem = new workItemDetails(req.body);
+    workItem.save(req.body)
+      .then(item => {
+         console.log('Work Item Added :', item);
+         workItemDetails.find({})
+           .then(response => {
+            console.log("item"+response);
+             res.statusCode = 200;
+            //res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  router.route('/workItemDetails/:id')
+  .put((req, res, next) => {
+    workItemDetails.updateOne({ _id: req.params.id }, req.body)
+      .then((xxx) => {
+        console.log('Module Information Updated :', xxx);
+        workItemDetails.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  })
+  router.route('/workItemDetails/:ids')
+  .delete((req, res, next) => {
+    let ids = String(req.params.ids).split(',');
+    workItemDetails.deleteMany({ _id: { $in: ids } })
+      .then((moduleDet) => {
+        console.log('Module Information Deleted :', ids);
+        workItemDetails.find({})
+          .then((response) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(response);
+          }, (err) => next(err))
+          .catch((err) => next(err));
+      }, (err) => next(err))
+      .catch((err) => console.log(err));
+  })
 
 module.exports = router;

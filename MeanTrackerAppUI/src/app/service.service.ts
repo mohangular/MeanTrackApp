@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BuildModel } from './models/buildModel';
 import { ModuleModel } from './models/moduleModel';
+import { WorkItemModel } from './models/workItemModel';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,21 @@ export class ServiceService {
   deleteAdminModuleInfo(buildIds: string[]): Observable<any> {
     console.log('deleteAdminModuleInfo');
     return this.http.delete(`${this.uri}/admin/moduleDetails/${buildIds.join()}`);
+  }
+  getAdminWorkItemInfo(): Observable<any> {
+    console.log('getAdminModuleInfo');
+    return this.http.get(`${this.uri}/admin/workItemDetails`);
+  }
+  saveAdminWorkItemInfo(workItem: WorkItemModel): Observable<any> {
+    console.log('saveAdminModuleInfo' + workItem);
+    return this.http.post(`${this.uri}/admin/workItemDetails/`, workItem);
+  }
+  updateAdminWorkItemInfo(workItem: WorkItemModel, updateId: string): Observable<any> {
+    console.log('updateAdminModuleInfo');
+    return this.http.put(`${this.uri}/admin/workItemDetails/` + updateId, workItem);
+  }
+  deleteAdminWorkItemInfo(buildIds: string[]): Observable<any> {
+    console.log('deleteAdminModuleInfo');
+    return this.http.delete(`${this.uri}/admin/workItemDetails/${buildIds.join()}`);
   }
 }

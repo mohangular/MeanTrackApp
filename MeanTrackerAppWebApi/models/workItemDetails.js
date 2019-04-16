@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema for Business
 let WorkItemSchema = new Schema({
-    workItem: {
+    workItemName: {
         type: String
     }
 }, {
