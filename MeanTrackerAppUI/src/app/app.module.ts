@@ -28,6 +28,8 @@ import { DatePipe } from '@angular/common';
 import User from './models/user';
 import { AdminReportGenerateComponent } from './admin/admin-report-generate/admin-report-generate.component';
 import { AdminModuleAddComponent } from './admin/admin.module/admin.module.add.component';
+import { AdminWorkitemtypeAddComponent } from './admin/admin.workitemtype/admin.workitemtype.add.component';
+import { AdminActivityAddComponent} from './admin/admin.activity/admin.activity.add.component';
 
 const routes: Routes = [
   {path: 'pie-chart', component: TimesheetPieChartComponent},
@@ -50,7 +52,9 @@ const routes: Routes = [
     AdminActivityComponent,
     AdminWorkitemtypeComponent,
     AdminReportGenerateComponent,
-    AdminModuleAddComponent
+    AdminModuleAddComponent,
+    AdminWorkitemtypeAddComponent,
+    AdminActivityAddComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatSelectModule
   ],
-  entryComponents: [AdminBuildAddComponent, AdminModuleAddComponent],
+  entryComponents: [AdminBuildAddComponent, AdminModuleAddComponent, AdminWorkitemtypeAddComponent, AdminActivityAddComponent],
   providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],
   bootstrap: [AppComponent]
 })
