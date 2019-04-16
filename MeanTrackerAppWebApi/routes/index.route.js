@@ -34,21 +34,6 @@ router.route('/notification').get(function (req, res) {
   });
 });
 
-// router.route('/register').post(function (req, res) {  
-//   console.log("server",req.body);
-//   let user = new userDetails(req.body);
-//   console.log("server",req.body);
-//   user.save()
-//     .then(user => {
-//       res.setHeader('Access-Control-Allow-Origin', '*');
-//       res.setHeader('Access-Control-Allow-Methods', 'POST');
-//       res.status(200).json({'person': 'person in added successfully'});
-      
-//     })
-//     .catch(err => {
-//     res.status(400).send("unable to save to database");
-//     });
-// });
 router.post('/register', function(req, res) {  
   bcrypt.hash(req.body.password, 10, function(err, hash){
      if(err) {
@@ -70,7 +55,7 @@ router.post('/register', function(req, res) {
            location: req.body.location
         });         
         user.save().then(function(result) {
-           console.log(result);
+           console.log("res", result);
            res.setHeader('Access-Control-Allow-Origin', '*');
            res.setHeader('Access-Control-Allow-Methods', 'POST');
            if(result) {
