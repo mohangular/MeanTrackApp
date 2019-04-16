@@ -36,6 +36,58 @@ router.route('/notification').get(function (req, res) {
   });
 });
 
+router.post('/register', function(req, res) {  
+  bcrypt.hash(req.body.password, 10, function(err, hash){
+     if(err) {
+        return res.status(500).json({
+           error: err
+        });
+     }
+     else {
+        const user = new userDetails({
+           _id: new  mongoose.Types.ObjectId(),
+           firstName: req.body.firstName,
+           lastName: req.body.lastName,
+           email: req.body.email,
+           mid: req.body.email,
+           password: hash ,
+           projectName: req.body.projectName,
+           projectRole: req.body.projectRole,
+           managerName: req.body.managerName,
+           location: req.body.location
+        });         
+        user.save().then(function(result) {
+           console.log("res", result);
+           res.setHeader('Access-Control-Allow-Origin', '*');
+           res.setHeader('Access-Control-Allow-Methods', 'POST');
+           if(result) {
+               const JWTToken = jwttoken.sign({
+                    email: user.email,
+                    _id: user._id
+                  },
+                  'secret',
+                   {
+                     expiresIn: '2h'
+                   });
+                   return res.status(200).json({
+                     success: 'Welcome to the JWT Auth',
+                     token: JWTToken
+                   });
+              }
+          //  res.status(200).json({
+          //     success: 'New user has been created'
+          //  }
+          res.status(200).json({'person': 'person in added successfully'});            
+        }).catch(error => {
+            console.log(error);
+          //  res.status(500).json({
+          //     error: err
+          //  });
+          res.status(400).send("unable to save to database");           
+        });
+     }
+  });
+});
 // router.route('/register').post(function (req, res) {  
 //   console.log("server",req.body);
 //   let user = new userDetails(req.body);

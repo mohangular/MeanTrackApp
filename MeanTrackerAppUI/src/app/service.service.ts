@@ -37,9 +37,9 @@ export class ServiceService {
     return this.http.put(`${this.uri}/admin/buildDetails/${currentEditId}`, buildDetail);
   }
 
-  addUser(user): Observable<any> {
-    console.log(user);
-    return this.http.post(`${this.uri}/register`, user);
+  addUser(registerForm): Observable<any> {
+    console.log(registerForm.value);
+    return this.http.post(`${this.uri}/register`, registerForm.value);
   }
   getUserList(): Observable<any> {
     console.log('getUserList');

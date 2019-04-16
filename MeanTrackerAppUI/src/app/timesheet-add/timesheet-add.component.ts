@@ -28,6 +28,7 @@ export class TimesheetAddComponent implements OnInit {
   showAddButton = true;
   buttonValue = 'Save';
   currentTaskId:string;
+  isEdit= true;
 
   // ExportToExcel() 
   // {
@@ -123,7 +124,7 @@ export class TimesheetAddComponent implements OnInit {
 
   this.getTimeTrackerModel();
 
-    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
 
@@ -131,11 +132,7 @@ export class TimesheetAddComponent implements OnInit {
   }
 
   getTimeTrackerModel(){
-    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
-    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
-      this.dataSource = res;
-      console.log(this.dataSource);
-    });
+    this.getTimeTrackerDetails();
   }
 
   nextDate(){
@@ -152,23 +149,35 @@ export class TimesheetAddComponent implements OnInit {
     this.date = new Date(this.date);
 
   }
+
+  onDateChange(){
+    this.getTimeTrackerDetails();
+   }
   // getOnLoadTimeTrackerValues(){
   //   this.timetrackerService.getOnLoad().subscribe((res) => {
   //     this.timeTrackerModel = res
   //   });
   // }
 
-  onEdit(task: Activity) {
-    this.currentTaskId = task._id;
-    this.form.patchValue({
-      module: task.module,
-      build: task.build,
-      tfsId: task.tfsId,
-      workType: task.workType,
-      activity: task.activity,
-      hours: task.hours,
-      comments: task.comments
-    });
+  onEdit(task: Activity, isEdit) {
+    console.log(isEdit);
+      alert(isEdit);
+      this.currentTaskId = task._id;
+      this.form.patchValue({
+        module: task.module,
+        build: task.build,
+        tfsId: task.tfsId,
+        workType: task.workType,
+        activity: task.activity,
+        hours: task.hours,
+        comments: task.comments
+      });
+    
+      if(!isEdit){   
+        this.deleteEntry(); 
+      }
+    
+
   }
 
   onSave() {
@@ -217,5 +226,13 @@ export class TimesheetAddComponent implements OnInit {
       this.showAddButton = true;
       this.form.reset();
     })
+  }
+
+  getTimeTrackerDetails(){
+    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
+      this.dataSource = res;
+      console.log(this.dataSource);
+    });
   }
 }
