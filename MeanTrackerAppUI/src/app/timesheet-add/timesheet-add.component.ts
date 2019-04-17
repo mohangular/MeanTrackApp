@@ -120,15 +120,11 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
       { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
       { value: 'Others', viewValue: 'Others' }
-    ];    
+    ];   
 
-  this.getTimeTrackerModel();
-
+    this.getTimeTrackerModel();
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() => this.dataSource.sort = this.sort);
-
-   //this.getOnLoadTimeTrackerValues();
+    this.getOnLoadTimeTrackerValues();
   }
 
   getTimeTrackerModel(){
@@ -153,12 +149,7 @@ export class TimesheetAddComponent implements OnInit {
 
   onDateChange(){
     this.getTimeTrackerDetails();
-   }
-  // getOnLoadTimeTrackerValues(){
-  //   this.timetrackerService.getOnLoad().subscribe((res) => {
-  //     this.timeTrackerModel = res
-  //   });
-  // }
+   } 
 
   onEdit(task: Activity, isEdit) {
     console.log(isEdit);
@@ -233,6 +224,15 @@ export class TimesheetAddComponent implements OnInit {
     let selectedDate = new Date(new Date(this.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
       this.dataSource = res;
+      setTimeout(() => this.dataSource.paginator = this.paginator);
+      setTimeout(() => this.dataSource.sort = this.sort);
+    });
+  }
+
+  getOnLoadTimeTrackerValues(){    
+    this.timetrackerService.getOnLoadDetails().subscribe((res)=>{     
+       //     this.timeTrackerModel = res
+      console.log('res',res);
     });
   }
 }

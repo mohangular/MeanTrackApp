@@ -7,15 +7,18 @@ var Promise = require("bluebird");
 
 router.use(bodyParser.json());
 
-//get List of TimeTracker details
-router.get('/:selectedDate',(req,res,next)=> {
-  timeTrackers.find((err,timeTrackers) => {
-    let selectDate = new Date(req.params.selectedDate).toLocaleDateString();
-    console.log('test',selectDate);
-      var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
-     return res.json(timeTrackerDetails);
-  });
-});
+// //get List of TimeTracker details
+// router.get('/:selectedDate',(req,res,next)=> {
+//   timeTrackers.find((err,timeTrackers) => {
+//     let selectDate = new Date(req.params.selectedDate).toLocaleDateString();    
+//       var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
+//      return res.json(timeTrackerDetails);
+//   });
+// });
+
+
+
+
 
 //add entries for TimeTracker
 router.route('/addtimesheet').post((req, res, next) => {
@@ -35,7 +38,7 @@ router.route('/update').put((req, res, next) => {
   console.log(req.body._id);
   timeTrackers.updateOne({ _id: req.body._id }, req.body)
     .then((timeTracker) => {
-      console.log('Build Information Added :', timeTracker);
+     console.log('Build Information Added :', timeTracker);
       timeTrackers.find({})
         .then((timetracks) => {
           res.statusCode = 200;
@@ -79,55 +82,40 @@ router.route('/login').post(function (req, res) {
     });
 });
 
-var timeTrackerList = function(){
+//get List of TimeTracker details
+router.route('/onLoadDetails').get(function(req,res,next) {  
+  try {
   var promise = new Promise(function(resolve, reject){
    timeTrackers.find((err,timeTrackers) => {
           var todaysDate = new Date().toLocaleDateString();
           timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
       resolve(timeTrackers)
-  })
+  })  
 })
-return promise;
-};
-
-var buildList = function(){
+promise.then(function(value){
+ 
+  //get build info
   var buildInfo;
-  var promise = new Promise(function(resolve,reject){
+  var buildpromise = new Promise(function(resolve,reject){
     BuildDetails.find((err, BuildDetails) => {
       buildInfo = BuildDetails.filter(function(value) {return value.enabled === true;})
       resolve(buildInfo)
     })
   })
-  return promise;
-}
-// router.route('/onLoad').get((req, res, next) => {
-//   try {
-//     var time;
-//     var build;
+  buildpromise.then(function(buildValue){
+    res.statusCode = 200;
+   //res.json({"a" ttPromise.then(function(ttvalue){ ttvalue }), "b": ttbuild.then(function(buildvalue){ buildvalue})});
+   res.json({"build": buildValue, "timeTracker": value})
+ }, function(error){
+  // deal with error
+ });
+}, function(error){
+// deal with error
+});
 
-//     var ttPromise = timeTrackerList();
-//     ttPromise.then(function(value){
-//     // deal with value
-//     //console.log('get timetracker',value);
-
-// }, function(error){
-//   // deal with error
-// });
-//   var ttbuild = buildList().then(function(value){
-//     // deal with value
-//     //console.log('get build',value);
-
-// }, function(error){
-//   // deal with error
-// });
-//     res.statusCode = 200;
-//     res.setHeader('Content-Type', 'application/json');
-//     //res.json({"a" ttPromise.then(function(ttvalue){ ttvalue }), "b": ttbuild.then(function(buildvalue){ buildvalue})});
-//     res.json({"a": 'f', "b": 'y'})
-
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+ } catch (error) {
+   next(error);
+ }
+});
 
 module.exports = router;
