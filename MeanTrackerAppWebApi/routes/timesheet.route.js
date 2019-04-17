@@ -7,14 +7,14 @@ var Promise = require("bluebird");
 
 router.use(bodyParser.json());
 
-// //get List of TimeTracker details
-// router.get('/:selectedDate',(req,res,next)=> {
-//   timeTrackers.find((err,timeTrackers) => {
-//     let selectDate = new Date(req.params.selectedDate).toLocaleDateString();    
-//       var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
-//      return res.json(timeTrackerDetails);
-//   });
-// });
+//get List of TimeTracker details
+router.get('/:selectedDate',(req,res,next)=> {
+  timeTrackers.find((err,timeTrackers) => {
+    let selectDate = new Date(req.params.selectedDate).toLocaleDateString();    
+      var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
+     return res.json(timeTrackerDetails);
+  });
+});
 
 
 
