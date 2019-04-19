@@ -78,8 +78,8 @@
               <mat-form-field>
                   <mat-label>Module</mat-label>
                   <mat-select formControlName="module">
-                    <mat-option *ngFor="let module of moduleList" [value]="module.value">
-                      {{module.viewValue}}
+                    <mat-option *ngFor="let module of timeTrackerModel.module" [value]="module.moduleName">
+                      {{module.moduleName}}
                     </mat-option>
                   </mat-select>
                   <mat-error>
@@ -91,8 +91,8 @@
               <mat-form-field>
                   <mat-label>Build Number</mat-label>
                   <mat-select formControlName="build">
-                    <mat-option *ngFor="let build of buildList"  [value]="build.value">
-                      {{build.viewValue}}
+                    <mat-option *ngFor="let build of timeTrackerModel.build"  [value]="build.buildName">
+                      {{build.buildName}}
                     </mat-option>
                   </mat-select>
                   <mat-error>
@@ -112,8 +112,8 @@
                 <mat-form-field>
                     <mat-label>Work Type</mat-label>
                     <mat-select formControlName="workType">
-                      <mat-option *ngFor="let workType of workTypeList" [value]="workType.value">
-                        {{workType.viewValue}}
+                      <mat-option *ngFor="let workType of timeTrackerModel.workItem" [value]="workType.workItemName">
+                        {{workType.workItemName}}
                       </mat-option>
                     </mat-select>
                     <mat-error>
@@ -125,8 +125,8 @@
                 <mat-form-field>
                     <mat-label>Activity Done</mat-label>
                     <mat-select formControlName="activity">
-                      <mat-option *ngFor="let activity of activityList" [value]="activity.value">
-                        {{activity.viewValue}}
+                      <mat-option *ngFor="let activity of timeTrackerModel.activity" [value]="activity.activityName">
+                        {{activity.activityName}}
                       </mat-option>
                     </mat-select>
                     <mat-error>

@@ -10,14 +10,6 @@ var ActivityDetail = require('../models/activityDetails');
 
 router.use(bodyParser.json());
 
-//get List of TimeTracker details
-router.get('/:selectedDate',(req,res,next)=> {
-  timeTrackers.find((err,timeTrackers) => {
-    let selectDate = new Date(req.params.selectedDate).toLocaleDateString();    
-      var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
-     return res.json(timeTrackerDetails);
-  });
-});
 
 //add entries for TimeTracker
 router.route('/addtimesheet').post((req, res, next) => {
@@ -84,13 +76,13 @@ router.route('/login').post(function (req, res) {
 //get List of TimeTracker details
 router.route('/onLoadDetails').get(function(req,res,next) {  
   try {
-  var promise = new Promise(function(resolve, reject){
-  timeTrackers.find((err,timeTrackers) => {
-          var todaysDate = new Date().toLocaleDateString();
-          var timeTrackerforSelectedDate =   timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
-      resolve(timeTrackerforSelectedDate)
-  })  
-})
+    var promise = new Promise(function(resolve, reject){
+      timeTrackers.find((err,timeTrackers) => {
+              var todaysDate = new Date().toLocaleDateString();
+              var timeTrackerforSelectedDate =   timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
+          resolve(timeTrackerforSelectedDate)
+      })  
+    })
 promise.then(function(value){
  
   //get build info
@@ -130,7 +122,7 @@ promise.then(function(value){
     })
     activityPromise.then(function(activityValue){
       res.statusCode = 200;
-      res.json({"timeTracker": value, "build": buildValue, "workItem": workItem, "module":moduleItemValue, "activity":activityValue})
+      return res.json({"timeTracker": value, "build": buildValue, "workItem": workItem, "module":moduleItemValue, "activity":activityValue});
     }, function(activityError){
 
     });
@@ -151,5 +143,15 @@ promise.then(function(value){
    next(error);
  }
 });
+
+//get List of TimeTracker details
+router.get('/:selectedDate',(req,res,next)=> {
+  timeTrackers.find((err,timeTrackers) => {
+    let selectDate = new Date(req.params.selectedDate).toLocaleDateString();    
+      var timeTrackerDetails = timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() == selectDate;})
+     return res.json(timeTrackerDetails);
+  });  
+});
+
 
 module.exports = router;

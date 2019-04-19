@@ -58,7 +58,7 @@ export class TimesheetAddComponent implements OnInit {
     workType: new FormControl('', Validators.required),
     activity: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
-    comments: new FormControl('', [ Validators.required, Validators.maxLength(250)]),
+    comments: new FormControl('', Validators.maxLength(250)),
   });
  
   
@@ -123,8 +123,6 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
       { value: 'Others', viewValue: 'Others' }
     ];   
-
-     this.getTimeTrackerModel();
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];    
   }
 
@@ -233,7 +231,10 @@ export class TimesheetAddComponent implements OnInit {
   getOnLoadTimeTrackerValues(){    
     this.timetrackerService.getOnLoadDetails().subscribe((res)=>{     
     this.timeTrackerModel = res
-      console.log('res',this.timeTrackerModel);
+    this.dataSource = this.timeTrackerModel.timeTracker;
+    console.log(this.timeTrackerModel);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
     });
   }
 }
