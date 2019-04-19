@@ -93,6 +93,8 @@ export class TimesheetAddComponent implements OnInit {
     
   }
   ngOnInit() {
+
+    this.getOnLoadTimeTrackerValues();
     this.moduleList = [
       { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
       { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
@@ -122,9 +124,8 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Others', viewValue: 'Others' }
     ];   
 
-    this.getTimeTrackerModel();
-    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];
-    this.getOnLoadTimeTrackerValues();
+     this.getTimeTrackerModel();
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];    
   }
 
   getTimeTrackerModel(){
@@ -231,8 +232,8 @@ export class TimesheetAddComponent implements OnInit {
 
   getOnLoadTimeTrackerValues(){    
     this.timetrackerService.getOnLoadDetails().subscribe((res)=>{     
-       //     this.timeTrackerModel = res
-      console.log('res',res);
+    this.timeTrackerModel = res
+      console.log('res',this.timeTrackerModel);
     });
   }
 }

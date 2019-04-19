@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 var timeTrackers = require('../models/timeTracker');
 var BuildDetails = require('../models/buildDetails');
 var Promise = require("bluebird");
+var workItemDetails = require('../models/workItemDetails');
+var moduleDetails = require('../models/moduleDetails');
+var ActivityDetail = require('../models/activityDetails');
 
 router.use(bodyParser.json());
 
@@ -15,10 +18,6 @@ router.get('/:selectedDate',(req,res,next)=> {
      return res.json(timeTrackerDetails);
   });
 });
-
-
-
-
 
 //add entries for TimeTracker
 router.route('/addtimesheet').post((req, res, next) => {
@@ -86,30 +85,65 @@ router.route('/login').post(function (req, res) {
 router.route('/onLoadDetails').get(function(req,res,next) {  
   try {
   var promise = new Promise(function(resolve, reject){
-   timeTrackers.find((err,timeTrackers) => {
+  timeTrackers.find((err,timeTrackers) => {
           var todaysDate = new Date().toLocaleDateString();
-          timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
-      resolve(timeTrackers)
+          var timeTrackerforSelectedDate =   timeTrackers.filter(function(value){ return new Date(value.date).toLocaleDateString() === todaysDate;})
+      resolve(timeTrackerforSelectedDate)
   })  
 })
 promise.then(function(value){
  
   //get build info
   var buildInfo;
-  var buildpromise = new Promise(function(resolve,reject){
+  var buildPromise = new Promise(function(resolve,reject){
     BuildDetails.find((err, BuildDetails) => {
       buildInfo = BuildDetails.filter(function(value) {return value.enabled === true;})
       resolve(buildInfo)
     })
   })
-  buildpromise.then(function(buildValue){
-    res.statusCode = 200;
-   //res.json({"a" ttPromise.then(function(ttvalue){ ttvalue }), "b": ttbuild.then(function(buildvalue){ buildvalue})});
-   res.json({"build": buildValue, "timeTracker": value})
- }, function(error){
+  buildPromise.then(function(buildValue){
+  
+    var workItemPromise = new Promise(function(resolve,reject){
+    workItemDetails.find({})
+      .then(item => {
+        resolve(item);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+    })
+    workItemPromise.then(function(workItem){
+    
+    var modulePromise = new Promise(function(resolve,reject){
+      moduleDetails.find({})
+      .then(item => {
+        resolve(item);  
+      }, (err) => next(err))
+      .catch((err) => next(err));  
+    })
+    modulePromise.then(function(moduleItemValue){
+
+    var activityPromise = new Promise(function(resolve,reject){
+      ActivityDetail.find({})
+      .then(activityItem => {
+        resolve(activityItem);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+    })
+    activityPromise.then(function(activityValue){
+      res.statusCode = 200;
+      res.json({"timeTracker": value, "build": buildValue, "workItem": workItem, "module":moduleItemValue, "activity":activityValue})
+    }, function(activityError){
+
+    });
+    },function(moduleError){
+      
+    });     
+    },function(workItemError){
+      // deal with error
+     });   
+ }, function(buildError){
   // deal with error
  });
-}, function(error){
+}, function(timeTrackerError){
 // deal with error
 });
 

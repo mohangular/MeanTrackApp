@@ -1,3 +1,4 @@
+import { TimetrackerService } from './timetracker.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -83,7 +84,7 @@ const routes: Routes = [
     MatSelectModule
   ],
   entryComponents: [AdminBuildAddComponent, AdminModuleAddComponent, AdminWorkitemtypeAddComponent, AdminActivityAddComponent],
-  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User],
+  providers: [MatDatepickerModule, MatNativeDateModule, ServiceService, DatePipe, User, TimesheetAddComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
