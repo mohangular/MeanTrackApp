@@ -222,7 +222,7 @@ export class TimesheetAddComponent implements OnInit {
   getTimeTrackerDetails(){
     let selectedDate = new Date(new Date(this.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
-      this.dataSource = res;
+      this.dataSource = new MatTableDataSource(res);
       setTimeout(() => this.dataSource.paginator = this.paginator);
       setTimeout(() => this.dataSource.sort = this.sort);
     });
@@ -231,7 +231,8 @@ export class TimesheetAddComponent implements OnInit {
   getOnLoadTimeTrackerValues(){    
     this.timetrackerService.getOnLoadDetails().subscribe((res)=>{     
     this.timeTrackerModel = res
-    this.dataSource = this.timeTrackerModel.timeTracker;
+    //this.dataSource = this.timeTrackerModel.timeTracker;
+    this.dataSource = new MatTableDataSource(this.timeTrackerModel.timeTracker);
     console.log(this.timeTrackerModel);
     setTimeout(() => this.dataSource.paginator = this.paginator);
     setTimeout(() => this.dataSource.sort = this.sort);
