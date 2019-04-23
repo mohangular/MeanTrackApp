@@ -65,6 +65,7 @@ debugger;
     // If a user is found
     if(user){
       token = user.generateJwt();
+      console.log(token);
       res.status(200);
       res.json({
         "token" : token
