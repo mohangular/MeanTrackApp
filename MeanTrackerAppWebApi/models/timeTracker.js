@@ -35,7 +35,7 @@ let TimeTracker = new Schema({
     type: String,
   },
   build: {
-    type: Number,    
+    type: String,    
   },
   MID: {
     type: String,    

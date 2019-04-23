@@ -18,22 +18,21 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   timeTrackerModel: any;
   
-  constructor(private timetrackerService:TimetrackerService, private timeSheetComp: TimesheetAddComponent) { }
+  constructor(private timetrackerService:TimetrackerService, private timesheetAddComponent: TimesheetAddComponent) { }
 
   ngOnInit() {
-    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() => this.dataSource.sort = this.sort);
-    console.log('res',this.timeSheetComp.date);
-    let selectedDate = new Date(new Date(this.timeSheetComp.date).toLocaleDateString());
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];    
+    let selectedDate = new Date(new Date(this.timesheetAddComponent.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.dataSource = res;
-    });
+      this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    });    
   }
 
   ExportToExcel() 
   {
-    let selectedDate = new Date(new Date(this.timeSheetComp.date).toLocaleDateString());
+    let selectedDate = new Date(new Date(this.timesheetAddComponent.date).toLocaleDateString());
     this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{
       this.timeTrackerModel = res;
     });

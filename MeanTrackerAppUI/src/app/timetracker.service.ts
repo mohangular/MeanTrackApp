@@ -12,7 +12,6 @@ export class TimetrackerService {
   constructor(private http: HttpClient) { }
 
   getTimeTrackerValues(selectedDate: Date): Observable<any> {
-    console.log('service');
     return this.http.get(`${this.uri}/timesheet/${selectedDate}`);
   }
 
@@ -30,7 +29,7 @@ export class TimetrackerService {
     return this.http.delete(`${this.uri}/timesheet/delete/${id}`);
   }
   
-  // getOnLoad(): Observable<any> {
-  //   return this.http.get(`${this.uri}/timesheet/onLoad`);
-  // }
+  getOnLoadDetails():Observable<any>{
+    return this.http.get(`${this.uri}/timesheet/onLoadDetails`);
+  }
 }

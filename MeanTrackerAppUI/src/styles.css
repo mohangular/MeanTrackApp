@@ -359,7 +359,7 @@ label input[type="radio"]:checked + .big-radio:after {
 	margin-bottom: 20px;
 	padding: 15px;
 	color:#fff;
-	background: rgba(0,0,0,0.3);
+	background: rgba(234,62,62,0.7);
 	border-radius: 2px;
 	box-shadow: 2px 5px 5px #888;
 }

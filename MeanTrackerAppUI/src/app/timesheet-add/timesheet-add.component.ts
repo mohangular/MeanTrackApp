@@ -28,6 +28,7 @@ export class TimesheetAddComponent implements OnInit {
   showAddButton = true;
   buttonValue = 'Save';
   currentTaskId:string;
+  isEdit= true;
 
   // ExportToExcel() 
   // {
@@ -57,7 +58,7 @@ export class TimesheetAddComponent implements OnInit {
     workType: new FormControl('', Validators.required),
     activity: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
-    comments: new FormControl('', [ Validators.required, Validators.maxLength(250)]),
+    comments: new FormControl('', Validators.maxLength(250)),
   });
  
   
@@ -92,6 +93,8 @@ export class TimesheetAddComponent implements OnInit {
     
   }
   ngOnInit() {
+
+    this.getOnLoadTimeTrackerValues();
     this.moduleList = [
       { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
       { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
@@ -119,29 +122,19 @@ export class TimesheetAddComponent implements OnInit {
       { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
       { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
       { value: 'Others', viewValue: 'Others' }
-    ];    
-
-  this.getTimeTrackerModel();
-
-    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments'];
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() => this.dataSource.sort = this.sort);
-
-   //this.getOnLoadTimeTrackerValues();
+    ];   
+    this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];    
   }
 
   getTimeTrackerModel(){
-    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
-    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
-      this.dataSource = res;
-      console.log(this.dataSource);
-    });
+    this.getTimeTrackerDetails();
   }
 
   nextDate(){
     if((this.date) < (this.maxDate)){
       this.date.setDate(this.date.getDate() + 1); 
       this.date = new Date(this.date);
+      this.getTimeTrackerDetails();
     }
         
   }
@@ -150,25 +143,32 @@ export class TimesheetAddComponent implements OnInit {
    
     this.date.setDate(this.date.getDate() -1); 
     this.date = new Date(this.date);
-
+    this.getTimeTrackerDetails();
   }
-  // getOnLoadTimeTrackerValues(){
-  //   this.timetrackerService.getOnLoad().subscribe((res) => {
-  //     this.timeTrackerModel = res
-  //   });
-  // }
 
-  onEdit(task: Activity) {
-    this.currentTaskId = task._id;
-    this.form.patchValue({
-      module: task.module,
-      build: task.build,
-      tfsId: task.tfsId,
-      workType: task.workType,
-      activity: task.activity,
-      hours: task.hours,
-      comments: task.comments
-    });
+  onDateChange(){
+    this.getTimeTrackerDetails();
+   } 
+
+  onEdit(task: Activity, isEdit) {
+    console.log(isEdit);
+      alert(isEdit);
+      this.currentTaskId = task._id;
+      this.form.patchValue({
+        module: task.module,
+        build: task.build,
+        tfsId: task.tfsId,
+        workType: task.workType,
+        activity: task.activity,
+        hours: task.hours,
+        comments: task.comments
+      });
+    
+      if(!isEdit){   
+        this.deleteEntry(); 
+      }
+    
+
   }
 
   onSave() {
@@ -217,5 +217,25 @@ export class TimesheetAddComponent implements OnInit {
       this.showAddButton = true;
       this.form.reset();
     })
+  }
+
+  getTimeTrackerDetails(){
+    let selectedDate = new Date(new Date(this.date).toLocaleDateString());
+    this.timetrackerService.getTimeTrackerValues(selectedDate).subscribe((res)=>{     
+      this.dataSource = new MatTableDataSource(res);
+      setTimeout(() => this.dataSource.paginator = this.paginator);
+      setTimeout(() => this.dataSource.sort = this.sort);
+    });
+  }
+
+  getOnLoadTimeTrackerValues(){    
+    this.timetrackerService.getOnLoadDetails().subscribe((res)=>{     
+    this.timeTrackerModel = res
+    //this.dataSource = this.timeTrackerModel.timeTracker;
+    this.dataSource = new MatTableDataSource(this.timeTrackerModel.timeTracker);
+    console.log(this.timeTrackerModel);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
+    });
   }
 }
