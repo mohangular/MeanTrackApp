@@ -69,7 +69,6 @@ debugger;
       res.status(200);
       res.json({
         "token" : token,
-        "MID":user.mid
       });
     } else {
       // If user is not found

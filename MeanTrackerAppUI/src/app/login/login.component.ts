@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     this.credentials.password = this.loginform.value.password;    
 
     this.auth.login(this.credentials).subscribe((result) => {
-      localStorage.setItem("Mid",result.MID)
       this.router.navigateByUrl('/profile');
     });
   }

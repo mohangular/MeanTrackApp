@@ -10,10 +10,10 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-   getDashboard() {
+   getDashboard(mid:String) {
     return this
            .http
-           .get(`${this.uri}`+ '/' + localStorage.getItem("Mid"));
+           .get(`${this.uri}`+ '/' + mid);
   }
   
 }

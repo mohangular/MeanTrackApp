@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 import {DashboardService} from '.././../dashboard.service'
-
+import {AuthenticationService} from '.././../authentication.service'
 
 
 @Component({
@@ -17,9 +17,10 @@ export class TimesheetPieChartComponent implements OnInit {
   public pieChartData :Number[]= [];
   public pieChartType = 'pie';
   
-  constructor(private Service: DashboardService){
+  constructor(private Service: DashboardService,private authService:AuthenticationService){
    // var dashboard = Service.getDashboard().subscribe((data:TimeTracker))    
-    this.Service.getDashboard().subscribe(result =>{
+   var userDetails =  authService.getUserDetails(); 
+   this.Service.getDashboard(userDetails.mid).subscribe(result =>{
       //console.log(result);
       this.getChartData(result);
       });
