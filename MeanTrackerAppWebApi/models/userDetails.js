@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const crypto = require('crypto');
 
- import crypto from 'crypto';
 var jwt = require('jsonwebtoken');
-
 
 // Define collection and schema for Business
 let UserDetails = new Schema({

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-//const User = require('../models/userDetails');
+const userDetails = require('../models/userDetails');
 const bcrypt = require('bcrypt');
 var jwt = require('express-jwt');
 const jwttoken = require('jsonwebtoken');
@@ -16,7 +16,6 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 //require("dotenv").config();
 
 let timetracker = require('../models/timeTracker');
-let userDetails = require('../models/userDetails.ts');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
