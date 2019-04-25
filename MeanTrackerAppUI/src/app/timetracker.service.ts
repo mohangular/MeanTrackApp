@@ -11,6 +11,11 @@ export class TimetrackerService {
   public data;
   constructor(private http: HttpClient) { }
 
+
+  getlTimeTrackerByCriteria(searchParam,searchBy): Observable<any> {
+    return this.http.get(`${this.uri}/timesheet/report/${searchParam}/${searchBy}`);
+  }
+
   getTimeTrackerValues(selectedDate: Date): Observable<any> {
     return this.http.get(`${this.uri}/timesheet/${selectedDate}`);
   }

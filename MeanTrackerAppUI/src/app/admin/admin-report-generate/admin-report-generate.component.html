@@ -13,7 +13,7 @@
     <div class="form-group col-sm-6" *ngIf="serachByValue=='User'">
       <mat-form-field>
         <mat-label>Select User</mat-label>
-        <mat-select [(ngModel)]="selectedUser"  (ngModelChange)="ExportReportToExcel()">
+        <mat-select [(ngModel)]="selectedUser"  (ngModelChange)="ExportReportToExcel(selectedUser,serachByValue)">
           <mat-option *ngFor="let user of UserList" [value]="user.mid">
             {{user.firstName}} {{user.lastName}}
           </mat-option>
@@ -23,7 +23,7 @@
     <div class="form-group col-sm-6" *ngIf="serachByValue=='Branch'">
       <mat-form-field>
         <mat-label>Select Branch</mat-label>
-        <mat-select [(ngModel)]="selectedBranch"  (ngModelChange)="ExportReportToExcel()">
+        <mat-select [(ngModel)]="selectedBranch"  (ngModelChange)="ExportReportToExcel(selectedBranch,serachByValue)">
           <mat-option *ngFor="let branch of BranchList" [value]="branch.value">
             {{branch.viewValue}}
           </mat-option>
@@ -33,7 +33,7 @@
     <div class="form-group col-sm-6" *ngIf="serachByValue=='Build'">
       <mat-form-field>
         <mat-label>Select Build</mat-label>
-        <mat-select [(ngModel)]="selectedBuild"  (ngModelChange)="ExportReportToExcel()">
+        <mat-select [(ngModel)]="selectedBuild"  (ngModelChange)="ExportReportToExcel(selectedBuild,serachByValue)">
           <mat-option *ngFor="let build of BuildList" [value]="build.buildName">
             {{build.buildName}}
           </mat-option>

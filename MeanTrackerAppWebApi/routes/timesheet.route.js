@@ -144,6 +144,18 @@ promise.then(function(value){
  }
 });
 
+//get all timetracker details by search parameter to generate excel report
+router.get('/report/:searchParam/:searchBy',(req,res,next) => {
+  var result;
+  var searchBy = req.params.searchBy;
+  var searchValue = req.params.searchParam;
+  findTimeTrackerByUser(searchValue,searchBy, function(err,timeTrackers,callback){
+    if(err){ console.log('error'); return next(err);}
+    console.log('time',callback);
+    return res.json(timeTrackers);
+  }); 
+});
+
 //get List of TimeTracker details
 router.get('/:selectedDate',(req,res,next)=> {
   timeTrackers.find((err,timeTrackers) => {
@@ -153,5 +165,45 @@ router.get('/:selectedDate',(req,res,next)=> {
   });  
 });
 
+var findTimeTrackerByUser = function (searchValue, searchBy, callback){
+  switch(searchBy){
+    case "User": {
+  var res = timeTrackers.find({'MID': searchValue})
+  .then((response) => {
+    callback(null,response);
+  }, (err) => reject(err))
+  .catch((error) => {
+    // Clean up the buffer and handle the error
+    return error.message;
+  })
+    }
+    case "Branch": {
+      var res = timeTrackers.find({'branch': searchValue})
+  .then((response) => {
+    callback(null,response);
+  }, (err) => reject(err))
+  .catch((error) => {
+    // Clean up the buffer and handle the error
+    return error.message;
+  })
+ // .catch((err) => {done(); });
+  
+    }
+    case "Build": {
+      // var res = timeTrackers.find({"build": searchValue, "activity": "Dev - CodeReview"})
+      var res = timeTrackers.find({"build": searchValue})
+      .then((response) => { 
+        console.log('build',response);       
+        callback(null,response);
+      }, (err) => reject(err))
+      .catch((error) => {
+        // Clean up the buffer and handle the error
+        return error.message;
+      })
+      //.catch((err) => { return callback(err,null); });
+      
+    }
+  }  
+}
 
 module.exports = router;
