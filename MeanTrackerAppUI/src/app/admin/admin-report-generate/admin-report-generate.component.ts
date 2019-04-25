@@ -1,3 +1,4 @@
+import { TimetrackerService } from './../../timetracker.service';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from '../../service.service';
@@ -13,8 +14,10 @@ export class AdminReportGenerateComponent implements OnInit {
   UserList: any;
   BranchList: any;
   BuildList: any;
+  exportDetails: any;
   
   searchByfunc(value){
+    console.log('selec',value);
     switch (value) {
        case "User": {
         this.service.getUserList().subscribe((res)=>{
@@ -37,21 +40,22 @@ export class AdminReportGenerateComponent implements OnInit {
        }
     }
   }
-  ExportReportToExcel() 
+  ExportReportToExcel(value,searchBy) 
   {
-    let moduleList = [
-      { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
-      { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
-      { value: 'Team Meeting', viewValue: 'Team Meeting' }
-    ];
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(moduleList);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     
+    this.timeTracker.getlTimeTrackerByCriteria(value,searchBy).subscribe((res) =>{
+      this.exportDetails = res;
+      console.log('expo',res); 
+      const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.exportDetails);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');    
     /* save to file */
-    XLSX.writeFile(wb, 'tracker.xlsx');
+    XLSX.writeFile(wb, 'tracker.xlsx'); 
+    });
+    console.log('expo out',this.exportDetails);
+      
   }
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private timeTracker: TimetrackerService) { }
 
   ngOnInit() {
     this.searchByList = [
@@ -60,14 +64,10 @@ export class AdminReportGenerateComponent implements OnInit {
       { value: 'Branch', viewValue: 'Branch' }
     ];
     this.BranchList = [
-      { value: 'Dev', viewValue: 'Dev' },
+      { value: 'DEV', viewValue: 'DEV' },
       { value: 'QA', viewValue: 'QA' },
       { value: 'BA', viewValue: 'BA' }
-    ];
-    this.UserList = [
-      { value: 'M1034617', viewValue: 'Balaji Gopal' },
-      { value: 'M1034624', viewValue: 'Usharani Sundarajan' }
-    ];
+    ];    
 
 
   }

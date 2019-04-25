@@ -95,34 +95,34 @@ export class TimesheetAddComponent implements OnInit {
   ngOnInit() {
 
     this.getOnLoadTimeTrackerValues();
-    this.moduleList = [
-      { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
-      { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
-      { value: 'Team Meeting', viewValue: 'Team Meeting' }
-    ];
+    // this.moduleList = [
+    //   { value: 'Smart Wallet', viewValue: 'Smart Wallet' },
+    //   { value: 'Organisational Meeting', viewValue: 'Organisational Meeting' },
+    //   { value: 'Team Meeting', viewValue: 'Team Meeting' }
+    // ];
 
-    this.buildList = [
-      { value: 1538.1, viewValue: 1538.1 },
-      { value: 1538.2, viewValue: 1538.2 },
-      { value: 1538.3, viewValue: 1538.3 },
-      { value: 1538.4, viewValue: 1538.4 },
-      { value: 1538.5, viewValue: 1538.5 }
-    ];
+    // this.buildList = [
+    //   { value: 1538.1, viewValue: 1538.1 },
+    //   { value: 1538.2, viewValue: 1538.2 },
+    //   { value: 1538.3, viewValue: 1538.3 },
+    //   { value: 1538.4, viewValue: 1538.4 },
+    //   { value: 1538.5, viewValue: 1538.5 }
+    // ];
 
-    this.workTypeList = [
-      { value: 'Bug', viewValue: 'Bug' },
-      { value: 'UserStory', viewValue: 'UserStory' },
-      { value: 'Others', viewValue: 'Others' }
-    ];
+    // this.workTypeList = [
+    //   { value: 'Bug', viewValue: 'Bug' },
+    //   { value: 'UserStory', viewValue: 'UserStory' },
+    //   { value: 'Others', viewValue: 'Others' }
+    // ];
 
-    this.activityList = [
+    // this.activityList = [
 
-      { value: 'Dev-Coding', viewValue: 'Coding' },
-      { value: 'Dev-Analysis', viewValue: 'Analysis' },
-      { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
-      { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
-      { value: 'Others', viewValue: 'Others' }
-    ];   
+    //   { value: 'Dev-Coding', viewValue: 'Coding' },
+    //   { value: 'Dev-Analysis', viewValue: 'Analysis' },
+    //   { value: 'Dev-UnitTesting', viewValue: 'UnitTesting' },
+    //   { value: 'Dev-CodeRework', viewValue: 'CodeRework' },
+    //   { value: 'Others', viewValue: 'Others' }
+    // ];   
     this.displayedColumns = ['module', 'tfsId', 'workType', 'activity', 'comments', 'actions'];    
   }
 
