@@ -95,8 +95,10 @@ export interface UserDetails {
   _id: string;
   email: string;
   name: string;
+  mid:  string;
   exp: number;
   iat: number;
+
 }
 
 interface TokenResponse {

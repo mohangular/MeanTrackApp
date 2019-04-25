@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
- import crypto from 'crypto';
+const crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 
@@ -25,9 +24,7 @@ let UserDetails = new Schema({
   mid: {
     type: String,
   },
-  password: {
-    type: String,
-  },
+  
   projectName: {
     type: String,
   },
@@ -39,6 +36,12 @@ let UserDetails = new Schema({
   },
   location: {
     type: String,
+  },
+  salt:{
+    type:String
+  },
+  password:{
+    type:String
   }
 }, {
     collection: 'userDetails'  
@@ -46,19 +49,18 @@ let UserDetails = new Schema({
 
 UserDetails.methods.setPassword = function(password){    
   this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-  window.localStorage.setItem('salt', this.salt);
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+  this.password = hash;
+  //window.localStorage.setItem('salt', this.salt);
 };
 
 UserDetails.methods.validPassword = function(password) {  
   //this.salt = crypto.randomBytes(16).toString('hex');  
   //this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');  
-  this.salt = localStorage.getItem('salt');
-  console.log(this.salt);
-  console.log(this.hash);
+  //this.salt = localStorage.getItem('salt');
   var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
   
-  return this.hash === hash;
+  return this.password === hash;
 };
 
 UserDetails.methods.generateJwt = function() {  
@@ -69,6 +71,7 @@ UserDetails.methods.generateJwt = function() {
     _id: this._id,
     email: this.email,
     name: this.name,
+    mid:this.mid,
     exp: parseInt((expiry.getTime() / 1000).toString()),
   }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };

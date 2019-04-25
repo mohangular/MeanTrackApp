@@ -16,7 +16,7 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 //require("dotenv").config();
 
 let timetracker = require('../models/timeTracker');
-let userDetails = require('../models/userDetails.ts');
+let userDetails = require('../models/userDetails');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -21,7 +21,7 @@ module.exports.register = function(req, res) {
   user.firstName = req.body.firstName,
   user.lastName = req.body.lastName,
   user.email = req.body.email,
-  user.mid = req.body.email,
+  user.mid = req.body.mid,
   //user.password = hash ,
   user.projectName =  req.body.projectName,
   user.projectRole = req.body.projectRole,
@@ -31,7 +31,7 @@ module.exports.register = function(req, res) {
   // user.email = req.body.email;
 
   user.setPassword(req.body.password);
-
+  console.log(user)
   user.save(function(err) {
     var token;
     token = user.generateJwt();
@@ -68,7 +68,8 @@ debugger;
       console.log(token);
       res.status(200);
       res.json({
-        "token" : token
+        "token" : token,
+        "MID":user.mid
       });
     } else {
       // If user is not found

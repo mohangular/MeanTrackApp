@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatSort,  } from '@angular/material';
 import * as XLSX from 'xlsx';
+import {AuthenticationService} from '../authentication.service';
+
 
 
 @Component({
@@ -89,7 +91,7 @@ export class TimesheetAddComponent implements OnInit {
   get comments() {
     return this.form.get('comments');
   }
-  constructor(private timetrackerService: TimetrackerService){
+  constructor(private timetrackerService: TimetrackerService,private authService:AuthenticationService){
     
   }
   ngOnInit() {
@@ -180,12 +182,13 @@ export class TimesheetAddComponent implements OnInit {
 
   onUpdate() {
     let entry = new timeSheetEntry();  
+    let userDetail = this.authService.getUserDetails();
     entry = this.form.value;
     entry.date = new Date ((new Date(this.date).getMonth() + 1) +
                '/' + new Date(this.date).getDate() + 
                '/' + new Date(this.date).getFullYear()); 
-    entry.resourceName = 'pavitha';
-    entry.MID = 'M1033925';
+    entry.resourceName = userDetail.name;
+    entry.MID = userDetail.mid;
     entry.branch = 'DEV';
     entry._id = this.currentTaskId;
     this.timetrackerService.updateTimeSheetEntry(entry).subscribe((res)=>{
@@ -196,12 +199,13 @@ export class TimesheetAddComponent implements OnInit {
 
   onCreate(){
     let entry = new timeSheetEntry();
+    let userDetail = this.authService.getUserDetails();
     entry = this.form.value;
     entry.date = new Date ((new Date(this.date).getMonth() + 1) +
                '/' + new Date(this.date).getDate() + 
                '/' + new Date(this.date).getFullYear()); 
-    entry.resourceName = 'pavitha';
-    entry.MID = 'M1033925';
+    entry.resourceName = userDetail.name;
+    entry.MID = userDetail.mid;
     entry.branch = 'DEV';
     this.timetrackerService.addTimeSheetEntry(entry).subscribe(res => {
       console.log('Saved Sucessfully');

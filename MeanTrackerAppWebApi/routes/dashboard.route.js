@@ -8,10 +8,16 @@ const dashboardRoutes = express.Router();
 let TimeTracker = require('../models/timeTracker');
 let ChartData = require('../models/chart');
 // Defined get data(index or listing) route
-dashboardRoutes.route('/').get(function (req, res)  {
-    
+dashboardRoutes.route('/:id').get(function (req, res)  {
+    var id = req.params.id;
+    console.log(id);
     TimeTracker.aggregate(
         [{
+            $match:
+            {
+                MID:id
+            }
+        },{
             $group: 
             {
                 "_id":{'activity':['$activity']},

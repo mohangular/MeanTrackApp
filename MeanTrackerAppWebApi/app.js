@@ -11,10 +11,8 @@ var indexRouter = require('./routes/index.route');
 var timesheetRouter = require('./routes/timesheet.route');
 var favicon = require('serve-favicon');
 var passport = require('passport');
-
 require('./models/db');
 require('./config/passport');
-
 var adminRouter = require('./routes/admin.route');
 var dashboardRouter = require('./routes/dashboard.route')
 mongoose.Promise = global.Promise;

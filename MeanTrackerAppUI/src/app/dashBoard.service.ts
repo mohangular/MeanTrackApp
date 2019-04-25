@@ -13,7 +13,7 @@ export class DashboardService {
    getDashboard() {
     return this
            .http
-           .get(`${this.uri}`);
+           .get(`${this.uri}`+ '/' + localStorage.getItem("Mid"));
   }
   
 }
